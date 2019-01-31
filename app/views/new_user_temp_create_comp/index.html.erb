@@ -1,0 +1,11 @@
+<%= form_tag('/new_user_temp_create_comp/login') do |f| %>
+<p class="title is-5 mt20">
+	ユーザ仮登録完了（<span class="careful">※まだユーザ登録は完了しておりません！</span>）
+</p>
+<p class="text-center">
+	ご入力頂いたメールアドレスにパスワードを送信しました。<br>メールアドレスとパスワードを入力し、ログインをしてください。
+</p>
+<div class="mt20 text-center">
+	<a href="javascript:document.submit()"> <%= button_tag 'ログイン画面へ', {:class => "button is-link"} %> </a>
+</div>
+<% end %>

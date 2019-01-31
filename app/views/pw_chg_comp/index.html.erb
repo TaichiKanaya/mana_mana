@@ -1,0 +1,11 @@
+<%= form_tag('/pw_chg_comp/login') do |f| %>
+<p class="subtitle is-6">
+	パスワード変更完了
+</p>
+<p>
+	仮パスワードを送信しました。仮パスワードを使用してログインしてください。
+</p>
+<div class="mt20">
+	<a href="javascript:document.submit()"> <%= button_tag 'ログイン画面へ', {:class => "button is-link"} %> </a>
+</div>
+<% end %>

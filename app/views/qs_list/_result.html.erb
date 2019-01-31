@@ -1,0 +1,35 @@
+<% @loadQuestion = @questions.load %>
+<div class="mt30">
+	<div class="columns">
+		<div class="column">
+			<%= label_tag "総件数 " + @questions.total_count.to_s + " 件　" + (@questions.offset_value + 1).to_s + " 件 〜 " + (@questions.offset_value + @questions.length).to_s + " 件までを表示"%>
+		</div>
+		<div id="csv_button" class="column">
+			<a href="javascript:document.forms[0].action = '/qs_list/outputCsv?format=csv'; document.forms[0].submit();"> <%= button_tag 'CSV出力', {:class => "button is-info is-small is-rounded", type: 'button'} %> </a>
+			<a href="document.submit()"> <%= button_tag 'CSV取込', {:class => "button is-info is-small is-rounded", type: 'button'} %> </a>
+		</div>
+	</div>
+	<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth mb30" style="width:100%">
+		<thead>
+			<tr>
+				<th>カテゴリ</th>
+				<th>問題</th>
+				<th>解答</th>
+				<th>登録日時</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @loadQuestion.each do |question| %>
+			<tr>
+				<td class="categoryName" data-tooltip="Tooltip Text"><%= question.category_name %></td>
+				<td class="question"><%= question.question %></td>
+				<td class="answer"><%= question.answer %></td>
+				<td class="regDate"><%= question.reg_date %></td>
+				<td class="updButton"><a href="/qs_upd/?question_id=<%= question.id %>" > <%= button_tag 'この問題を変更する', {:class => "button is-info is-small is-rounded"} %> </a></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<%= paginate(@questions) %>

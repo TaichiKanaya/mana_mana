@@ -1,0 +1,2 @@
+module QsRegHelper
+end

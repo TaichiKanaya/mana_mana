@@ -1,0 +1,11 @@
+<%= form_tag('/unsubscribe_comp/login') do |f| %>
+<p class="title is-4 mb10 mt20">
+	退会完了
+</p>
+<p class="text-center">
+	退会処理が完了しました。またのご利用をお待ちしております。
+</p>
+<div class="mt20 text-center">
+	<a href="javascript:document.submit()"> <%= button_tag 'ログイン画面へ', {:class => "button is-link"} %> </a>
+</div>
+<% end %>

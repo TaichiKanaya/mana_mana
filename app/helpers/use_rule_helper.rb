@@ -1,0 +1,2 @@
+module UseRuleHelper
+end

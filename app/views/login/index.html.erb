@@ -1,0 +1,25 @@
+<%= form_for(@user, :url => {:action => :login}) do |f| %>
+<div class="has-text-centered">
+	<%= image_tag('jj_title.png') %>
+</div>
+<div style="text-align: center">
+	<%#エラーメッセージ表示領域 %>
+	<%= render :file => 'layouts/error.html.erb' %>
+	<%#各種入力エリア %>
+	<div>
+		<%= f.text_field :user_id, :placeholder => "ユーザIDを入力してください", :class => "input is-info", :style => "width:30%;"%>
+	</div>
+	<div>
+		<%= f.password_field :password, :placeholder => "パスワードを入力してください", :class => "input is-info", :style => "width:30%" %>
+	</div>
+	<div style="margin-top: 15px; margin-bottom: 15px">
+		<a href="javascript:document.submit()"> <%= f.button 'ログイン', :class => "button is-link" %> </a>
+	</div>
+	<div>
+		パスワードを忘れた方は<%= link_to "こちら", "pw_reset"%>
+	</div>
+	<div>
+		新規登録をする場合は<%= link_to "こちら", "new_user_create"%>
+	</div>
+</div>
+<% end %>

@@ -1,0 +1,51 @@
+<%= form_tag('/qs_list/search') do |f| %>
+<p class="subtitle is-6">
+	問題一覧
+</p>
+<p>
+	各種条件を指定し、検索ボタンを押してください。新規で問題を登録する場合は<u><a class="link" href="/qs_reg">こちら</a></u>をクリックしてください。
+</p>
+<div class="searchCondition columns">
+	<div class="column is-1">
+		<%= label_tag "カテゴリ"%>
+	</div>
+	<div class="column is-5">
+		<%= hidden_field_tag "condition[h_category_id]", (params[:condition][:category_id] if params[:condition] != nil) %>
+		<div class="select is-info">
+			<%= select_tag "condition[category_id]", options_from_collection_for_select(Category.all, "id", "category_name", (params[:condition][:category_id] if params[:condition] != nil) ), include_blank: "未選択" %>
+		</div>
+	</div>
+	<div class="column is-1">
+		<%= label_tag "問題"%>
+	</div>
+	<div class="column is-5">
+		<%= hidden_field_tag "condition[h_question]", (params[:condition][:question] if params[:condition] != nil) %>
+		<%= text_field_tag 'condition[question]', (params[:condition][:question] if params[:condition] != nil), {:placeholder => "半角スペースで複数指定可能", :class => "input is-info"} %>
+	</div>
+</div>
+<div class="searchCondition columns">
+	<div class="column is-1">
+		<%= label_tag "解答"%>
+	</div>
+	<div class="column is-5">
+		<%= hidden_field_tag "condition[h_answer]", (params[:condition][:answer] if params[:condition] != nil) %>
+		<%= text_field_tag 'condition[answer]',(params[:condition][:answer] if params[:condition] != nil), {:placeholder => "半角スペースで複数指定可能", :class => "input is-info"} %>
+	</div>
+	<div class="column is-1">
+		<%= label_tag "登録日時"%>
+	</div>
+	<div class="column is-5">
+		<%= hidden_field_tag "condition[h_fromRegDate]", (params[:condition][:fromRegDate] if params[:condition] != nil) %>
+		<%= hidden_field_tag "condition[h_toRegDate]", (params[:condition][:toRegDate] if params[:condition] != nil) %>
+		<%= text_field_tag 'condition[fromRegDate]', (params[:condition][:fromRegDate] if params[:condition] != nil), {:class => "input is-info", :style => "width:130px;"} %>
+		<%= label_tag "〜" %>
+		<%= text_field_tag 'condition[toRegDate]', (params[:condition][:toRegDate] if params[:condition] != nil), {:class => "input is-info", :style => "width:130px;"} %>
+	</div>
+</div>
+<div id="search_button">
+	<a href="javascript:document.forms[0].action = '/qs_list/search'; document.forms[0].submit()"> <%= button_tag '検索', {:class => "button is-link", type: 'button'} %> </a>
+</div>
+<% if request.url =~ /search/ %>
+<%= render(:partial => "result") %>
+<% end %>
+<% end %>

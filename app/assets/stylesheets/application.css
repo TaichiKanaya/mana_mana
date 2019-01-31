@@ -1,0 +1,205 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+td {
+	vertical-align: middle !important;
+}
+/* タブホバー時の色設定 */
+.button {
+	opacity: 1.0;
+	-webkit-transition: all 0.3s ease !important;
+	-moz-transition: all 0.3s ease !important;
+	-o-transition: all 0.3s ease !important;
+	transition: all 0.3s ease !important;
+}
+.button:hover {
+	opacity: 0.5;
+}
+
+.button {
+	padding-left: 30px !important;
+	padding-right: 30px !important;
+}
+
+table tr th {
+	background-color: #E0E6F8;
+	font-size: 14px;
+}
+
+/* error message area */
+.area_error_message {
+	color: red;
+	background-color: #F8E0E6;
+	margin-bottom: 10px;
+}
+
+/* info message area */
+.area_info_message {
+	color: blue;
+	background-color: #E0ECF8;
+	margin-bottom: 10px;
+}
+
+/* font-size */
+.ft-sm {
+	font-size: small
+}
+
+/* ----------------------------------------------------
+ margin
+ ---------------------------------------------------- */
+.mt00 {
+	margin-top: 0px !important;
+}
+.mt05 {
+	margin-top: 5px !important;
+}
+.mt10 {
+	margin-top: 10px !important;
+}
+.mt15 {
+	margin-top: 15px !important;
+}
+.mt20 {
+	margin-top: 20px !important;
+}
+.mt25 {
+	margin-top: 25px !important;
+}
+.mt30 {
+	margin-top: 30px !important;
+}
+.mt35 {
+	margin-top: 35px !important;
+}
+.mt40 {
+	margin-top: 40px !important;
+}
+.mr00 {
+	margin-right: 0px !important;
+}
+.mr05 {
+	margin-right: 5px !important;
+}
+.mr10 {
+	margin-right: 10px !important;
+}
+.mr15 {
+	margin-right: 15px !important;
+}
+.mr20 {
+	margin-right: 20px !important;
+}
+.mr25 {
+	margin-right: 25px !important;
+}
+.mr30 {
+	margin-right: 30px !important;
+}
+.mr35 {
+	margin-right: 35px !important;
+}
+.mr40 {
+	margin-right: 40px !important;
+}
+.mb00 {
+	margin-bottom: 0px !important;
+}
+.mb05 {
+	margin-bottom: 5px !important;
+}
+.mb10 {
+	margin-bottom: 10px !important;
+}
+.mb15 {
+	margin-bottom: 15px !important;
+}
+.mb20 {
+	margin-bottom: 20px !important;
+}
+.mb25 {
+	margin-bottom: 25px !important;
+}
+.mb30 {
+	margin-bottom: 30px !important;
+}
+.mb35 {
+	margin-bottom: 35px !important;
+}
+.mb40 {
+	margin-bottom: 40px !important;
+}
+.ml00 {
+	margin-left: 0px !important;
+}
+.ml05 {
+	margin-left: 5px !important;
+}
+.ml10 {
+	margin-left: 10px !important;
+}
+.ml15 {
+	margin-left: 15px !important;
+}
+.ml20 {
+	margin-left: 20px !important;
+}
+.ml25 {
+	margin-left: 25px !important;
+}
+.ml30 {
+	margin-left: 30px !important;
+}
+.ml35 {
+	margin-left: 35px !important;
+}
+.ml40 {
+	margin-left: 40px !important;
+}
+
+/* ----------------------------------------------------
+ width
+ ---------------------------------------------------- */
+.w20 {
+	width: 20%
+}
+.w40 {
+	width: 40%
+}
+.w50 {
+	width: 50%
+}
+.w60 {
+	width: 60%
+}
+.w80 {
+	width: 80%
+}
+.w100 {
+	width: 100%
+}
+
+/* ----------------------------------------------------
+ text-align
+ ---------------------------------------------------- */
+.text-left {
+	text-align: left;
+}
+.text-right {
+	text-align: right;
+}
+.text-center {
+	text-align: center;
+}

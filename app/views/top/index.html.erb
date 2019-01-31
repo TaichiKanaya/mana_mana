@@ -1,0 +1,27 @@
+<%= form_for(@informations, :url => {:action => :index}) do |f| %>
+<div class="columns">
+	<div class="column">
+		<p><%= f.label "サイトからのお知らせ", :class=>"subtitle is-6 mb10" %></p>
+		<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth " style="width:90%">
+			<thead>
+				<tr>
+					<th>日付</th>
+					<th>タイトル</th>
+					<th>内容</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @informations_list.each do |info| %>
+					<% if info.title.present? %>
+					<tr>
+						<td><%= info.announce_date %></td>
+						<td><%= info.title %></td>
+						<td><%= info.contents %></td>
+					</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<% end %>

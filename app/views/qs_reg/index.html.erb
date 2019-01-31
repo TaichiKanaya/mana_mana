@@ -1,0 +1,47 @@
+<%= form_for(@questions, :url => {:action => :create}) do |f| %>
+<p class="subtitle is-6">
+	問題登録
+</p>
+<p>
+	各項目を入力し、問題を登録してください。
+</p>
+<% # noticeメッセージ表示領域 %>
+<%= render :file => 'layouts/notice.html.erb' %>
+<% # バリデーションエラーメッセージ表示領域 %>
+<div class="area_error_message">
+	<% @questions.errors.messages[:base].each do |message| %>
+	＊<%= label_tag message %>
+	<br>
+	<% end %>
+</div>
+<div class="columns mt10">
+	<div class="column">
+		<p>
+			<%= label_tag "カテゴリ"%><span style="color:red">＊</span>
+		</p>
+		<div class="select is-info">
+			<%= f.select :category_id , Category.all.collect { |p| [ p.category_name, p.id ] }, prompt: '対象のカテゴリを選択してください' %>
+		</div>
+	</div>
+</div>
+<div class="columns mt10">
+	<div class="column">
+		<p>
+			<%= label_tag "問題"%><span style="color:red">＊</span>
+		</p>
+		<%= f.text_area :question, placeholder: "問題を入力してください", class: "textarea is-info", rows:"5" %>
+	</div>
+</div>
+<div class="columns mt10">
+	<div class="column">
+		<p>
+			<%= label_tag "解答"%><span style="color:red">＊</span>
+		</p>
+		<%= f.text_area :answer, placeholder: "解答を入力してください", class: "textarea is-info", rows:"5" %>
+	</div>
+</div>
+<div style="text-align: center">
+	<%= button_to "登録", { action: "create" },
+	method: :post, class: "button is-link", data: { confirm: "問題を登録します。よろしいですか?" } %>
+</div>
+<% end %>

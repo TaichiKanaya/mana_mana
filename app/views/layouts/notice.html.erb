@@ -1,0 +1,9 @@
+<div class="area_info_message">
+	<% flash.each do |key, value| %>
+	<%== '＊ ' + safe_join(flash[:notice], "
+	<br/>
+	＊
+	".html_safe) if key == "notice" && !flash[:notice].blank? %>
+	<% end %>
+	<% flash[:notice] = nil%>
+</div>

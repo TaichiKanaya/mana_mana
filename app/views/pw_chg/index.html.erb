@@ -1,0 +1,39 @@
+<%= form_tag('/pw_chg/change') do |f| %>
+<div class="mt20">
+	<p class="subtitle is-6">
+		パスワード変更
+	</p>
+	<p>
+		各項目を入力し、パスワードを変更してください。
+		<br>
+		なお、パスワードは半角英数字記号を全て含む8文字以上で入力してください。
+	</p>
+	<% # errorメッセージ表示領域 %>
+	<%= render :file => 'layouts/error.html.erb' %>
+	<% # noticeメッセージ表示領域 %>
+	<%= render :file => 'layouts/notice.html.erb' %>
+	<div>
+		<div class="columns mt20">
+			<div class="column is-3">
+				<%= label_tag "現在のメールアドレス"%><span style="color:red">＊</span>
+			</div>
+			<div class="column is-9">
+				<%= text_field_tag "nowMailAddress", (params[:nowMailAddress] if params[:nowMailAddress] != nil), { :placeholder => "現在のメールアドレスを入力してください", :class => "input is-info w50" } %>
+			</div>
+		</div>
+		<div class="columns mt20">
+			<div class="column is-3">
+				<%= label_tag "新しいメールアドレス"%><span style="color:red">＊</span>
+			</div>
+			<div class="column is-9">
+				<%= text_field_tag "newMailAddress", (params[:newMailAddress] if params[:newMailAddress] != nil), { :placeholder => "新しいメールアドレスを入力してください", :class => "input is-info w50" } %>
+			</div>
+		</div>
+		<div class="mt30">
+			<p>
+				<a href="javascript:document.submit()"> <%= button_tag '変更する', :class => "button is-link" %> </a>
+			</p>
+		</div>
+	</div>
+</div>
+<% end %>

@@ -1,0 +1,21 @@
+<%= form_tag('/cg/index') do |f| %>
+<p class="subtitle is-6">
+	チャレンジ問題
+</p>
+<div class="mb30">
+	<%= label_tag "問題"%>
+	<br>
+	<%= @question.question %>
+	<div class="mt20">
+		<a href="javascript:document.submit()"> <%= button_tag '解答を見る', {:class => "button is-link"} %> </a>
+	</div>
+</div>
+<div>
+	<%= label_tag "解答"%>
+	<br>
+	<%= @question.answer %>
+	<div class="mt20">
+		<a href="javascript:document.submit()"> <%= button_tag '次の問題へ', {:class => "button is-link"} %> </a>
+	</div>
+</div>
+<% end %>

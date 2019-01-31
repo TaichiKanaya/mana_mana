@@ -1,0 +1,17 @@
+<%= form_for(@categories, :url => {:action => :start}) do |f| %>
+<p class="subtitle is-6"><%= f.label "カテゴリ選択"%></p>
+<p><%= f.label "カテゴリを選択し、チャレンジを開始してください。"%></p>
+<div class="ctg_sel columns">
+	<div class="column is-1">
+		<%= label_tag "カテゴリ"%>
+	</div>
+	<div class="column is-11">
+		<div class="select is-info">
+			<%= collection_select(:question, :category_id, Category.all, :id, :category_name, prompt: '未選択') %>
+		</div>
+	</div>
+</div>
+<div>
+	<a href="javascript:document.submit()"> <%= button_tag 'START', {:class => "button is-link"} %> </a>
+</div>
+<% end %>

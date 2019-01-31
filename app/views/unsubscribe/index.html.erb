@@ -1,0 +1,12 @@
+<%= form_tag('/unsubscribe/execute') do |f| %>
+<p class="subtitle is-6">
+	退会
+</p>
+<p>
+	退会するボタンを押すとすぐに退会処理が実行されます。<br />
+	退会処理が完了すると全ての情報が参照できなくなりますので、ご注意ください。<br /><br />
+</p>
+<div class="mt20">
+	<a href="javascript:document.submit()"> <%= button_tag '退会する', {:class => "button is-danger"} %> </a>
+</div>
+<% end %>

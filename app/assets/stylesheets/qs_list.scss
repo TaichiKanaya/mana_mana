@@ -1,0 +1,56 @@
+// Place all the styles related to the qs_llist controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/**
+ *   検索条件部
+ */
+.searchCondition label{
+  margin-top: 5px;
+  display: inline-block !important;
+}
+
+/**
+ *   ボタン部
+ */
+#search_button{
+  text-align: center;
+}
+#csv_button{
+  text-align: right;
+}
+
+
+/**
+ *   検索結果
+ */
+.categoryName{
+  width:20%;
+}
+.question{
+  width:25%
+}
+.answer{
+  width:25%
+}
+.regDate{
+  width:20%
+}
+.updButton{
+  width:auto;
+  text-align:center;
+}
+
+/**
+ *   ページャ
+ */
+.paginate{
+  width: 50%;
+  text-align: center !important;
+}
+
+/**
+ *   ページャ中の中点を消す
+ */
+ul {
+  list-style: none !important;
+}

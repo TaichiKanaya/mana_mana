@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jimon Jitou</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+		<%# Bulma読込 %>
+		<script src="/assets/bulma-calendar.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+
+		<%# Pickadate読込 %>
+		<%= javascript_include_tag '/assets/jquery/jquery-3.3.1.min', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag '/assets/pickadate/legacy', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag '/assets/pickadate/picker', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag '/assets/pickadate/picker.date', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag '/assets/pickadate', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag '/assets/moment/moment.min', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag '/assets/moment/moment-with-locales.min', 'data-turbolinks-track': 'reload' %>
+		<%= stylesheet_link_tag '/assets/pickadate/default', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= stylesheet_link_tag '/assets/pickadate/default.date', media: 'all', 'data-turbolinks-track': 'reload' %>
+		
+		
+		<%# Rails共通 %>
+		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+		<%= yield :header_js %>
+	</head>
+	<body>
+		<div class="container">
+			<%# 共通ヘッダー（ログイン以外の画面の時のみ表示） %>
+			<% if ! ( request.url =~ /login|use_rule|privacy_policy|new_user_create|new_user_temp_create_comp|pw_reset|pw_reset_comp|unsubscribe_comp/ ) %>
+			<nav class="navbar" role="navigation" aria-label="main navigation">
+				<div class="navbar-brand">
+					<a class="navbar-item" href="#"><%= image_tag('jj_title.png') %></a>
+					<div class="navbar-item mr30 ft-sm" style="flex-direction:column;align-items:flex-start">
+						<p>
+							ただいまの時間：<span id="RealtimeClockArea"></span>
+						</p>
+						<p>
+							今日も頑張りましょう、<%= session[:user_name] %>さん！</span>
+						</p>
+					</div>
+				</div>
+				<div id="navbarBasicExample" class="navbar-menu">
+					<div class="navbar-start"></div>
+					<div class="navbar-end" style="flex-direction:column;align-items:flex-end">
+						<a href="/login" class="button is-light is-link is-small">ログアウト</a>
+						<a href="/login" class="ft-sm">よくある質問</a>
+					</div>
+				</div>
+			</nav>
+			<div class="tabs" data-turbolinks="false">
+				<ul>
+					<li class="<%= 'is-active' if request.url =~ /top/ %>">
+						<a href="/top">トップ</a>
+					</li>
+					<li class="<%= 'is-active' if request.url =~ /qs_list/ %>">
+						<a href="/qs_list">問題</a>
+					</li>
+					<li class="<%= 'is-active' if request.url =~ /ctg_sel/ %>">
+						<a href="/ctg_sel">チャレンジ</a>
+					</li>
+					<li class="<%= 'is-active' if request.url =~ /ctg_mng/ %>">
+						<a href="/info_mng">カテゴリ</a>
+					</li>
+					<li class="<%= 'is-active' if request.url =~ /info_mng/ %>">
+						<a href="/info_mng">お知らせ</a>
+					</li>
+				</ul>
+			</div>
+			<% end %>
+			<%# パンくずリスト %>
+			<% if ( request.url =~ /qs_reg/ || request.url =~ /qs_upd/ || request.url =~ /qs_del_comp/) %>
+			<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+				<ul>
+					<li>
+						<a href="/qs_list">問題一覧</a>
+					</li>
+					<% if request.url =~ /qs_reg/ %>
+					<li class = "is-active">
+						<a href="/qs_reg" aria-current="page">問題登録</a>
+					</li>
+					<% end %>
+					<% if request.url =~ /qs_upd|qs_del_comp/ %>
+					<li class="is-active">
+						<a href="/qs_upd" aria-current="page">問題更新</a>
+					</li>
+					<% end %>
+					<% if request.url =~ /qs_del_comp/ %>
+					<li class="is-active">
+						<a href="#" aria-current="page">問題削除完了</a>
+					</li>
+					<% end %>
+				</ul>
+			</nav>
+			<% end %>
+			<%# メインコンテナ %>
+			<div class="content">
+				<%# メインコンテンツ %>
+				<%= yield %>
+				<%# 共通フッター %>
+				<footer class= "footer mt30">
+					<div class="content has-text-centered">
+						<p>
+							© 2019 Jimon Jitou All rights reserved.
+						</p>
+					</div>
+				</footer>
+			</div>
+		</div>
+		<%= yield :footer_js %>
+	</body>
+</html>

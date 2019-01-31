@@ -1,0 +1,11 @@
+<%= form_tag('/pw_reset_comp/login') do |f| %>
+<p class="title is-5 mt20">
+	パスワードリセット完了
+</p>
+<p class="text-center">
+	仮パスワードを送信しました。仮パスワードを使用してログインしてください。
+</p>
+<div class="mt20 text-center">
+	<a href="javascript:document.submit()"> <%= button_tag 'ログイン画面へ', {:class => "button is-link"} %> </a>
+</div>
+<% end %>
