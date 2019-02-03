@@ -45,10 +45,16 @@ class CtgMngController < ApplicationController
   
   # カテゴリ削除
   def delete
-    record = Category.find_by id:params[:delCategoryId]
-    record.destroy!
-    flash[:error] = nil
-    flash[:notice] = ["カテゴリの削除が完了しました"]
+    record = Questions.find_by category_id:params[:delCategoryId]
+    if record.blank? then
+      record = Category.find_by id:params[:delCategoryId]
+      record.destroy!
+      flash[:error] = nil
+      flash[:notice] = ["カテゴリの削除が完了しました"]
+    else
+      flash[:error] =  ["すでに問題に使用されているため、このカテゴリは削除できません"]
+      flash[:notice] =  nil
+    end
     redirect_to action: :index
   end
 
