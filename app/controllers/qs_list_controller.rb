@@ -55,7 +55,7 @@ class QsListController < ApplicationController
   # searchMode 1:検索結果表示用検索 2:CSV出力用検索
   def generateConditions(searchMode)
 
-    if searchMode == 1
+    if searchMode == SEARCH_MODE_OUTPUT
       params_caterogy_id = params[:condition][:category_id]
       params_question = params[:condition][:question]
       params_answer= params[:condition][:answer]

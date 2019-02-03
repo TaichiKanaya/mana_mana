@@ -1,5 +1,5 @@
 # = トップメニュー処理クラス
-# Author:: Taichi.kanayua
+# Author:: Taichi.Kanaya
 # Copyright:: © 2018 Taichi.Kanaya
 class TopController < ApplicationController
   

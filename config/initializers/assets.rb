@@ -11,4 +11,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-Rails.application.config.assets.precompile += %w(pickadate.js new_user_create.js pw_reset.js info_mng.js)
+Rails.application.config.assets.precompile += %w(pickadate.js new_user_create.js pw_reset.js info_mng.js qs_list.js)

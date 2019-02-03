@@ -9,6 +9,7 @@ options = {
     weekdaysShort : ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'],
     today : '本日',
     clear : 'キャンセル',
+    close : '閉じる'
     format : 'yyyy/mm/dd'
 }
 jQuery.extend(jQuery.fn.pickadate.defaults, options)

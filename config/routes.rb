@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-# ログイン
+  # ログイン
   get 'login' => 'login#index'
   post 'login/login' => 'login#login'
 
@@ -57,6 +57,11 @@ Rails.application.routes.draw do
 
   # 問題削除完了
   get 'qs_del_comp' => 'qs_del_comp#index'
+
+  # カテゴリ管理
+  get 'ctg_mng' => 'ctg_mng#index'
+  post 'ctg_mng/update' => 'ctg_mng#update'
+  post 'ctg_mng/delete' => 'ctg_mng#delete'
 
   # カテゴリ選択
   get 'ctg_sel' => 'ctg_sel#index'

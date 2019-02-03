@@ -1,0 +1,65 @@
+<%= form_tag('/ctg_mng/update', { :id => "ctg_mng", :name => "ctg_mng" }) do |f| %>
+<p class="subtitle is-6">
+	カテゴリ管理
+</p>
+<p>
+	カテゴリは問題を振り分ける役目を担います。現在登録されているカテゴリは下記表の通りです。
+	<br/>
+	問題へのチャレンジがしやすくなるよう、ご自由にご登録してください。
+</p>
+<% # errorメッセージ表示領域 %>
+<%= render :file => 'layouts/error.html.erb' %>
+<% # noticeメッセージ表示領域 %>
+<%= render :file => 'layouts/notice.html.erb' %>
+<div class="text-right mb05">
+	<%= button_tag '行追加', {:type => "button", :class => "button is-link is-small is-rounded", :onClick => "createCategoryRecord()"} %>
+</div>
+<%= hidden_field_tag "delCategoryId" %>
+<table id="tblCategory">
+	<thead>
+		<tr>
+			<th style="width:10%">ID</th>
+			<th style="width:80%">カテゴリ名</th>
+			<th style="width:10%"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% params[:categoryName].each_with_index do |category, x| %>
+		<tr>
+			<% categoryId = (params[:categoryId][x] if params[:categoryId] != nil) %>
+			<%= hidden_field_tag "categoryId[]", categoryId, {:id=>"categoryId_" + x.to_s} %>
+			<td><%= categoryId %></td>
+			<td><%= text_field_tag "categoryName[]", (params[:categoryName][x] if params[:categoryName] != nil), { :id => "categoryName_" + x.to_s, :class => "input is-info" } %></td>
+			<td class="delButton"><%= button_tag 'カテゴリ削除', {:type => "button", :class => "button is-danger is-small is-rounded", :onClick => "destroyCategoryRecord(" + categoryId.to_s + ")"} %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<div id="upd_button_area">
+	<a href="javascript:document.submit()"> <%= button_tag '更新する', {:class => "button is-link"} %> </a>
+</div>
+<script type="text/javascript">
+	function createCategoryRecord() {
+		record = "<tr>";
+		record += "<td>";
+		record += '<input type="hidden" name="categoryId[]" class="input is-info">';
+		record += "</td>";
+		record += "<td>";
+		record += '<input type="text" name="categoryName[]" class="input is-info">';
+		record += "</td>";
+		record += "<td class='text-center'>";
+		record += '<input type="button" class="button is-danger is-small is-rounded" value="行削除" onClick="$(this).parent().parent().remove();">';
+		record += "</td>";
+		record += "</tr>";
+		$("#tblCategory").append(record);
+	}
+	function destroyCategoryRecord(delTargetCategoryId) {
+		var ret = confirm("カテゴリを削除してよろしいですか？")
+		if(ret) {
+			$("#delCategoryId").val(delTargetCategoryId);
+			$("#ctg_mng").attr("action", "/ctg_mng/delete")
+			document.ctg_mng.submit();
+		}
+	}
+</script>
+<% end %>

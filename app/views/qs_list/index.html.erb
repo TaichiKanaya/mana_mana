@@ -1,3 +1,6 @@
+<% content_for :footer_js do %>
+<%= javascript_include_tag 'qs_list' %>
+<% end %>
 <%= form_tag('/qs_list/search') do |f| %>
 <p class="subtitle is-6">
 	問題一覧

@@ -28,11 +28,6 @@ class InfoMngController < ApplicationController
     params[:title].each_with_index do |element, index|
       @resultInformation = Informations.find_by id:params[:information_id][index]
       if @resultInformation
-        p "resultInformation"
-        p @resultInformation
-        p "parammsdkdkdkdkdk"
-        p params.inspect
-        p params[:announceDate][index]
         @resultInformation.announce_date = params[:announceDate][index]
         @resultInformation.title = params[:title][index]
         @resultInformation.contents = params[:contents][index]
