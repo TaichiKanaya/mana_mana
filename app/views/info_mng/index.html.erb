@@ -1,3 +1,6 @@
+<% content_for :footer_js do %>
+<%= javascript_include_tag 'info_mng' %>
+<% end %>
 <%= form_tag('/info_mng/update') do |f| %>
 <p class="subtitle is-6">
 	お知らせ管理
@@ -13,8 +16,16 @@
 <p>
 	<%= label_tag 'information',"◽️お知らせ"+ x.to_s, :class=>"is-6" %>
 </p>
+<%= hidden_field_tag "information_id[]", x %>
 <div class="columns">
-	<%= hidden_field_tag "information_id[]", x %>
+	<div class="column is-1">
+		<%= label_tag "公開日"%>
+	</div>
+	<div class="column is-11">
+		<%= text_field_tag "announceDate[]", (params[:announceDate][x-1] if params[:announceDate] != nil), { :id => "announceDate_" + x.to_s, :placeholder => "お知らせの公開日を入力してください", :class => "input is-info fieldset__input js__datepicker w40" } %>
+	</div>
+</div>
+<div class="columns">
 	<div class="column is-1">
 		<%= label_tag "タイトル"%>
 	</div>
