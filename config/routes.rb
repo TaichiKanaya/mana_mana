@@ -72,6 +72,7 @@ Rails.application.routes.draw do
 
   # チャレンジ問題終了
   get 'cg_comp' => 'cg_comp#index'
+  post 'cg_comp/comp' => 'cg_comp#comp'
 
   # お知らせ管理
   get 'info_mng' => 'info_mng#index'
