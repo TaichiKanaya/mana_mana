@@ -1,21 +1,60 @@
-<%= form_tag('/cg/index') do |f| %>
+<%= form_tag('/cg/index', {:id => "formCg"}) do |f| %>
 <p class="subtitle is-6">
 	チャレンジ問題
 </p>
-<div class="mb30">
-	<%= label_tag "問題"%>
-	<br>
-	<%= @question.question %>
-	<div class="mt20">
-		<a href="javascript:document.submit()"> <%= button_tag '解答を見る', {:class => "button is-link"} %> </a>
+<div id="vue">
+	<%= @questionCount %> 問中　{{ count }} 問目 
+	<div class="mb30">
+		<br>
+		<span v-cloak>{{ question }}</span>
+		<div class="mt20">
+			<%= button_tag '解答を見る', {:id => "btnAnswer", :type => "button", :class => "button is-link", :onclick => "openAnswer();"} %>
+			<button id="btnNext" type="button" v-on:click="onclick();" class="button is-link" style="display: none">次の問題へ</button>
+		</div>
+		
 	</div>
-</div>
-<div>
-	<%= label_tag "解答"%>
-	<br>
-	<%= @question.answer %>
+	<div id="areaAnswer" style="display: none">
+		<span v-cloak>{{ answer }}</span>
+	</div>
 	<div class="mt20">
-		<a href="javascript:document.submit()"> <%= button_tag '次の問題へ', {:class => "button is-link"} %> </a>
+		
 	</div>
 </div>
 <% end %>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.20/dist/vue.js"></script>
+<script type="text/javascript">
+	var app = new Vue({
+		el : '#vue',
+		data : {
+			"count" : "<%= @count %>",
+			"question" : "<%= @question %>",
+			"answer" : "<%= @answer %>",
+		},
+		methods : {
+			onclick : function() {
+				axios.post('/cg/getQuestion',{
+					authenticity_token: $("[name='authenticity_token']").val()
+				}).then( function(response) {
+					if (response.data.length <= 0) {
+						location.href = "/cg_comp";
+					} else {
+						$("#btnAnswer").show();
+						$("#btnNext").hide();
+						$("#areaAnswer").hide();
+						this.count = response.data.count;
+						this.question = response.data.question;
+						this.answer = response.data.answer;
+					}
+				}.bind(this)).catch(function(error) {
+					console.log(error)
+				})
+			}
+		}
+	})
+	
+	function openAnswer(){
+		$("#btnAnswer").hide();
+		$("#btnNext").show();
+		$("#areaAnswer").show();
+	}
+</script>

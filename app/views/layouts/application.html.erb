@@ -16,9 +16,9 @@
 		<%= javascript_include_tag '/assets/pickadate', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_include_tag '/assets/moment/moment.min', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_include_tag '/assets/moment/moment-with-locales.min', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag '/assets/axios/axios.min', 'data-turbolinks-track': 'reload' %>
 		<%= stylesheet_link_tag '/assets/pickadate/default', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= stylesheet_link_tag '/assets/pickadate/default.date', media: 'all', 'data-turbolinks-track': 'reload' %>
-		
 		
 		<%# Rails共通 %>
 		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -35,10 +35,10 @@
 					<a class="navbar-item" href="#"><%= image_tag('jj_title.png') %></a>
 					<div class="navbar-item mr30 ft-sm" style="flex-direction:column;align-items:flex-start">
 						<p>
-							ただいまの時間：<span id="RealtimeClockArea"></span>
+							<span id="RealtimeClockArea"></span>
 						</p>
 						<p>
-							今日も頑張りましょう、<%= session[:user_name] %>さん！</span>
+							今日も頑張りましょう！<%= session[:user_name] %>さん！</span>
 						</p>
 					</div>
 				</div>
@@ -46,7 +46,7 @@
 					<div class="navbar-start"></div>
 					<div class="navbar-end" style="flex-direction:column;align-items:flex-end">
 						<a href="/login" class="button is-light is-link is-small">ログアウト</a>
-						<a href="/login" class="ft-sm">よくある質問</a>
+						<a href="/qa" target="_blank" class="ft-sm">よくある質問</a>
 					</div>
 				</div>
 			</nav>

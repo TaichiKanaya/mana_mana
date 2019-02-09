@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   # 利用規約
   get 'use_rule' => 'use_rule#index'
+  
+  # よくある質問
+  get 'qa' => 'qa#index'
 
   # ユーザ無料登録
   get 'new_user_create' => 'new_user_create#index'
@@ -69,6 +72,7 @@ Rails.application.routes.draw do
 
   # チャレンジ問題
   get 'cg' => 'cg#index'
+  post 'cg/getQuestion' => 'cg#getQuestion'
 
   # チャレンジ問題終了
   get 'cg_comp' => 'cg_comp#index'

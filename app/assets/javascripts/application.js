@@ -67,10 +67,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	 */
 	function getNow() {
 		nowTime = new Date();
+		nowYear = setfig(nowTime.getFullYear());
+		nowMonth = setfig(nowTime.getMonth() + 1);
+		nowDate = setfig(nowTime.getDate());
 		nowHour = setfig(nowTime.getHours());
 		nowMin = setfig(nowTime.getMinutes());
 		nowSec = setfig(nowTime.getSeconds());
-		msg = nowHour + ":" + nowMin + ":" + nowSec;
+		msg = nowYear + "/" + nowMonth + "/" + nowDate + " " + nowHour + ":" + nowMin + ":" + nowSec;
 		document.getElementById("RealtimeClockArea").innerHTML = msg;
 	}
 
