@@ -1,3 +1,4 @@
+<% content_for :title do %>チャレンジ問題終了<% end %>
 <%= form_tag('/cg_comp/comp') do |f| %>
 <p class="subtitle is-6">
 	チャレンジ問題終了
@@ -5,7 +6,7 @@
 <p>
 	カテゴリ内の全ての問題を終了しました。
 </p>
-<div class="mt20 text-center">
+<div class="mt20">
 	<a href="javascript:document.submit()"> <%= button_tag 'カテゴリ選択へ', {:class => "button is-link"} %> </a>
 </div>
 <% end %>

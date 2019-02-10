@@ -1,9 +1,10 @@
+<% content_for :title do %>チャレンジ問題<% end %>
 <%= form_tag('/cg/index', {:id => "formCg"}) do |f| %>
 <p class="subtitle is-6">
 	チャレンジ問題
 </p>
 <div id="vue">
-	<%= @questionCount %> 問中　{{ count }} 問目 
+	<%= @questionCount %> 問中　<span v-cloak>{{ count }}</span> 問目 
 	<div class="mb30">
 		<br>
 		<span v-cloak>{{ question }}</span>

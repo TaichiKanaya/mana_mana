@@ -1,3 +1,4 @@
+<% content_for :title do %>カテゴリ選択<% end %>
 <%= form_for(@categories, :url => {:action => :start}) do |f| %>
 <p class="subtitle is-6"><%= f.label "カテゴリ選択"%></p>
 <p><%= f.label "カテゴリを選択し、チャレンジを開始してください。"%></p>
