@@ -1,12 +1,12 @@
 <% content_for :title do %>パスワード変更完了<% end %>
-<%= form_tag('/pw_chg_comp/login') do |f| %>
+<%= form_tag('/pw_chg_comp/top') do |f| %>
 <p class="subtitle is-6">
 	パスワード変更完了
 </p>
 <p>
-	仮パスワードを送信しました。仮パスワードを使用してログインしてください。
+	パスワードの変更が完了しました。
 </p>
 <div class="mt20">
-	<a href="javascript:document.submit()"> <%= button_tag 'ログイン画面へ', {:class => "button is-link"} %> </a>
+	<a href="javascript:document.submit()"> <%= button_tag 'トップ画面へ', {:class => "button is-link"} %> </a>
 </div>
 <% end %>

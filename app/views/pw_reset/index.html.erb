@@ -10,11 +10,9 @@
 	<p class="text-center">
 		入力したメールアドレスに対して新しいパスワードを送信します。
 	</p>
-	<% # errorメッセージ表示領域 %>
-	<%= render :file => 'layouts/error.html.erb' %>
-	<% # noticeメッセージ表示領域 %>
-	<%= render :file => 'layouts/notice.html.erb' %>
 	<div class="text-center">
+		<% # errorメッセージ表示領域 %>
+		<%= render :file => 'layouts/error.html.erb' %>
 		<div class="columns mt20">
 			<div class="column is-5 text-right">
 				<%= label_tag "メールアドレス"%><span style="color:red">＊</span>

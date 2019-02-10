@@ -14,21 +14,17 @@
 	<% # noticeメッセージ表示領域 %>
 	<%= render :file => 'layouts/notice.html.erb' %>
 	<div>
-		<div class="columns mt20">
-			<div class="column is-3">
-				<%= label_tag "現在のメールアドレス"%><span style="color:red">＊</span>
-			</div>
-			<div class="column is-9">
-				<%= text_field_tag "nowMailAddress", (params[:nowMailAddress] if params[:nowMailAddress] != nil), { :placeholder => "現在のメールアドレスを入力してください", :class => "input is-info w50" } %>
-			</div>
+		<div class="mt20">
+			<p>
+				<%= label_tag "現在のパスワード"%><span style="color:red">＊</span>
+			</p>
+			<%= password_field_tag "nowPassword", (params[:nowPassword] if params[:nowPassword] != nil), { :placeholder => "現在のパスワードを入力してください", :class => "input is-info w50" } %>
 		</div>
-		<div class="columns mt20">
-			<div class="column is-3">
-				<%= label_tag "新しいメールアドレス"%><span style="color:red">＊</span>
-			</div>
-			<div class="column is-9">
-				<%= text_field_tag "newMailAddress", (params[:newMailAddress] if params[:newMailAddress] != nil), { :placeholder => "新しいメールアドレスを入力してください", :class => "input is-info w50" } %>
-			</div>
+		<div class="mt30">
+			<p>
+				<%= label_tag "新しいパスワード"%><span style="color:red">＊</span>
+			</p>
+			<%= password_field_tag "newPassword", (params[:newPassword] if params[:newPassword] != nil), { :placeholder => "新しいパスワードを入力してください", :class => "input is-info w50" } %>
 		</div>
 		<div class="mt30">
 			<p>

@@ -10,11 +10,11 @@
 	<p class="text-center">
 		ご入力頂いたメールアドレスに本システムへログイン頂くためのパスワードを送信します。
 	</p>
-	<% # errorメッセージ表示領域 %>
-	<%= render :file => 'layouts/error.html.erb' %>
-	<% # noticeメッセージ表示領域 %>
-	<%= render :file => 'layouts/notice.html.erb' %>
 	<div class="text-center">
+		<% # errorメッセージ表示領域 %>
+		<%= render :file => 'layouts/error.html.erb' %>
+		<% # noticeメッセージ表示領域 %>
+		<%= render :file => 'layouts/notice.html.erb' %>
 		<div class="columns mt20">
 			<div class="column is-5 text-right">
 				<%= label_tag "メールアドレス"%><span style="color:red">＊</span>
@@ -38,15 +38,15 @@
 			<div class="column is-7 text-left">
 				<%= text_field_tag "birthday", (params[:birthday] if params[:birthday] != nil), { :placeholder => "生年月日を入力してください", :class => "input is-info fieldset__input js__datepicker w40" } %>
 				<p class="ft-sm">
-					※生年月日はパスワードリセットをされる場合のご本人様確認のために使用します。
+					※生年月日はシステム上でのご本人様確認のために使用します。
 				</p>
 			</div>
 		</div>
 		<div class="mt30">
 			<p class="mt30">
-				必ず<%= link_to "利用規約", "use_rule", target:"_blank"%>、<%= link_to "プライバシーポリシー", "privacy_policy", target:"_blank"%>をお読みください。
+				必ず<%= link_to "利用規約", "/use_rule", target:"_blank"%>、<%= link_to "プライバシーポリシー", "/privacy_policy", target:"_blank"%>をお読みください。
 				<br/>
-				<%= check_box_tag 'agree' %><label for="agree">&nbsp;利用規約およびプライバシーポリシーに同意する</label>
+				<%= check_box_tag 'agree', 'agree', (params[:agree].nil? ? false : true) %><label for="agree">&nbsp;利用規約およびプライバシーポリシーに同意する</label>
 			</p>
 			<p>
 				<a href="javascript:document.submit()"> <%= button_tag '無料登録する', :class => "button is-link" %> </a>

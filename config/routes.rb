@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   # パスワード変更完了
   get 'pw_chg_comp' => 'pw_chg_comp#index'
-  post 'pw_chg_comp/login' => 'pw_chg_comp#login'
+  post 'pw_chg_comp/top' => 'pw_chg_comp#top'
 
   # パスワードリセット
   get 'pw_reset' => 'pw_reset#index'

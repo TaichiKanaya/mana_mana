@@ -3,7 +3,7 @@
 <div class="has-text-centered">
 	<%= image_tag('jj_title.png') %>
 </div>
-<div style="text-align: center">
+<div class="text-center">
 	<%#エラーメッセージ表示領域 %>
 	<%= render :file => 'layouts/error.html.erb' %>
 	<%#各種入力エリア %>
@@ -17,10 +17,10 @@
 		<a href="javascript:document.submit()"> <%= f.button 'ログイン', :class => "button is-link" %> </a>
 	</div>
 	<div>
-		パスワードを忘れた方は<%= link_to "こちら", "pw_reset"%>
+		パスワードを忘れた方は<%= link_to "こちら", "/pw_reset"%>
 	</div>
 	<div>
-		新規登録をする場合は<%= link_to "こちら", "new_user_create"%>
+		新規登録をする場合は<%= link_to "こちら", "/new_user_create"%>
 	</div>
 </div>
 <% end %>

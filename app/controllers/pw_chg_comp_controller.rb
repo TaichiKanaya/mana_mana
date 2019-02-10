@@ -1,7 +1,7 @@
 class PwChgCompController < ApplicationController
   def index
   end
-  def login
-    redirect_to :controller => "/login"
+  def top
+    redirect_to :controller => "/top"
   end
 end

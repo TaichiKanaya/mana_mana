@@ -17,8 +17,9 @@ class LoginController < ApplicationController
     
     # Check user
     unless flash[:error].length > 0 then
-      @result = User.find_by(user_id: params[:user][:user_id], password: params[:user][:password])
-      check_user @result
+      user = User.find_by(user_id: params[:user][:user_id])
+      result = user.authenticate(params[:user][:password])
+      check_user result
     end
 
     # if error is occured, transition to own page
@@ -28,8 +29,12 @@ class LoginController < ApplicationController
       return
     end
     
-    setSession @result
-    redirect_to :controller => "top"
+    setSession user
+    if user.password_init_flg == 1 then
+      redirect_to :controller => "pw_chg"
+    else
+      redirect_to :controller => "top"
+    end
   end
   
   private
