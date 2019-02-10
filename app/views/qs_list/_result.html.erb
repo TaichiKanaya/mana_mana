@@ -6,7 +6,7 @@
 		</div>
 		<div id="csv_button" class="column">
 			<a href="javascript:document.forms[0].action = '/qs_list/outputCsv?format=csv'; document.forms[0].submit();"> <%= button_tag 'CSV出力', {:class => "button is-info is-small is-rounded", type: 'button'} %> </a>
-			<a href="document.submit()"> <%= button_tag 'CSV取込', {:class => "button is-info is-small is-rounded", type: 'button'} %> </a>
+			<%= button_tag 'CSV取込', {:type => "button", :id => "btnUpdCsv", :class => "button is-info is-small is-rounded", type: 'button'} %>
 		</div>
 	</div>
 	<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth mb30" style="width:100%">
@@ -33,3 +33,37 @@
 	</table>
 </div>
 <%= paginate(@questions) %>
+<div class="modal">
+	<div class="modal-background"></div>
+	<div class="modal-content">
+		<input type="file" id="inpFile" name="inpFile" multiple>
+		<p id="areaFile">
+			このエリアに取込対象CSVファイルをドラッグ＆ドロップするか、
+			<br>
+			クリックして取込対象CSVファイルを選択してください
+		</p>
+		<div class="text-center mt40">
+			<%= button_tag 'CSVアップロード実行', {:id => "btnExeFile" , :class => "button is-info is-small is-rounded", type: 'button'} %>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$("#btnUpdCsv").on("click", function() {
+		$("div.modal").addClass("is-active");
+	});
+	$("div.modal-background").on("click", function() {
+		$("div.modal").removeClass("is-active");
+	});
+	$("#inpFile").on("change", function() {
+		if ($("#inpFile").val() != "") {
+			$("#areaFile").html($("#inpFile").val() + "<br>上記をアップロードしてよろしければボタンを押してください");
+		} else {
+			$("#areaFile").html("このエリアに取込対象CSVファイルをドラッグ＆ドロップするか、<br>クリックして取込対象CSVファイルを選択してください");
+		}
+	});
+	$("#btnExeFile").on("click", function() {
+		document.forms[0].action = '/qs_list/uploadCsv';
+		document.forms[0].enctype="multipart/form-data";
+		document.forms[0].submit();
+	});
+</script>

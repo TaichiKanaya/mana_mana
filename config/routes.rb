@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   post 'qs_list/search' => 'qs_list#search'
   get 'qs_list/outputCsv' => 'qs_list#outputCsv'
   post 'qs_list/outputCsv' => 'qs_list#outputCsv'
+  post 'qs_list/uploadCsv' => 'qs_list#uploadCsv'
 
   # 問題登録
   get 'qs_reg' => 'qs_reg#index'

@@ -28,13 +28,18 @@ class QsListController < ApplicationController
   def outputCsv
     exeSearch SEARCH_MODE_CSV
     respond_to do |format|
-      puts 'aaaaa'
-      puts format.inspect
-      puts 'aaaaa'
       format.csv {
         send_data render_to_string, filename: "outputCsv.csv", type: :csv
       }
     end
+  end
+
+  # CSV取込
+  def uploadCsv
+    p params.inspect
+    content = {}
+    congent = params[:inpFile].read
+    p congent
   end
 
   private
