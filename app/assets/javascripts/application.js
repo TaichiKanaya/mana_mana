@@ -73,7 +73,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		nowHour = setfig(nowTime.getHours());
 		nowMin = setfig(nowTime.getMinutes());
 		nowSec = setfig(nowTime.getSeconds());
-		msg = nowYear + "/" + nowMonth + "/" + nowDate + " " + nowHour + ":" + nowMin + ":" + nowSec;
+		dayOfWeek = nowTime.getDay();
+		dayOfWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][dayOfWeek];
+		if (dayOfWeek == 0) {
+			dayOfWeekColor = "red";
+		} else if (dayOfWeek == 6) {
+			dayOfWeekColor = "blue";
+		} else {
+			dayOfWeekColor = "black";
+		}
+		msg = nowYear + "/" + nowMonth + "/" + nowDate + " (<span style='color:" + dayOfWeekColor + "'>" + dayOfWeekStr + "</span>) " + nowHour + ":" + nowMin + ":" + nowSec;
 		document.getElementById("RealtimeClockArea").innerHTML = msg;
 	}
 

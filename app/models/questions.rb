@@ -1,5 +1,6 @@
 class Questions < ActiveRecord::Base
   belongs_to :category
+  belongs_to :user, foreign_key: "reg_user_id"
   validate :add_error_sample
   # バリデーションチェック
   def add_error_sample
