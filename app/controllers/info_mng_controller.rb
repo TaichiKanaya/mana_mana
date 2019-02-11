@@ -26,22 +26,30 @@ class InfoMngController < ApplicationController
 
     #お知らせテーブル更新処理
     params[:title].each_with_index do |element, index|
-      @resultInformation = Informations.find_by id:params[:information_id][index]
-      if @resultInformation
-        @resultInformation.announce_date = params[:announceDate][index]
-        @resultInformation.title = params[:title][index]
-        @resultInformation.contents = params[:contents][index]
-        @resultInformation.upd_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
-        @resultInformation.upd_user_id = 1
-        @resultInformation.save!
+      @resultInformation = Informations.find_by(id:params[:information_id][index])
+      p @resultInformation
+      if !@resultInformation.blank? then
+        if params[:announceDate][index].blank? then
+          @resultInformation.destroy!
+        else
+          @resultInformation.announce_date = params[:announceDate][index]
+          @resultInformation.title = params[:title][index]
+          @resultInformation.contents = params[:contents][index]
+          @resultInformation.upd_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
+          @resultInformation.upd_user_id = session[:id]
+          @resultInformation.save!
+        end
       else
+        if params[:announceDate][index].blank? then
+          next
+        end
         @informations = Informations.new
         @informations.id = params[:information_id][index]
         @informations.announce_date = params[:announceDate][index]
         @informations.title = params[:title][index]
         @informations.contents = params[:contents][index]
         @informations.reg_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
-        @informations.reg_user_id = 1
+        @informations.reg_user_id = session[:id]
         @informations.save!
       end
 

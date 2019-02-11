@@ -62,9 +62,10 @@ class NewUserCreateController < ApplicationController
     user.temp_regist_flg = 1
     user.password_init_flg = 1
     user.password_init_upd_date = nowDate
+    user.admin_flg = 0
     user.reg_date = nowDate
     user.reg_user_id = 0
-    user.save
+    user.save!
     
     NotificationMailer.send_new_temp_user(user, password).deliver
   end

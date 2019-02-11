@@ -69,9 +69,11 @@
 					<li class="<%= 'is-active' if request.url =~ /ctg_mng/ %>">
 						<a href="/ctg_mng">カテゴリ</a>
 					</li>
+					<% if @adminFlg then %>
 					<li class="<%= 'is-active' if request.url =~ /info_mng/ %>">
 						<a href="/info_mng">お知らせ</a>
 					</li>
+					<% end %>
 				</ul>
 			</div>
 			<% end %>

@@ -2,27 +2,33 @@
 <%= form_for(@informations, :url => {:action => :index}) do |f| %>
 <div class="columns">
 	<div class="column">
-		<p><%= f.label "サイトからのお知らせ", :class=>"subtitle is-6 mb10" %></p>
+		<p>
+			<%= f.label "サイトからのお知らせ", :class=>"subtitle is-6 mb10" %>
+		</p>
+		<% if @informations_list.length > 0 then %>
 		<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
 			<thead>
 				<tr>
-					<th>公開日</th>
-					<th>タイトル</th>
-					<th>内容</th>
+					<th style="width:10%">公開日</th>
+					<th style="width:20%">タイトル</th>
+					<th style="width:70%">内容</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @informations_list.each do |info| %>
-					<% if info.title.present? %>
-					<tr>
-						<td><%= info.announce_date %></td>
-						<td><%= info.title %></td>
-						<td><%= info.contents %></td>
-					</tr>
-					<% end %>
+				<tr class="vertical-top">
+					<td><%= info.announce_date %></td>
+					<td><%= info.title %></td>
+					<td><%= simple_format(h(info.contents)) %></td>
+				</tr>
 				<% end %>
 			</tbody>
 		</table>
+		<% else %>
+		<p class="ml10 mt10">
+			いつもご利用いただきありがとうございます。特にお知らせはございません。
+		</p>
+		<% end %>
 	</div>
 </div>
 <% end %>

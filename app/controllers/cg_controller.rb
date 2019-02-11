@@ -1,6 +1,6 @@
 class CgController < ApplicationController
   def index
-    @questions = Questions.left_outer_joins(:user).where("category_id = " + params[:category_id] + " AND users.user_id = '" + session[:user_id] + "'").order("id")
+    @questions = Questions.where("category_id = " + params[:category_id] + " AND reg_user_id = " + session[:id]).order("id")
     @questionCount = @questions.length
     session[:question] = []
     @questions.load.each do |record|
@@ -29,6 +29,6 @@ class CgController < ApplicationController
 
   def choiseQuestion
     chosenQuestionId = session[:question].shift
-    return Questions.left_outer_joins(:user).select("question, answer").where("questions.id = ? and users.user_id = ?", chosenQuestionId, session[:user_id]).first
+    return Questions.select("question, answer").where("id = ? and reg_user_id = ?", chosenQuestionId, session[:id]).first
   end
 end

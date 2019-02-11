@@ -12,7 +12,7 @@ class QsRegController < ApplicationController
       return
     end
     @questions.reg_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
-    @questions.reg_user_id = 1
+    @questions.reg_user_id = session[:id]
     if @questions.save
       flash[:notice] = []
       flash[:notice] << '登録が完了しました。'

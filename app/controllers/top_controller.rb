@@ -8,6 +8,5 @@ class TopController < ApplicationController
   def index
     @informations = Informations.new
     @informations_list = Informations.all
-    puts @informations_list
   end
 end

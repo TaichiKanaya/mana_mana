@@ -14,7 +14,7 @@
  *= require_self
  */
 td {
-	vertical-align: middle !important;
+	vertical-align: middle;
 }
 /* タブホバー時の色設定 */
 .button {
@@ -55,6 +55,21 @@ table tr th {
 /* font-size */
 .ft-sm {
 	font-size: small
+}
+
+/* vertical-align */
+.vertical-top {
+	vertical-align: top;
+}
+
+.parent_three_point_reader {
+	table-layout: fixed;
+}
+
+.child_three_point_reader {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 /* ----------------------------------------------------

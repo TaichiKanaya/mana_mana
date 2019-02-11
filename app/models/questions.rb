@@ -1,9 +1,9 @@
 class Questions < ActiveRecord::Base
   belongs_to :category
-  belongs_to :user, foreign_key: "reg_user_id"
-  validate :add_error_sample
+  
+  validate :check_param
   # バリデーションチェック
-  def add_error_sample
+  def check_param
 
     # カテゴリID
     if category_id.blank?
@@ -32,5 +32,7 @@ class Questions < ActiveRecord::Base
         errors[:base] << "解答は2000文字以内で入力してください。"
       end
     end
+    p errors[:base].blank?
+    return errors[:base].blank?
   end
 end

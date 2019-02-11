@@ -27,13 +27,13 @@ class CtgMngController < ApplicationController
         record.id = categoryMaxId.blank? ? 1 : categoryMaxId + 1
         record.category_name = params[:categoryName][index]
         record.reg_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
-        record.reg_user_id = 1
+        record.reg_user_id = session[:id]
         record.save!
       elsif !params[:categoryId][index].blank? && !params[:categoryName][index].blank?
         record = Category.find_by id:params[:categoryId][index]
         record.category_name = params[:categoryName][index]
         record.upd_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
-        record.upd_user_id = 1
+        record.upd_user_id = session[:id]
         record.save!
       end
     end

@@ -61,6 +61,7 @@ class LoginController < ApplicationController
   end
   
   def setSession data
+    session[:id] = data.id
     session[:user_id] = data.user_id
     session[:user_name] = data.user_name
   end
