@@ -1,0 +1,44 @@
+<% content_for :title do %>メールアドレス変更<% end %>
+<%= form_tag('/ml_chg/change') do |f| %>
+<div class="mt20">
+	<p class="subtitle is-6">
+		メールアドレス変更
+	</p>
+	<p>
+		新しいメールアドレスを設定することができます。
+		<br>
+		<span style="color:red">注）変更した場合、ログインIDが新しく入力したメールアドレスになりますのでご注意ください。</span>
+	</p>
+	<% # errorメッセージ表示領域 %>
+	<%= render :file => 'layouts/error.html.erb' %>
+	<div>
+		<div class="mt20">
+			<p>
+				<%= label_tag "現在のメールアドレス"%>
+			</p>
+			<p>
+				<%= session[:user_id] %>
+			</p>
+		</div>
+		<div class="mt30">
+			<p>
+				<%= label_tag "新しいメールアドレス"%><span style="color:red">＊</span>
+			</p>
+			<%= text_field_tag "newMailAddress", (params[:newMailAddress] if params[:newMailAddress] != nil), { :placeholder => "新しいメールアドレスを入力してください", :class => "input is-info w50" } %>
+		</div>
+		<div class="mt30">
+			<p>
+				<%= button_tag '変更する', {:type => "button", :id => "btnChange", :class => "button is-link", :onclick => "checkUpd();"} %>
+			</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function checkUpd() {
+		var ret = confirm("このメールアドレスに変更してよろしいですか？");
+		if (ret) {
+			document.forms[0].submit();
+		}
+	}
+</script>
+<% end %>

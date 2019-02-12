@@ -1,0 +1,12 @@
+<% content_for :title do %>メールアドレス変更完了<% end %>
+<%= form_tag('/ml_chg_comp/top') do |f| %>
+<p class="subtitle is-6">
+	メールアドレス変更完了
+</p>
+<p>
+	メールアドレスの変更が完了しました。
+</p>
+<div class="mt20">
+	<a href="javascript:document.submit()"> <%= button_tag 'トップ画面へ', {:class => "button is-link"} %> </a>
+</div>
+<% end %>

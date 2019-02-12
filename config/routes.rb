@@ -27,6 +27,14 @@ Rails.application.routes.draw do
   get 'pw_chg_comp' => 'pw_chg_comp#index'
   post 'pw_chg_comp/top' => 'pw_chg_comp#top'
 
+  # メールアドレス変更
+  get 'ml_chg' => 'ml_chg#index'
+  post 'ml_chg/change' => 'ml_chg#change'
+
+  # メールアドレス変更完了
+  get 'ml_chg_comp' => 'ml_chg_comp#index'
+  post 'ml_chg_comp/top' => 'ml_chg_comp#top'
+
   # パスワードリセット
   get 'pw_reset' => 'pw_reset#index'
   post 'pw_reset/reset' => 'pw_reset#reset'
