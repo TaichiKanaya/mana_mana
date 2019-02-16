@@ -1,7 +1,7 @@
 class CtgMngController < ApplicationController
   # 初期表示
   def index
-    @categories = Category.order('id asc').all
+    @categories = Category.where(reg_user_id: session[:id])
     params[:categoryId] = []
     params[:categoryName] = []
     @categories.each_with_index do |category, index|
@@ -30,7 +30,7 @@ class CtgMngController < ApplicationController
         record.reg_user_id = session[:id]
         record.save!
       elsif !params[:categoryId][index].blank? && !params[:categoryName][index].blank?
-        record = Category.find_by id:params[:categoryId][index]
+        record = Category.find_by(id:params[:categoryId][index], reg_user_id: session[:id])
         record.category_name = params[:categoryName][index]
         record.upd_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
         record.upd_user_id = session[:id]
@@ -47,7 +47,7 @@ class CtgMngController < ApplicationController
   def delete
     record = Questions.find_by category_id:params[:delCategoryId]
     if record.blank? then
-      record = Category.find_by id:params[:delCategoryId]
+      record = Category.find_by(id:params[:delCategoryId], reg_user_id: session[:id])
       record.destroy!
       flash[:error] = nil
       flash[:notice] = ["カテゴリの削除が完了しました"]

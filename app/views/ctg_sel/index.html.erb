@@ -1,20 +1,17 @@
 <% content_for :title do %>カテゴリ選択<% end %>
-<%= form_for(@categories, :url => {:action => :start}) do |f| %>
+<%= form_tag('/ctg_sel/start') do |f| %>
 <p class="subtitle is-6">
-	<%= f.label "カテゴリ選択"%>
+	<%= label_tag "カテゴリ選択"%>
 </p>
 <p>
-	<%= f.label "カテゴリを選択し、チャレンジを開始してください。"%>
+	<%= label_tag "カテゴリを選択し、チャレンジを開始してください。"%>
 </p>
 <% # errorメッセージ表示領域 %>
 <%= render :file => 'layouts/error.html.erb' %>
 <div class="ctg_sel columns">
-	<div class="column is-1">
-		<%= label_tag "カテゴリ"%>
-	</div>
-	<div class="column is-11">
+	<div class="column is-12">
 		<div class="select is-info">
-			<%= collection_select(:question, :category_id, Category.all, :id, :category_name, {:prompt => '未選択'}) %>
+			<%= select_tag :category_id, options_from_collection_for_select(@categories, "id", "category_name"), prompt: "カテゴリを選択してください" %>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,81 @@
+<% content_for :title do %>カテゴリシェア<% end %>
+<%= form_tag('/ctg_share/share', { :id => "ctg_share", :name => "ctg_share" }) do |f| %>
+<div class="mt20">
+	<p class="subtitle is-6">
+		カテゴリシェア
+	</p>
+	<p>
+		自分が作成したカテゴリを他の人にシェアすることができます。
+		<br>
+		シェアされた相手はこのカテゴリに紐づいている問題にチャレンジすることができます。
+	</p>
+	<% # errorメッセージ表示領域 %>
+	<%= render :file => 'layouts/error.html.erb' %>
+	<% # noticeメッセージ表示領域 %>
+	<%= render :file => 'layouts/notice.html.erb' %>
+	<%= hidden_field_tag "category_id", params[:category_id] %>
+	<div>
+		<div class="mt20">
+			<p>
+				<%= label_tag "シェアする相手のメールアドレス"%><span style="color:red">＊</span>
+			</p>
+			<%= text_field_tag "mailAddress", (params[:mailAddress] if params[:mailAddress] != nil), { :placeholder => "シェアする相手のメールアドレスを入力してください", :class => "input is-info w50" } %>
+		</div>
+		<div class="mt30">
+			<p>
+				<%= label_tag "シェアする相手の生年月日"%><span style="color:red">＊</span>
+			</p>
+			<%= text_field_tag "birthday", (params[:birthday] if params[:birthday] != nil), { :placeholder => "シェアする相手の生年月日を入力してください", :class => "input is-info w50" } %>
+		</div>
+		<div class="mt30">
+			<p>
+				<%= button_tag 'シェアする', {:type => "button", :id => "btnShare", :class => "button is-link", :onclick => "checkShare();"} %>
+			</p>
+		</div>
+	</div>
+	<% if ! @sharedUserRecords.blank? %>
+	<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth mt30 parent_three_point_reader">
+		<thead>
+			<tr>
+				<th style="width:30%">シェアしているユーザ</th>
+				<th style="width:50%">メールアドレス</th>
+				<th style="width:20%"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @sharedUserRecords.each do |shareUserRecord| %>
+			<tr>
+				<td><%= shareUserRecord.user_name %></td>
+				<td><%= shareUserRecord.mail_address %></td>
+				<td class="text-center"> <%= button_tag 'シェアを取り消す', {:type => "button", :class => "button is-danger is-small is-rounded", :onClick => "destroyShare(" + shareUserRecord.record_id.to_s + ")"} %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<p class="mt30">
+		このカテゴリは現在シェアされていません。ぜひシェアしてみよう！
+	</p>
+	<% end %>
+</div>
+<script type="text/javascript">
+	function checkShare() {
+		var ret = confirm("シェアしてよろしいですか？");
+		if (ret) {
+			document.ctg_share.submit();
+		}
+	}
+
+	function destroyShare(delTargetRecordId) {
+		var ret = confirm("シェアを取り消してよろしいですか？")
+		if (ret) {
+			$("#del_record_id").val(delTargetRecordId);
+			document.ctg_share_del.submit();
+		}
+	}
+</script>
+<% end %>
+<%= form_tag('/ctg_share/delete', { :id => "ctg_share_del", :name => "ctg_share_del" }) do |f| %>
+	<%= hidden_field_tag "category_id", params[:category_id] %>
+	<%= hidden_field_tag "del_record_id" %>
+<% end %>

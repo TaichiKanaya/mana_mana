@@ -78,6 +78,11 @@ Rails.application.routes.draw do
   # カテゴリ選択
   get 'ctg_sel' => 'ctg_sel#index'
   post 'ctg_sel/start' => 'ctg_sel#start'
+  
+  # カテゴリシェア
+  get 'ctg_share' => 'ctg_share#index'
+  post 'ctg_share/share' => 'ctg_share#share'
+  post 'ctg_share/delete' => 'ctg_share#delete'
 
   # チャレンジ問題
   get 'cg' => 'cg#index'

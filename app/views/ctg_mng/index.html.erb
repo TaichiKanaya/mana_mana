@@ -20,8 +20,8 @@
 	<thead>
 		<tr>
 			<th style="width:10%">ID</th>
-			<th style="width:80%">カテゴリ名</th>
-			<th style="width:10%"></th>
+			<th style="width:60%">カテゴリ名</th>
+			<th style="width:30%"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,7 +31,10 @@
 			<%= hidden_field_tag "categoryId[]", categoryId, {:id=>"categoryId_" + x.to_s} %>
 			<td><%= categoryId %></td>
 			<td><%= text_field_tag "categoryName[]", (params[:categoryName][x] if params[:categoryName] != nil), { :id => "categoryName_" + x.to_s, :class => "input is-info" } %></td>
-			<td class="delButton"><%= button_tag 'カテゴリ削除', {:type => "button", :class => "button is-danger is-small is-rounded", :onClick => "destroyCategoryRecord(" + categoryId.to_s + ")"} %></td>
+			<td class="text-center delButton">
+				<a href="/ctg_share?category_id=<%= categoryId %>"><%= button_tag 'シェア状況確認', {:type => "button", :class => "button is-info is-small is-rounded"} %></a>
+				<%= button_tag 'カテゴリ削除', {:type => "button", :class => "button is-danger is-small is-rounded", :onClick => "destroyCategoryRecord(" + categoryId.to_s + ")"} %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -58,7 +61,7 @@
 		var ret = confirm("カテゴリを削除してよろしいですか？")
 		if(ret) {
 			$("#delCategoryId").val(delTargetCategoryId);
-			$("#ctg_mng").attr("action", "/ctg_mng/delete")
+			$("#ctg_mng").attr("action", "/ctg_mng/delete");
 			document.ctg_mng.submit();
 		}
 	}

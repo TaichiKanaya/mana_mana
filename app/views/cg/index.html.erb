@@ -7,7 +7,7 @@
 	<%= @questionCount %> 問中　<span v-cloak>{{ count }}</span> 問目 
 	<div class="mb30">
 		<br>
-		<span v-cloak>{{ question }}</span>
+		<span v-cloak><p v-html="question"></p></span>
 		<div class="mt20">
 			<%= button_tag '解答を見る', {:id => "btnAnswer", :type => "button", :class => "button is-link", :onclick => "openAnswer();"} %>
 			<button id="btnNext" type="button" v-on:click="onclick();" class="button is-link" style="display: none">次の問題へ</button>
@@ -15,7 +15,7 @@
 		
 	</div>
 	<div id="areaAnswer" style="display: none">
-		<span v-cloak>{{ answer }}</span>
+		<span v-cloak><p v-html="answer"></p></span>
 	</div>
 	<div class="mt20">
 		
@@ -28,7 +28,7 @@
 		el : '#vue',
 		data : {
 			"count" : "<%= @count %>",
-			"question" : "<%= @question %>",
+			"question" : `<%= @question %>`,
 			"answer" : "<%= @answer %>",
 		},
 		methods : {

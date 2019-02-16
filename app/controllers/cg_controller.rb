@@ -1,6 +1,12 @@
 class CgController < ApplicationController
   def index
-    @questions = Questions.where("category_id = " + params[:category_id] + " AND reg_user_id = " + session[:id]).order("id")
+    @categories = Category.where("id = ? and (reg_user_id = ? or id in (select category_id from user_access_categories where user_id = ?))",
+    params[:category_id], session[:id], session[:id])
+    if @categories.blank? then
+      raise
+    end
+
+    @questions = Questions.where(category_id: params[:category_id]).order("id")
     @questionCount = @questions.length
     session[:question] = []
     @questions.load.each do |record|
@@ -29,6 +35,6 @@ class CgController < ApplicationController
 
   def choiseQuestion
     chosenQuestionId = session[:question].shift
-    return Questions.select("question, answer").where("id = ? and reg_user_id = ?", chosenQuestionId, session[:id]).first
+    return Questions.select("question, answer").where("id = ?", chosenQuestionId).first
   end
 end
