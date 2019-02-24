@@ -9,6 +9,8 @@
 <p>
 	各種条件を指定し、検索ボタンを押してください。新規で問題を登録する場合は<u><a class="link" href="/qs_reg">こちら</a></u>をクリックしてください。
 </p>
+<% # noticeメッセージ表示領域 %>
+<%= render :file => 'layouts/notice.html.erb' %>
 <div class="searchCondition columns">
 	<div class="column is-1">
 		<%= label_tag "カテゴリ"%>
@@ -49,7 +51,7 @@
 <div id="search_button">
 	<a href="javascript:document.forms[0].action = '/qs_list/search'; document.forms[0].submit()"> <%= button_tag '検索', {:class => "button is-link", type: 'button'} %> </a>
 </div>
+<% end %>
 <% if request.url =~ /search/ %>
 <%= render(:partial => "result") %>
-<% end %>
 <% end %>

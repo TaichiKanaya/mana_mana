@@ -36,10 +36,12 @@ class QsListController < ApplicationController
 
   # CSV取込
   def uploadCsv
-    p params.inspect
     content = {}
     congent = params[:inpFile].read
-    p congent
+    newCount, updCount, delCount = Questions.import(params[:inpFile], session[:id])
+    flash[:notice] = []
+    flash[:notice] << "取込処理が完了しました。（新規:#{newCount.to_s} 変更:#{updCount.to_s} 削除:#{delCount.to_s})"
+    redirect_to :controller => "/qs_list"
   end
 
   private
@@ -52,7 +54,11 @@ class QsListController < ApplicationController
     generateConditions searchMode
 
     # 検索実行
-    @questions = Questions.joins(:category).select("questions.*, categories.category_name").where(@where).page(params[:page])
+    if searchMode == SEARCH_MODE_CSV
+      @questions = Questions.joins(:category).select("questions.*, categories.category_name").where(@where)
+    else
+      @questions = Questions.joins(:category).select("questions.*, categories.category_name").where(@where).page(params[:page])
+    end
     @condition = params[:condition]
   end
 
