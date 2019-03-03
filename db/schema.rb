@@ -10,48 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_054856) do
+ActiveRecord::Schema.define(version: 2019_03_03_230732) do
 
   create_table "categories", force: :cascade do |t|
-    t.text "category_name", null: false
-    t.text "reg_date", null: false
-    t.text "reg_user_id", null: false
-    t.text "upd_date"
-    t.text "upd_user_id"
+    t.string "name"
+    t.integer "created_user_id"
+    t.integer "updated_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "informations", force: :cascade do |t|
-    t.text "title"
+    t.datetime "announce_date"
+    t.string "title"
     t.text "contents"
-    t.text "reg_date", null: false
-    t.text "reg_user_id", null: false
-    t.text "upd_date"
-    t.text "upd_user_id"
+    t.integer "created_user_id"
+    t.integer "updated_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer "categoryid", null: false
-    t.text "question", null: false
-    t.text "answer", null: false
-    t.text "reg_date", null: false
-    t.text "reg_user_id", null: false
-    t.text "upd_date"
-    t.text "upd_user_id"
+    t.integer "category_id"
+    t.text "question"
+    t.text "answer"
+    t.integer "created_user_id"
+    t.integer "updated_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "serches", force: :cascade do |t|
+  create_table "user_access_categories", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "category_id"
+    t.integer "created_user_id"
+    t.integer "updated_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.text "user_name", null: false
-    t.text "password", null: false
-    t.text "reg_date", null: false
-    t.text "reg_user_id", null: false
-    t.text "upd_date"
-    t.text "upd_user_id"
+    t.string "mail_address"
+    t.string "name"
+    t.string "password_digest"
+    t.date "birthday"
+    t.integer "temp_regist_flg"
+    t.integer "password_init_flg"
+    t.datetime "password_init_updated_at"
+    t.integer "created_user_id"
+    t.integer "updated_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
