@@ -29,6 +29,9 @@
 		<%# Rails共通 %>
 		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+		
+		<%# モバイル対応%>
+		<meta name="viewport" content="width=device-width" >
 
 		<%= yield :header_js %>
 	</head>
@@ -51,7 +54,7 @@
 				<div id="navbarBasicExample" class="navbar-menu">
 					<div class="navbar-start"></div>
 					<div class="navbar-end" style="flex-direction:column;align-items:flex-end">
-						<a href="/login" class="button is-light is-link is-small">ログアウト</a>
+						<a href="/login" class="button is-link is-outlined is-small">ログアウトはこちら</a>
 					</div>
 				</div>
 			</nav>
@@ -112,7 +115,7 @@
 						<% if !hfDisplay %>
 							<a href="/use_rule" target="_blank" class="ft-sm">利用規約</a>　|　
 							<a href="/privacy_policy" target="_blank" class="ft-sm">プライバシーポリシー</a>　|　
-							<a href="/qa" target="_blank" class="ft-sm">よくある質問</a>　|　
+							<a href="/qa" target="_blank" class="ft-sm">よくある質問</a><br>
 							<a href="/pw_chg" target="_blank" class="ft-sm">パスワード変更</a>　|　
 							<a href="/ml_chg" target="_blank" class="ft-sm">メールアドレス変更</a>
 						<% end %>
