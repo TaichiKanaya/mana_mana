@@ -6,7 +6,7 @@ CSV.generate do |csv|
   @questions.load.each do |data|
     csv_column_values = [
       '',
-      data.category_name,
+      data.name,
       data.id,
       data.question,
       data.answer

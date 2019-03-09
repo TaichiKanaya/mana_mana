@@ -1,5 +1,5 @@
 # = 問題一覧処理クラス
-# Author:: Taichi.kanayua
+# Author:: Taichi.Kanaya
 # Copyright:: © 2018 Taichi.Kanaya
 require 'active_support/core_ext/string'
 
@@ -15,7 +15,7 @@ class QsListController < ApplicationController
   public
   # 初期表示
   def index
-    @questions = Questions.new
+    @questions = Question.new
   end
 
   # 問題検索
@@ -38,7 +38,7 @@ class QsListController < ApplicationController
   def uploadCsv
     content = {}
     congent = params[:inpFile].read
-    newCount, updCount, delCount = Questions.import(params[:inpFile], session[:id])
+    newCount, updCount, delCount = Question.import(params[:inpFile], session[:id])
     flash[:notice] = []
     flash[:notice] << "取込処理が完了しました。（新規:#{newCount.to_s} 変更:#{updCount.to_s} 削除:#{delCount.to_s})"
     redirect_to :controller => "/qs_list"
@@ -50,14 +50,14 @@ class QsListController < ApplicationController
   # searchMode 1:検索結果表示用検索 2:CSV出力用検索
   def exeSearch(searchMode)
     # 検索条件生成
-    @where = "1 = 1"
+    @where = "questions.created_user_id = " + session[:id].to_s
     generateConditions searchMode
 
     # 検索実行
     if searchMode == SEARCH_MODE_CSV
-      @questions = Questions.joins(:category).select("questions.*, categories.category_name").where(@where)
+      @questions = Question.joins(:category).select("questions.*, categories.name").where(@where)
     else
-      @questions = Questions.joins(:category).select("questions.*, categories.category_name").where(@where).page(params[:page])
+      @questions = Question.joins(:category).select("questions.*, categories.name").where(@where).page(params[:page])
     end
     @condition = params[:condition]
   end
@@ -70,15 +70,15 @@ class QsListController < ApplicationController
       params_caterogy_id = params[:condition][:category_id]
       params_question = params[:condition][:question]
       params_answer= params[:condition][:answer]
-      params_from_reg_date= params[:condition][:fromRegDate]
-      params_to_reg_date= params[:condition][:toRegDate]
+      params_from_created_at= params[:condition][:fromRegDate]
+      params_to_created_at= params[:condition][:toRegDate]
     else
       if params[:condition] != nil
         params_caterogy_id = params[:condition][:h_category_id]
         params_question = params[:condition][:h_question]
         params_answer= params[:condition][:h_answer]
-        params_from_reg_date= params[:condition][:h_fromRegDate]
-        params_to_reg_date= params[:condition][:h_toRegDate]
+        params_from_created_at= params[:condition][:h_fromRegDate]
+        params_to_created_at= params[:condition][:h_toRegDate]
       end
     end
 
@@ -114,20 +114,20 @@ class QsListController < ApplicationController
     end
 
     # 登録日時(From)
-    fromRegDate = params_from_reg_date
+    fromRegDate = params_from_created_at
     unless fromRegDate.blank?
       if date_valid? fromRegDate
         date = Date.parse(fromRegDate).strftime("%Y-%m-%d %H:%M:%S")
-        @where << " and questions.reg_date >= '" + date + "'"
+        @where << " and questions.created_at >= '" + date + "'"
       end
     end
 
     # 登録日時(To)
-    toRegDate = params_to_reg_date
+    toRegDate = params_to_created_at
     unless toRegDate.blank?
       if date_valid? toRegDate
         date = (Date.parse(toRegDate) + 1).strftime("%Y-%m-%d %H:%M:%S")
-        @where << " and questions.reg_date < '" + date + "'"
+        @where << " and questions.created_at < '" + date + "'"
       end
     end
   end

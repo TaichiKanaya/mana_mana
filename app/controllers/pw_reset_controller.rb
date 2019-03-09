@@ -11,7 +11,7 @@ class PwResetController < ApplicationController
     
     unless flash[:error].length > 0 then
       p params
-      result = User.find_by(user_id: params[:mailAddress], birthday: params[:birthday])
+      result = User.find_by(mail_address: params[:mailAddress], birthday: params[:birthday])
       check_user result
     end
 
@@ -23,9 +23,9 @@ class PwResetController < ApplicationController
     password = [*'A'..'Z', *'a'..'z', *0..9].shuffle[0..7].join
     result.password = password
     result.password_init_flg = 1
-    result.password_init_upd_date = nowDate
-    result.upd_user_id = 0
-    result.upd_date = nowDate
+    result.password_init_updated_at = nowDate
+    result.updated_user_id = 0
+    result.updated_at = nowDate
     result.save
     
     NotificationMailer.send_reset_password(result).deliver
@@ -36,10 +36,10 @@ class PwResetController < ApplicationController
   private
 
   def check_param
-    if params[:mailAddress].empty?
+    if params[:mailAddress].blank?
       flash[:error] << "メールアドレスを入力してください"
     end
-    if params[:birthday].empty?
+    if params[:birthday].blank?
       flash[:error] << "生年月日を入力してください"
     end
   end

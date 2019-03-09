@@ -4,12 +4,12 @@
 class InfoMngController < ApplicationController
   #初期表示
   def index
-    @informations = Informations.all
+    @informations = Information.all
     params[:announceDate] = []
     params[:title] = []
     params[:contents] = []
     @informations.each_with_index do |information, index|
-      params[:announceDate][index] = information.announce_date
+      params[:announceDate][index] = information.announce_date.strftime("%Y/%m/%d")
       params[:title][index] = information.title
       params[:contents][index] = information.contents
     end
@@ -26,7 +26,7 @@ class InfoMngController < ApplicationController
 
     #お知らせテーブル更新処理
     params[:title].each_with_index do |element, index|
-      @resultInformation = Informations.find_by(id:params[:information_id][index])
+      @resultInformation = Information.find_by(id:params[:information_id][index])
       p @resultInformation
       if !@resultInformation.blank? then
         if params[:announceDate][index].blank? then
@@ -35,21 +35,21 @@ class InfoMngController < ApplicationController
           @resultInformation.announce_date = params[:announceDate][index]
           @resultInformation.title = params[:title][index]
           @resultInformation.contents = params[:contents][index]
-          @resultInformation.upd_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
-          @resultInformation.upd_user_id = session[:id]
+          @resultInformation.updated_at = Time.new.strftime("%Y-%m-%d %H:%M:%S")
+          @resultInformation.updated_user_id = session[:id]
           @resultInformation.save!
         end
       else
         if params[:announceDate][index].blank? then
           next
         end
-        @informations = Informations.new
+        @informations = Information.new
         @informations.id = params[:information_id][index]
         @informations.announce_date = params[:announceDate][index]
         @informations.title = params[:title][index]
         @informations.contents = params[:contents][index]
-        @informations.reg_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
-        @informations.reg_user_id = session[:id]
+        @informations.created_at = Time.new.strftime("%Y-%m-%d %H:%M:%S")
+        @informations.created_user_id = session[:id]
         @informations.save!
       end
 

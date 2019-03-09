@@ -18,7 +18,7 @@
 	<div class="column is-5">
 		<%= hidden_field_tag "condition[h_category_id]", (params[:condition][:category_id] if params[:condition] != nil) %>
 		<div class="select is-info">
-			<%= select_tag "condition[category_id]", options_from_collection_for_select(Category.all, "id", "category_name", (params[:condition][:category_id] if params[:condition] != nil) ), include_blank: "未選択" %>
+			<%= select_tag "condition[category_id]", options_from_collection_for_select(Category.all, "id", "name", (params[:condition][:category_id] if params[:condition] != nil) ), include_blank: "未選択" %>
 		</div>
 	</div>
 	<div class="column is-1">

@@ -6,7 +6,7 @@ class TopController < ApplicationController
   public
   #=　初期表示
   def index
-    @informations = Informations.new
-    @informations_list = Informations.all
+    @informations = Information.new
+    @informations_list = Information.all
   end
 end

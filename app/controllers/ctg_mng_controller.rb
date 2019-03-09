@@ -1,12 +1,12 @@
 class CtgMngController < ApplicationController
   # 初期表示
   def index
-    @categories = Category.where(reg_user_id: session[:id])
+    @categories = Category.where(created_user_id: session[:id])
     params[:categoryId] = []
     params[:categoryName] = []
     @categories.each_with_index do |category, index|
       params[:categoryId][index] = category.id
-      params[:categoryName][index] = category.category_name
+      params[:categoryName][index] = category.name
     end
   end
 
@@ -25,15 +25,15 @@ class CtgMngController < ApplicationController
         record = Category.new
         categoryMaxId = Category.maximum("id")
         record.id = categoryMaxId.blank? ? 1 : categoryMaxId + 1
-        record.category_name = params[:categoryName][index]
-        record.reg_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
-        record.reg_user_id = session[:id]
+        record.name = params[:categoryName][index]
+        record.created_at = Time.new.strftime("%Y-%m-%d %H:%M:%S")
+        record.created_user_id = session[:id]
         record.save!
       elsif !params[:categoryId][index].blank? && !params[:categoryName][index].blank?
-        record = Category.find_by(id:params[:categoryId][index], reg_user_id: session[:id])
-        record.category_name = params[:categoryName][index]
-        record.upd_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
-        record.upd_user_id = session[:id]
+        record = Category.find_by(id:params[:categoryId][index], created_user_id: session[:id])
+        record.name = params[:categoryName][index]
+        record.updated_at = Time.new.strftime("%Y-%m-%d %H:%M:%S")
+        record.updated_user_id = session[:id]
         record.save!
       end
     end
@@ -45,9 +45,9 @@ class CtgMngController < ApplicationController
   
   # カテゴリ削除
   def delete
-    record = Questions.find_by category_id:params[:delCategoryId]
+    record = Question.find_by category_id:params[:delCategoryId]
     if record.blank? then
-      record = Category.find_by(id:params[:delCategoryId], reg_user_id: session[:id])
+      record = Category.find_by(id:params[:delCategoryId], created_user_id: session[:id])
       record.destroy!
       flash[:error] = nil
       flash[:notice] = ["カテゴリの削除が完了しました"]

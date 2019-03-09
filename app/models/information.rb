@@ -1,4 +1,4 @@
-class Informations < ActiveRecord::Base
+class Information < ApplicationRecord
   validate :add_error_sample
   # バリデーションチェック
   def add_error_sample

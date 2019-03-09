@@ -5,7 +5,7 @@ class NotificationMailer < ApplicationMailer
     @password = password
     mail(
       subject: "[JJ]仮パスワードのご案内",
-      to: @user.user_id
+      to: @user.mail_address
     ) do |format|
       format.text
     end
@@ -15,7 +15,7 @@ class NotificationMailer < ApplicationMailer
     @user = user
     mail(
       subject: "[JJ]仮パスワードのご案内",
-      to: @user.user_id
+      to: @user.mail_address
     ) do |format|
       format.text
     end

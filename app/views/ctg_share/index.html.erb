@@ -45,7 +45,7 @@
 		<tbody>
 			<% @sharedUserRecords.each do |shareUserRecord| %>
 			<tr>
-				<td><%= shareUserRecord.user_name %></td>
+				<td><%= shareUserRecord.name %></td>
 				<td><%= shareUserRecord.mail_address %></td>
 				<td class="text-center"> <%= button_tag 'シェアを取り消す', {:type => "button", :class => "button is-danger is-small is-rounded", :onClick => "destroyShare(" + shareUserRecord.record_id.to_s + ")"} %></td>
 			</tr>

@@ -9,7 +9,7 @@ class PwChgController < ApplicationController
     
     # Check password
     unless flash[:error].length > 0 then
-      user = User.find_by(user_id: session[:user_id])
+      user = User.find_by(mail_address: session[:mail_address])
       result = user.authenticate(params[:nowPassword])
       if !result then
         flash[:error] << "現在のパスワードが正しくありません"
@@ -32,9 +32,9 @@ class PwChgController < ApplicationController
     user.password = params[:newPassword]
     user.temp_regist_flg = 0
     user.password_init_flg = 0
-    user.password_init_upd_date = nowDate
-    user.upd_user_id = session[:id]
-    user.upd_date = nowDate
+    user.password_init_updated_at = nowDate
+    user.updated_user_id = session[:id]
+    user.updated_at = nowDate
     user.save
     
     redirect_to '/pw_chg_comp'
@@ -43,13 +43,10 @@ class PwChgController < ApplicationController
   private
 
   def check_param
-    # user_id
-    if params[:nowPassword].empty?
+    if params[:nowPassword].blank?
       flash[:error] << "現在のパスワードを入力してください"
     end
-
-    # password
-    if params[:newPassword].empty?
+    if params[:newPassword].blank?
       flash[:error] << "新しいパスワードを入力してください"
     end
   end

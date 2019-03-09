@@ -8,7 +8,7 @@ options = {
     weekdaysFull : ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'],
     weekdaysShort : ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'],
     today : '本日',
-    clear : 'キャンセル',
+    clear : '入力元をクリア',
     close : '閉じる'
     format : 'yyyy/mm/dd'
 }

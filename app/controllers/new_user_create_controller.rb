@@ -10,7 +10,7 @@ class NewUserCreateController < ApplicationController
     
     unless flash[:error].length > 0 then
       p params
-      result = User.find_by(user_id: params[:mailAddress])
+      result = User.find_by(mail_address: params[:mailAddress])
       check_user result
     end
 
@@ -25,7 +25,7 @@ class NewUserCreateController < ApplicationController
   private
 
   def check_param
-    if params[:mailAddress].empty?
+    if params[:mailAddress].blank?
       flash[:error] << "メールアドレスを入力してください"
     else
       valid_address = /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/
@@ -33,10 +33,10 @@ class NewUserCreateController < ApplicationController
         flash[:error] << "メールアドレスの形式が正しくありません"
       end
     end
-    if params[:userName].empty?
+    if params[:userName].blank?
       flash[:error] << "お名前を入力してください"
     end
-    if params[:birthday].empty?
+    if params[:birthday].blank?
       flash[:error] << "生年月日を入力してください"
     end
     if params[:agree].nil?
@@ -55,16 +55,16 @@ class NewUserCreateController < ApplicationController
     password = [*'A'..'Z', *'a'..'z', *0..9].shuffle[0..7].join
 
     user = User.new
-    user.user_id = params[:mailAddress]
-    user.user_name = params[:userName]
+    user.mail_address = params[:mailAddress]
+    user.name = params[:userName]
     user.password = password
     user.birthday = params[:birthday]
     user.temp_regist_flg = 1
     user.password_init_flg = 1
-    user.password_init_upd_date = nowDate
+    user.password_init_updated_at = nowDate
     user.admin_flg = 0
-    user.reg_date = nowDate
-    user.reg_user_id = 0
+    user.created_at = nowDate
+    user.created_user_id = 0
     user.save!
     
     NotificationMailer.send_new_temp_user(user, password).deliver

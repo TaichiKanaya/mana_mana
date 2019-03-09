@@ -1,5 +1,5 @@
 # = ログイン処理クラス
-# Author:: Taichi.kanayua
+# Author:: Taichi.Kanaya
 # Copyright:: © 2018 Taichi.Kanaya
 class LoginController < ApplicationController
   skip_before_action :require_login
@@ -17,7 +17,7 @@ class LoginController < ApplicationController
     
     # Check user
     unless flash[:error].length > 0 then
-      user = User.find_by(user_id: params[:user][:user_id])
+      user = User.find_by(mail_address: params[:user][:mail_address])
       result = user.authenticate(params[:user][:password])
       check_user result
     end
@@ -39,13 +39,13 @@ class LoginController < ApplicationController
   
   private
   def check_param
-    # user_id
-    if params[:user][:user_id].empty?
+    # mail_address
+    if params[:user][:mail_address].blank?
       flash[:error] << "ユーザIDを入力してください"
     end
 
     # password
-    if params[:user][:password].empty?
+    if params[:user][:password].blank?
       flash[:error] << "パスワードを入力してください"
     end
   end
@@ -57,13 +57,13 @@ class LoginController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:user_id, :password)
+    params.require(:user).permit(:mail_address, :password)
   end
   
   def setSession data
     session[:id] = data.id
-    session[:user_id] = data.user_id
-    session[:user_name] = data.user_name
+    session[:mail_address] = data.mail_address
+    session[:user_name] = data.name
   end
   
 end

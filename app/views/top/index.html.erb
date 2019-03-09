@@ -17,7 +17,7 @@
 			<tbody>
 				<% @informations_list.each do |info| %>
 				<tr class="vertical-top">
-					<td><%= info.announce_date %></td>
+					<td><%= info.announce_date.strftime("%Y/%m/%d") %></td>
 					<td><%= info.title %></td>
 					<td><%= simple_format(h(info.contents)) %></td>
 				</tr>

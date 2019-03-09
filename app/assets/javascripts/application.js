@@ -13,9 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-
 document.addEventListener('DOMContentLoaded', function() {
-
 	// Get all "navbar-burger" elements
 	var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
@@ -45,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		weekdaysFull : ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'],
 		weekdaysShort : ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'],
 		today : '本日',
-		clear : 'キャンセル',
+		clear : '入力元をクリア',
 		format : 'yyyy/mm/dd'
 	});
 

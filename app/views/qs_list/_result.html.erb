@@ -22,10 +22,10 @@
 		<tbody>
 			<% @loadQuestion.each do |question| %>
 			<tr>
-				<td class="categoryName child_three_point_reader tooltip" title="<%= question.category_name %>"><%= question.category_name %></td>
+				<td class="categoryName child_three_point_reader tooltip" title="<%= question.name %>"><%= question.name %></td>
 				<td class="question child_three_point_reader" title="<%= question.question %>"><%= question.question %></td>
 				<td class="answer child_three_point_reader" title="<%= question.answer %>"><%= question.answer %></td>
-				<td class="regDate"><%= question.reg_date %></td>
+				<td class="regDate"><%= question.created_at.strftime("%Y/%m/%d") %></td>
 				<td class="updButton"><a href="/qs_upd/?question_id=<%= question.id %>" > <%= button_tag 'この問題を変更する', {:class => "button is-info is-small is-rounded"} %> </a></td>
 			</tr>
 			<% end %>

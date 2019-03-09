@@ -7,7 +7,7 @@ class MlChgController < ApplicationController
     check_param
     
     unless flash[:error].length > 0 then
-      result = User.find_by(user_id: params[:newMailAddress])
+      result = User.find_by(mail_address: params[:newMailAddress])
       check_user result
     end
     
@@ -17,12 +17,12 @@ class MlChgController < ApplicationController
     end
     
     user = User.find_by(id: session[:id])
-    user.user_id = params[:newMailAddress]
-    user.upd_user_id = session[:id]
-    user.upd_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
+    user.mail_address = params[:newMailAddress]
+    user.updated_user_id = session[:id]
+    user.updated_at = Time.new.strftime("%Y-%m-%d %H:%M:%S")
     user.save
     
-    session[:user_id] = params[:newMailAddress]
+    session[:mail_address] = params[:newMailAddress]
     
     redirect_to '/ml_chg_comp'
   end
@@ -30,7 +30,7 @@ class MlChgController < ApplicationController
   private
 
   def check_param
-    if params[:newMailAddress].empty?
+    if params[:newMailAddress].blank?
       flash[:error] << "メールアドレスを入力してください"
     else
       valid_address = /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/
