@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.integer :temp_regist_flg
       t.integer :password_init_flg
       t.timestamp :password_init_updated_at
+      t.integer :admin_flg
       t.integer :created_user_id
       t.integer :updated_user_id
 
