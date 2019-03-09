@@ -13,8 +13,8 @@
 		<thead>
 			<tr>
 				<th style="width:15%">カテゴリ</th>
-				<th style="width:20%">問題</th>
-				<th style="width:20%">解答</th>
+				<th style="width:25%">問題</th>
+				<th style="width:25%">解答</th>
 				<th style="width:15%">登録日時</th>
 				<th style="width:20%"></th>
 			</tr>
@@ -26,7 +26,7 @@
 				<td class="question child_three_point_reader" title="<%= question.question %>"><%= question.question %></td>
 				<td class="answer child_three_point_reader" title="<%= question.answer %>"><%= question.answer %></td>
 				<td class="regDate"><%= question.created_at.strftime("%Y/%m/%d") %></td>
-				<td class="updButton"><a href="/qs_upd/?question_id=<%= question.id %>" > <%= button_tag 'この問題を変更する', {:class => "button is-info is-small is-rounded"} %> </a></td>
+				<td class="updButton"><a href="/qs_upd/?question_id=<%= question.id %>" > <%= button_tag '変更する', {:class => "button is-info is-small is-rounded"} %> </a></td>
 			</tr>
 			<% end %>
 		</tbody>
