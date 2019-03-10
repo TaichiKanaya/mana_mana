@@ -9,6 +9,8 @@
 <p>
 	各種条件を指定し、検索ボタンを押してください。新規で問題を登録する場合は<u><a class="link" href="/qs_reg">こちら</a></u>をクリックしてください。
 </p>
+<% # errorメッセージ表示領域 %>
+<%= render :file => 'layouts/error.html.erb' %>
 <% # noticeメッセージ表示領域 %>
 <%= render :file => 'layouts/notice.html.erb' %>
 <div class="searchCondition columns">

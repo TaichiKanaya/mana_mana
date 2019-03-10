@@ -38,7 +38,14 @@ class QsListController < ApplicationController
   def uploadCsv
     content = {}
     congent = params[:inpFile].read
-    newCount, updCount, delCount = Question.import(params[:inpFile], session[:id])
+    flash[:error] = []
+    errors = []
+    newCount, updCount, delCount = Question.import(params[:inpFile], session[:id], errors)
+    unless errors.blank?
+      flash[:error] = errors
+      redirect_to :controller => "/qs_list"
+      return
+    end
     flash[:notice] = []
     flash[:notice] << "取込処理が完了しました。（新規:#{newCount.to_s} 変更:#{updCount.to_s} 削除:#{delCount.to_s})"
     redirect_to :controller => "/qs_list"
