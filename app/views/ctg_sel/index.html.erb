@@ -12,7 +12,7 @@
 	<% @categories.each_with_index do |record, index| %>
 	<div>
 		<%= radio_button_tag("category_id", record["id"], false, options = {}) %>
-		<%= label_tag("category_id_" + (index+1).to_s, record["category_name"]) %>
+		<%= label_tag("category_id_" + record["id"].to_s, record["category_name"]) %>
 		<% if record["created_user_id"] != session[:id] %>
 		<span style="font-size:12px; color:#084B8A">(<%= record["user_name"].to_s + "さんからシェアされています"  %>)</span>
 		<% end %>
