@@ -24,8 +24,10 @@ class Question < ActiveRecord::Base
     end
 
     # 解答
-    if answer.length > 2000
-      errors[:base] << "解答は2000文字以内で入力してください。"
+    unless answer.blank?
+      if answer.length > 2000
+        errors[:base] << "解答は2000文字以内で入力してください。"
+      end
     end
 
     return errors[:base].blank?
