@@ -8,10 +8,10 @@
 	<%= render :file => 'layouts/error.html.erb' %>
 	<%#各種入力エリア %>
 	<div>
-		<%= f.text_field :mail_address, :placeholder => "ユーザIDを入力してください", :class => "input is-info", :style => "width:30%;"%>
+		<%= f.text_field :mail_address, :placeholder => "ユーザIDを入力してください", :class => "input is-info text-width" %>
 	</div>
 	<div>
-		<%= f.password_field :password, :placeholder => "パスワードを入力してください", :class => "input is-info", :style => "width:30%" %>
+		<%= f.password_field :password, :placeholder => "パスワードを入力してください", :class => "input is-info text-width" %>
 	</div>
 	<div style="margin-top: 15px; margin-bottom: 15px">
 		<a href="javascript:document.submit()"> <%= f.button 'ログイン', :class => "button is-link" %> </a>
