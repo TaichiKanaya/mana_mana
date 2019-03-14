@@ -15,16 +15,12 @@
 	<%= render :file => 'layouts/notice.html.erb' %>
 	<div>
 		<div class="mt20">
-			<p>
-				<%= label_tag "現在のパスワード"%><span style="color:red">＊</span>
-			</p>
-			<%= password_field_tag "nowPassword", (params[:nowPassword] if params[:nowPassword] != nil), { :placeholder => "現在のパスワードを入力してください", :class => "input is-info w50" } %>
+			<%= label_tag "現在のパスワード"%><span style="color:red">＊</span><br>
+			<%= password_field_tag "nowPassword", (params[:nowPassword] if params[:nowPassword] != nil), { :placeholder => "現在のパスワードを入力してください", :class => "input is-info text-width" } %>
 		</div>
 		<div class="mt30">
-			<p>
-				<%= label_tag "新しいパスワード"%><span style="color:red">＊</span>
-			</p>
-			<%= password_field_tag "newPassword", (params[:newPassword] if params[:newPassword] != nil), { :placeholder => "新しいパスワードを入力してください", :class => "input is-info w50" } %>
+			<%= label_tag "新しいパスワード"%><span style="color:red">＊</span><br>
+			<%= password_field_tag "newPassword", (params[:newPassword] if params[:newPassword] != nil), { :placeholder => "新しいパスワードを入力してください", :class => "input is-info text-width" } %>
 		</div>
 		<div class="mt30">
 			<p>

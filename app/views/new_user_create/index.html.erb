@@ -7,51 +7,40 @@
 	<p class="title is-5">
 		ユーザ無料登録
 	</p>
-	<p class="text-center">
+	<p>
 		ご入力頂いたメールアドレスに本システムへログイン頂くためのパスワードを送信します。
 	</p>
-	<div class="text-center">
+	<div>
 		<% # errorメッセージ表示領域 %>
 		<%= render :file => 'layouts/error.html.erb' %>
 		<% # noticeメッセージ表示領域 %>
 		<%= render :file => 'layouts/notice.html.erb' %>
-		<div class="columns mt20">
-			<div class="column is-5 text-right">
-				<%= label_tag "メールアドレス"%><span style="color:red">＊</span>
-			</div>
-			<div class="column is-7 text-left">
-				<%= text_field_tag "mailAddress", (params[:mailAddress] if params[:mailAddress] != nil), { :placeholder => "メールアドレスを入力してください", :class => "input is-info w60" } %>
-			</div>
+		<div class="mt20">
+			<%= label_tag "メールアドレス"%><span style="color:red">＊</span><br>
+			<%= text_field_tag "mailAddress", (params[:mailAddress] if params[:mailAddress] != nil), { :placeholder => "メールアドレスを入力してください", :class => "input is-info text-width" } %>
 		</div>
-		<div class="columns">
-			<div class="column is-5 text-right">
-				<%= label_tag "お名前"%><span style="color:red">＊</span>
-			</div>
-			<div class="column is-7 text-left">
-				<%= text_field_tag "userName", (params[:userName] if params[:userName] != nil), { :placeholder => "お名前を入力してください", :class => "input is-info w40" } %>
-			</div>
+		<div class="mt20">
+			<%= label_tag "お名前"%><span style="color:red">＊</span><br>
+			<%= text_field_tag "userName", (params[:userName] if params[:userName] != nil), { :placeholder => "お名前を入力してください", :class => "input is-info text-width" } %>
 		</div>
-		<div class="columns">
-			<div class="column is-5 text-right">
-				<%= label_tag "生年月日"%><span style="color:red">＊</span>
-			</div>
-			<div class="column is-7 text-left">
-				<%= text_field_tag "birthday", (params[:birthday] if params[:birthday] != nil), { :placeholder => "生年月日を入力してください", :class => "input is-info fieldset__input js__datepicker w40" } %>
-				<p class="ft-sm">
-					※生年月日はシステム上でのご本人様確認のために使用します。
-				</p>
-			</div>
-		</div>
-		<div class="mt30">
-			<p class="mt30">
-				必ず<%= link_to "利用規約", "/use_rule", target:"_blank"%>、<%= link_to "プライバシーポリシー", "/privacy_policy", target:"_blank"%>をお読みください。
-				<br/>
-				<%= check_box_tag 'agree', 'agree', (params[:agree].nil? ? false : true) %><label for="agree">&nbsp;利用規約およびプライバシーポリシーに同意する</label>
-			</p>
-			<p>
-				<a href="javascript:document.submit()"> <%= button_tag '無料登録する', :class => "button is-link" %> </a>
+		<div class="mt20">
+			<%= label_tag "生年月日"%><span style="color:red">＊</span><br>
+			<%= text_field_tag "birthday", (params[:birthday] if params[:birthday] != nil), { :placeholder => "生年月日を入力してください", :class => "input is-info fieldset__input js__datepicker text-width" } %>
+			<p class="ft-sm">
+				※生年月日はシステム上でのご本人様確認のために使用します。
 			</p>
 		</div>
 	</div>
+	<div class="mt30">
+		<p class="mt30">
+			必ず<%= link_to "利用規約", "/use_rule", target:"_blank"%>、<%= link_to "プライバシーポリシー", "/privacy_policy", target:"_blank"%>をお読みください。
+			<br/>
+			<%= check_box_tag 'agree', 'agree', (params[:agree].nil? ? false : true) %><label for="agree">&nbsp;利用規約およびプライバシーポリシーに同意する</label>
+		</p>
+		<p>
+			<a href="javascript:document.submit()"> <%= button_tag '無料登録する', :class => "button is-link" %> </a>
+		</p>
+	</div>
+</div>
 </div>
 <% end %>
