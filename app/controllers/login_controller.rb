@@ -18,8 +18,12 @@ class LoginController < ApplicationController
     # Check user
     unless flash[:error].length > 0 then
       user = User.find_by(mail_address: params[:user][:mail_address])
-      result = user.authenticate(params[:user][:password])
-      check_user result
+      if user.blank?
+        check_user user
+      else
+        result = user.authenticate(params[:user][:password])
+        check_user result
+      end
     end
 
     # if error is occured, transition to own page
