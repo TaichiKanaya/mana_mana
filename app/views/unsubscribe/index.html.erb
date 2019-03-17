@@ -4,10 +4,15 @@
 	退会
 </p>
 <p>
-	退会するボタンを押すとすぐに退会処理が実行されます。<br />
-	退会処理が完了すると全ての情報が参照できなくなりますので、ご注意ください。<br /><br />
+	退会するボタンを押すとすぐに退会処理が実行されます。
+	<br />
+	退会処理が完了すると全ての情報が参照できなくなりますので、ご注意ください。
+	<br />
+	<br />
 </p>
 <div class="mt20">
-	<a href="javascript:document.submit()"> <%= button_tag '退会する', {:class => "button is-danger"} %> </a>
+	<a href="javascript:document.submit()">
+		<%= button_tag '退会する', :class => "is-danger button" , data: { confirm: "退会処理を実行します。よろしいですか?（退会処理が完了すると全ての情報が参照できなくなりますのでご注意ください。）" } %>
+	</a>
 </div>
 <% end %>
