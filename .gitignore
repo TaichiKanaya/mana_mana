@@ -1,4 +1,6 @@
 /node_modules/
 /tmp/
 /log/
-
+/vendor/
+/db/
+/.bundle/
