@@ -28,7 +28,7 @@ default: &default
     - .jpeg
     - .jpg
   
-  check_yarn_integrity:false
+  check_yarn_integrity: false
 
 development:
   <<: *default
