@@ -66,3 +66,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'webpacker'
 gem 'kaminari'
 gem 'pg'
+
+gem 'rails_12factor', group: :production
