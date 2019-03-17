@@ -1,8 +1,10 @@
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  address: 'localhost',
-  domain: 'attakait.com',
-  port: 1025,
+  address: 'smtp.gmail.com',
+  domain: 'gmail.com',
+  port: 587,
+  user_name: 'k.t.sz1989@gmail.com',
+  password: 'bshBSH100cp',
   authentication: 'plain',
   enable_starttls_auto: true
 }
