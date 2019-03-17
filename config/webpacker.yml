@@ -27,8 +27,6 @@ default: &default
     - .gif
     - .jpeg
     - .jpg
-  
-  check_yarn_integrity: false
 
 development:
   <<: *default
