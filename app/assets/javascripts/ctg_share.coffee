@@ -9,4 +9,3 @@ options = {
 
 # 生年月日設定
 $('#birthday').pickadate(options)
- No newline at end of file
