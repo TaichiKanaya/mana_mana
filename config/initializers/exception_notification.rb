@@ -19,7 +19,17 @@ ExceptionNotification.configure do |config|
   config.add_notifier :email, {
     :email_prefix         => "[ERROR]JimonJitou",
     :sender_address       => %{"jimonjitou Notifier" <jimonjitou.attakait@gmail.com>},
-    :exception_recipients => %w{taich.kanaya@attakait.com}
+    :exception_recipients => %w{taichi.kanaya@attakait.com},
+    :delivery_method      => :smtp,
+    :smtp_settings        => {
+      address: 'smtp.gmail.com',
+      domain: 'gmail.com',
+      port: 587,
+      user_name: 'jimonjitou.attakait@gmail.com',
+      password: 'uituodcypvfklhfm',
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
   }
 
   # Campfire notifier sends notifications to your Campfire room. Requires 'tinder' gem.
