@@ -43,7 +43,16 @@ class Question < ActiveRecord::Base
       errors << "100Kバイト以上のデータは一度に登録できません。ファイルを分割してください。"
     return
     end
+    
+    questionCount = Question.where("created_user_id = ?", session_id).size
+    rowCount = 0
+    regAbleCount = 1000 - questionCount
     CSV.foreach(file.path, headers:true) do |row|
+      rowCount += 1
+      if (rowCount >= regAbleCount)
+        errors << "問題の最大登録可能件数を超過しています（一人あたり1000件まで）。他の問題を削除して再登録してください。"
+        return
+      end
       Question.new.check_import(session_id, row, $., errors)
     end
     unless errors.blank?

@@ -34,7 +34,7 @@ class CtgSelController < ApplicationController
     select("categories.id, categories.name category_name, categories.created_user_id, users.name user_name").
     where("user_access_categories.user_id = ?", session[:id]).
     union(Category.select("categories.id, categories.name, categories.created_user_id, null").
-    where("categories.created_user_id = ?", session[:id])).to_sql + " as sub")
+    where("categories.created_user_id = ?", session[:id])).to_sql + " as sub order by category_name")
   end
   def check_param
     if params[:category_id].blank?

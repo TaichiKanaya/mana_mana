@@ -15,11 +15,13 @@ class QsListController < ApplicationController
   public
   # 初期表示
   def index
+    init
     @questions = Question.new
   end
 
   # 問題検索
   def search
+    init
     exeSearch SEARCH_MODE_OUTPUT
     render action: :index
   end
@@ -143,5 +145,9 @@ class QsListController < ApplicationController
   def date_valid?(str)
     !!str.to_date rescue false
   end
-
+  
+  # 初期処理
+  def init
+    @categories = Category.where("created_user_id = ?", session[:id])
+  end
 end

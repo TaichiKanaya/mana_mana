@@ -1,7 +1,7 @@
 class CgController < ApplicationController
   def index
     @categories = Category.where("id = ? and (created_user_id = ? or id in (select category_id from user_access_categories where user_id = ?))",
-    params[:category_id], session[:id], session[:id])
+    params[:category_id], session[:id], session[:id]).first
     if @categories.blank? then
       raise
     end

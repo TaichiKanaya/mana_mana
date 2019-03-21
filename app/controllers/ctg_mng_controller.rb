@@ -1,7 +1,7 @@
 class CtgMngController < ApplicationController
   # 初期表示
   def index
-    @categories = Category.where(created_user_id: session[:id])
+    @categories = Category.where(created_user_id: session[:id]).order("name")
     params[:categoryId] = []
     params[:categoryName] = []
     @categories.each_with_index do |category, index|
@@ -63,6 +63,9 @@ class CtgMngController < ApplicationController
   # 入力パラメータチェック
   def checkParam
     flash[:error] = []
+    if params[:categoryName].blank?
+      params[:categoryName] = []
+    end
     params[:categoryName].each_with_index do |element, index|
       if element.blank? && !params[:categoryId][index].blank?
         flash[:error] << "カテゴリ名" + (index+1).to_s + "を入力してください"
