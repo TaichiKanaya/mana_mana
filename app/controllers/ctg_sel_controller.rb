@@ -31,9 +31,9 @@ class CtgSelController < ApplicationController
   def init
     @categories = ActiveRecord::Base.connection.execute("select * from " + 
     Category.joins(:user_access_categories).left_outer_joins(:users).
-    select("categories.id, categories.name category_name, categories.created_user_id, users.name user_name").
+    select("categories.id, categories.name category_name, categories.created_user_id, users.name user_name, users.mail_address").
     where("user_access_categories.user_id = ?", session[:id]).
-    union(Category.select("categories.id, categories.name, categories.created_user_id, null").
+    union(Category.select("categories.id, categories.name, categories.created_user_id, null, null").
     where("categories.created_user_id = ?", session[:id])).to_sql + " as sub order by category_name")
   end
   def check_param
