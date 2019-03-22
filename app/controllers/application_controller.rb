@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   http_basic_authenticate_with :name => ENV['BASIC_AUTH_USERNAME'], :password => ENV['BASIC_AUTH_PASSWORD'] if Rails.env == "staging"
   private
   def require_login
-    unless session[:id]
+    if session[:id].blank?
       redirect_to '/login'
     end
     userRecord = User.find_by(id: session[:id])
