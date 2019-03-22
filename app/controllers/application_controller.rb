@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   def require_login
     if session[:id].blank?
       redirect_to '/login'
+      return
     end
     userRecord = User.find_by(id: session[:id])
     @adminFlg = false;
