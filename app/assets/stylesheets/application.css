@@ -23,8 +23,8 @@ html {
 	width: 40%;
 }
 .logo-visible {
-	width: 130px;
-	height: 100px;
+	width: 100px;
+	height: 90px;
 }
 .hidden-part {
 	display: "";
@@ -40,7 +40,7 @@ html {
 		width: 70%;
 	}
 	.logo-visible {
-		width: 100px;
+		width: 70px;
 		height: 50px;
 	}
 	.hidden-part {

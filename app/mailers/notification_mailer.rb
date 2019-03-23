@@ -3,9 +3,9 @@ class NotificationMailer < ApplicationMailer
     @user = user
     @password = password
     mail(
-      subject: "[JJ]仮パスワードのご案内",
-      from: '"JimonJitou事務局" <jimonjitou@attakait.com>',
-      reply_to: '"JimonJitou窓口" <taichi.kanaya@attakait.com>',
+      subject: "[MM]仮パスワードのご案内",
+      from: '"ManaMana事務局" <manamana@attakait.com>',
+      reply_to: '"ManaMana窓口" <taichi.kanaya@attakait.com>',
       to: @user.mail_address
     ) do |format|
       format.text
@@ -15,9 +15,9 @@ class NotificationMailer < ApplicationMailer
   def send_reset_password(user)
     @user = user
     mail(
-      subject: "[JJ]仮パスワードのご案内",
-      from: '"JimonJitou事務局" <jimonjitou@attakait.com>',
-      reply_to: '"JimonJitou窓口" <taichi.kanaya@attakait.com>',
+      subject: "[MM]仮パスワードのご案内",
+      from: '"ManaMana事務局" <manamana@attakait.com>',
+      reply_to: '"ManaMana窓口" <taichi.kanaya@attakait.com>',
       to: @user.mail_address
     ) do |format|
       format.text
