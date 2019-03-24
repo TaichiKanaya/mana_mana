@@ -117,6 +117,18 @@
 				</ul>
 			</nav>
 			<% end %>
+			<% if ( request.url =~ /ctg_share/) %>
+			<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+				<ul>
+					<li>
+						<a href="/ctg_mng">カテゴリ管理</a>
+					</li>
+					<li class = "is-active">
+						<a href="/ctg_share" aria-current="page">カテゴリシェア</a>
+					</li>
+				</ul>
+			</nav>
+			<% end %>
 			<%# メインコンテナ %>
 			<div class="content">
 				<%# メインコンテンツ %>
