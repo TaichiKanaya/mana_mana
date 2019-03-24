@@ -22,13 +22,13 @@
 			<p>
 				<%= label_tag "シェアする相手のメールアドレス"%><span style="color:red">＊</span>
 			</p>
-			<%= text_field_tag "mailAddress", (params[:mailAddress] if params[:mailAddress] != nil), { :placeholder => "シェアする相手のメールアドレスを入力してください", :class => "input is-info text-width" } %>
+			<%= text_field_tag "mailAddress", (params[:mailAddress] if params[:mailAddress] != nil), { :placeholder => "相手のメールアドレスを入力してください", :class => "input is-info text-width" } %>
 		</div>
 		<div class="mt30">
 			<p>
 				<%= label_tag "シェアする相手の生年月日"%><span style="color:red">＊</span>
 			</p>
-			<%= text_field_tag "birthday", (params[:birthday] if params[:birthday] != nil), { :placeholder => "シェアする相手の生年月日を入力してください", :class => "input is-info text-width" } %>
+			<%= text_field_tag "birthday", (params[:birthday] if params[:birthday] != nil), { :placeholder => "相手の生年月日を入力してください", :class => "input is-info text-width" } %>
 		</div>
 		<div class="mt30">
 			<p>
