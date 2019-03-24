@@ -45,11 +45,11 @@
 	</div>
 </div>
 <div style="text-align: center">
-	<%= button_to "更新", { action: "update", question_id: params[:question_id] },
+	<%= button_to "更新する", { action: "update", question_id: params[:question_id] },
 	method: :patch, class: "button is-link", data: { confirm: "問題を更新します。よろしいですか?" } %>
 </div>
 <% end %>
 <div style="text-align: right">
-	<%= button_to "削除", { action: "delete", question_id: params[:question_id] },
+	<%= button_to "削除する", { action: "delete", question_id: params[:question_id] },
 	method: :delete, class: "button is-danger", data: { confirm: "問題を削除します。よろしいですか?" } %>
 </div>

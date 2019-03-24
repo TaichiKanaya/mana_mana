@@ -4,9 +4,23 @@ class CtgMngController < ApplicationController
     @categories = Category.where(created_user_id: session[:id]).order("name")
     params[:categoryId] = []
     params[:categoryName] = []
+    params[:allShareFlg] = []
+    params[:onlyShareFlg] = []
     @categories.each_with_index do |category, index|
+      p category.inspect
       params[:categoryId][index] = category.id
       params[:categoryName][index] = category.name
+      if category.all_share_flg == 1
+        params[:allShareFlg][index] = true
+      else
+        params[:allShareFlg][index] = false
+      end
+      userAccessCategory = UserAccessCategory.where("category_id = ?", category.id).first
+      if !userAccessCategory.blank?
+        params[:onlyShareFlg][index] = true
+      else
+        params[:onlyShareFlg][index] = false
+      end
     end
   end
 

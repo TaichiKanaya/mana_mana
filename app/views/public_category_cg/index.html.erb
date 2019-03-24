@@ -1,0 +1,62 @@
+<% content_for :title do %>チャレンジ問題<% end %>
+<%= form_tag('/public_category_cg/index', {:id => "formCg"}) do |f| %>
+<p class="subtitle is-6">
+	チャレンジ問題
+</p>
+<div id="vue">
+	<div><%= @categories["name"] %><br>
+	<%= @questionCount %> 問中　<span v-cloak>{{ count }}</span> 問目 </div>
+	<div class="mb30">
+		<br>
+		<span v-cloak><p style="white-space: pre-wrap;" v-html="question"></p></span>
+		<div class="mt20">
+			<%= button_tag '解答を見る', {:id => "btnAnswer", :type => "button", :class => "button is-link", :onclick => "openAnswer();"} %>
+			<button id="btnNext" type="button" v-on:click="onclick();" class="button is-link" style="display: none">次の問題へ</button>
+		</div>
+		
+	</div>
+	<div id="areaAnswer" style="display: none">
+		<span v-cloak><p style="white-space: pre-wrap;" v-html="answer"></p></span>
+	</div>
+	<div class="mt20">
+		
+	</div>
+</div>
+<% end %>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.20/dist/vue.js"></script>
+<script type="text/javascript">
+	var app = new Vue({
+		el : '#vue',
+		data : {
+			"count" : "<%= @count %>",
+			"question" : `<%= @question %>`,
+			"answer" : `<%= @answer %>`,
+		},
+		methods : {
+			onclick : function() {
+				axios.post('/public_category_cg/getQuestion',{
+					authenticity_token: $("[name='authenticity_token']").val()
+				}).then( function(response) {
+					if (response.data.length <= 0) {
+						location.href = "/public_category_cg_comp?category_id=<%= @categories.id %>";
+					} else {
+						$("#btnAnswer").show();
+						$("#btnNext").hide();
+						$("#areaAnswer").hide();
+						this.count = response.data.count;
+						this.question = response.data.question;
+						this.answer = response.data.answer;
+					}
+				}.bind(this)).catch(function(error) {
+					console.log(error)
+				})
+			}
+		}
+	})
+	
+	function openAnswer(){
+		$("#btnAnswer").hide();
+		$("#btnNext").show();
+		$("#areaAnswer").show();
+	}
+</script>

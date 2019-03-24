@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 html {
 	font-size: 16px;
@@ -51,6 +52,34 @@ html {
 td {
 	vertical-align: middle;
 }
+
+.circle_blue {
+	display: inline-block;
+	width: 50px;
+	height: 30px;
+	background: #67A6EB;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-o-border-radius: 50px;
+	-ms-border-radius: 50px; 
+	border-radius: 50px;
+	text-align:center;
+	padding-top:2px;
+}
+.circle_pink {
+	display: inline-block;
+	width: 50px;
+	height: 30px;
+	background: #F6CEF5;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-o-border-radius: 50px;
+	-ms-border-radius: 50px; 
+	border-radius: 50px;
+	text-align:center;
+	padding-top:2px;
+}
+
 /* タブホバー時の色設定 */
 .button {
 	opacity: 1.0;
@@ -66,6 +95,10 @@ td {
 .button {
 	padding-left: 30px !important;
 	padding-right: 30px !important;
+}
+
+.button-icon-include {
+	padding-left: 20px !important;
 }
 
 table tr th {

@@ -20,8 +20,9 @@
 	<thead>
 		<tr>
 			<th style="width:10%">ID</th>
-			<th style="width:60%">カテゴリ名</th>
-			<th style="width:30%"></th>
+			<th style="width:50%">カテゴリ名</th>
+			<th style="width:20%">シェア状況</th>
+			<th style="width:20%"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,16 +32,24 @@
 			<%= hidden_field_tag "categoryId[]", categoryId, {:id=>"categoryId_" + x.to_s} %>
 			<td><%= categoryId %></td>
 			<td><%= text_field_tag "categoryName[]", (params[:categoryName][x] if params[:categoryName] != nil), { :id => "categoryName_" + x.to_s, :class => "input is-info" } %></td>
+			<td style="vertical-align: middle">
+				<% if params[:allShareFlg][x] %>
+					<span class="circle_blue" title="全体にシェアされています">全体</span>
+				<% end %>
+				<% if params[:onlyShareFlg][x] %>
+					<span class="circle_pink" title="一部のユーザにシェアされています">限定</span>
+				<% end %>
+			</td>
 			<td class="text-center delButton">
-				<a href="/ctg_share?category_id=<%= categoryId %>"><%= button_tag 'シェア状況確認', {:type => "button", :class => "button is-info is-small is-rounded"} %></a>
-				<%= button_tag 'カテゴリ削除', {:type => "button", :class => "button is-danger is-small is-rounded", :onClick => "destroyCategoryRecord(" + categoryId.to_s + ")"} %>
+				<a href="/ctg_share?category_id=<%= categoryId %>"><%= button_tag '詳細', {:type => "button", :class => "button is-info is-small is-rounded"} %></a>
+				<%= button_tag '削除', {:type => "button", :class => "button is-danger is-small is-rounded", :onClick => "destroyCategoryRecord(" + categoryId.to_s + ")"} %>
 			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 <div id="upd_button_area">
-	<a href="javascript:document.submit()"> <%= button_tag '更新する', {:class => "button is-link"} %> </a>
+	<a href="javascript:document.submit()"> <%= button_tag "更新する", {:class => "button is-link"} %> </a>
 </div>
 <script type="text/javascript">
 	function createCategoryRecord() {
@@ -51,6 +60,7 @@
 		record += "<td>";
 		record += '<input type="text" name="categoryName[]" class="input is-info">';
 		record += "</td>";
+		record += "<td></td>";
 		record += "<td class='text-center'>";
 		record += '<input type="button" class="button is-danger is-small is-rounded" value="行削除" onClick="$(this).parent().parent().remove();">';
 		record += "</td>";

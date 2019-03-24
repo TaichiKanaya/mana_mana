@@ -55,11 +55,23 @@
 			<% end %>
 		</tbody>
 	</table>
-	<% else %>
-	<p class="mt30">
-		このカテゴリは現在シェアされていません。ぜひシェアしてみよう！
-	</p>
 	<% end %>
+	<% if @sharedUserRecords.blank? && @category.all_share_flg != 1 %>
+		<p class="mt30">
+			このカテゴリは現在シェアされていません。ぜひシェアしてみよう！
+		</p>
+	<% end %>
+	<div class="mt30">
+		<% if @category.all_share_flg != 1 %>
+		<p>
+			<%= button_tag '全てのユーザにシェアする', {:type => "button", :id => "btnShare", :class => "button is-success", :onclick => "allShare();"} %>
+		</p>
+		<% else %>
+		<p>
+			<%= button_tag '全てのユーザへのシェアを中止する', {:type => "button", :id => "btnShare", :class => "button is-success", :onclick => "stopAllShare();"} %>
+		</p>
+		<% end %>
+	</div>
 </div>
 <script type="text/javascript">
 	function checkShare() {
@@ -76,9 +88,28 @@
 			document.ctg_share_del.submit();
 		}
 	}
+
+	function allShare() {
+		var ret = confirm("全てのユーザにシェアしてもよろしいですか？\n（いいね数ランキング対象になります。ぜひ積極的にシェアしてください！）")
+		if (ret) {
+			document.ctg_share_all.submit();
+		}
+	}
+	function stopAllShare() {
+		var ret = confirm("全てのユーザのシェアを解除してもよろしいですか？\n（いいね数ランキング対象外になりますので、特にいいね数の実績がある場合はご注意ください！）")
+		if (ret) {
+			document.ctg_share_stop_all.submit();
+		}
+	}
 </script>
 <% end %>
 <%= form_tag('/ctg_share/delete', { :id => "ctg_share_del", :name => "ctg_share_del" }) do |f| %>
-	<%= hidden_field_tag "category_id", params[:category_id] %>
-	<%= hidden_field_tag "del_record_id" %>
+<%= hidden_field_tag "category_id", params[:category_id] %>
+<%= hidden_field_tag "del_record_id" %>
+<% end %>
+<%= form_tag('/ctg_share/all_share', { :id => "ctg_share", :name => "ctg_share_all" }) do |f| %>
+<%= hidden_field_tag "category_id", params[:category_id] %>
+<% end %>
+<%= form_tag('/ctg_share/stop_all_share', { :id => "ctg_share", :name => "ctg_share_stop_all" }) do |f| %>
+<%= hidden_field_tag "category_id", params[:category_id] %>
 <% end %>

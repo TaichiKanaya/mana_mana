@@ -76,3 +76,6 @@ gem 'rails_12factor'
 
 # send error mail
 gem 'exception_notification'
+
+# font-awesome
+gem "font-awesome-rails"

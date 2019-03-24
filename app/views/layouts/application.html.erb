@@ -7,7 +7,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><%= yield :title %> | Jimon Jitou</title>
+		<title><%= yield :title %> | Mana Mana</title>
+		<link rel="shortcut icon" type="image/x-icon" href="/assets/fv_title.png">
+		<link rel="icon" type="image/png" href="/assets/fv_title.png" sizes="16x16">
+		<link rel="apple-touch-icon" sizes="16x16" href="/assets/fv_title.png">
+		<link rel="icon" type="image/png" href="/assets/fv_title.png" sizes="16x16">
 		<%= csrf_meta_tags %>
 		<%= csp_meta_tag %>
 		<%# Bulma読込 %>
@@ -54,7 +58,9 @@
 				<div id="navbarBasicExample" class="navbar-menu">
 					<div class="navbar-start"></div>
 					<div class="navbar-end" style="flex-direction:column;align-items:flex-end">
-						<a href="/login" class="button is-link is-outlined is-small">ログアウトはこちら</a>
+						<a href="/login" class="button is-link is-outlined is-small">
+							<%= fa_icon "sign-out", text: "　ログアウトはこちら" %>
+						</a>
 					</div>
 				</div>
 			</nav>
@@ -70,7 +76,13 @@
 						<a href="/ctg_sel">チャレンジ</a>
 					</li>
 					<li class="<%= 'is-active' if request.url =~ /ctg_mng/ %>">
-						<a href="/ctg_mng">カテゴリ</a>
+						<a href="/ctg_mng">マイカテゴリ</a>
+					</li>
+					<li class="<%= 'is-active' if request.url =~ /public_category_list/ %>">
+						<a href="/public_category_list">シェアリング</a>
+					</li>
+					<li class="<%= 'is-active' if request.url =~ /ranking_list/ %>">
+						<a href="/ranking_list">ランキング</a>
 					</li>
 					<% if @adminFlg then %>
 					<li class="<%= 'is-active' if request.url =~ /info_mng/ %>">
@@ -120,7 +132,7 @@
 							<a href="/ml_chg" target="_blank" class="ft-sm">メールアドレス変更</a>
 						<% end %>
 						<p class="mt10">
-							© 2019 Jimon Jitou All rights reserved.
+							© 2019 Mana Mana All rights reserved.
 						</p>
 					</div>
 				</footer>

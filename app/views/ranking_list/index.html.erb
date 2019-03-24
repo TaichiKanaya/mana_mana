@@ -1,0 +1,27 @@
+<% content_for :title do %>いいね数ランキング<% end %>
+<% @loadCategory = @categories.load %>
+<%= form_tag('/ranking_list') do |f| %>
+<p class="subtitle is-6">
+	2019年 いいね数ランキング
+</p>
+<div class="mt30">
+	<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth mb30 parent_three_point_reader">
+		<thead>
+			<tr>
+				<th style="width:10%">順位</th>
+				<th style="width:50%">登録名</th>
+				<th style="width:40%">いいね数</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @loadCategory.each_with_index do |category, index| %>
+			<tr>
+				<td><%= index + 1 %>位</td>
+				<td class="answer child_three_point_reader hidden-part" title="<%= category.created_user_name %>"><%= category.created_user_name %></td>
+				<td class="question child_three_point_reader" title="<%= category.goods %>"><%= category.goods %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<% end %>

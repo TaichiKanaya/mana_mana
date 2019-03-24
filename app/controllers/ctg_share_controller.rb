@@ -1,6 +1,6 @@
 class CtgShareController < ApplicationController
   def index
-    @sharedUserRecords = UserAccessCategory.left_outer_joins(:user).select("user_access_categories.id record_id, users.mail_address, users.name").where(category_id: params[:category_id])
+    init
   end
   def share
     flash[:notice] = []
@@ -37,9 +37,35 @@ class CtgShareController < ApplicationController
     redirect_to createRedirectUrl
   end
   
+  def all_share
+    questions = Question.where("category_id = ?", params[:category_id])
+    if questions.size < 5
+      flash[:error] = ["全てのユーザにシェアするには少なくとも5問以上の問題数が必要です。"]
+      init
+      render action: :index
+      return
+    end
+    category = Category.where("id = ? and created_user_id = ?", params[:category_id], session[:id]).first
+    category.all_share_flg = 1
+    category.save!
+    flash[:notice] = ["全てのユーザにシェアしました"]
+    redirect_to createRedirectUrl
+  end
+  
+  def stop_all_share
+    category = Category.where("id = ? and created_user_id = ?", params[:category_id], session[:id]).first
+    category.all_share_flg = 0
+    category.save!
+    flash[:notice] = ["全てのユーザへのシェアを中止しました"]
+    redirect_to createRedirectUrl
+  end
+  
   private
   def init
-    @sharedUserRecords = UserAccessCategory.left_outer_joins(:user).select("user_access_categories.id record_id, users.mail_address, users.name").where(category_id: params[:category_id])
+    @sharedUserRecords = UserAccessCategory.left_outer_joins(:user)
+      .select("user_access_categories.id record_id, users.mail_address, users.name")
+      .where(category_id: params[:category_id])
+    @category = Category.where("id = ? and created_user_id = ?", params[:category_id], session[:id]).first
   end
   def createRedirectUrl
     return "/ctg_share?category_id=" + params[:category_id].to_s

@@ -83,6 +83,8 @@ Rails.application.routes.draw do
   get 'ctg_share' => 'ctg_share#index'
   post 'ctg_share/share' => 'ctg_share#share'
   post 'ctg_share/delete' => 'ctg_share#delete'
+  post 'ctg_share/all_share' => 'ctg_share#all_share'
+  post 'ctg_share/stop_all_share' => 'ctg_share#stop_all_share'
 
   # チャレンジ問題
   get 'cg' => 'cg#index'
@@ -103,4 +105,21 @@ Rails.application.routes.draw do
   # 退会完了
   get 'unsubscribe_comp' => 'unsubscribe_comp#index'
   post 'unsubscribe_comp/login' => 'unsubscribe_comp#login'
+  
+  # ランキング
+  get 'ranking_list' => 'ranking_list#index'
+  
+  # 全体にシェアされているカテゴリ一覧
+  get 'public_category_list' => 'public_category_list#index'
+  post 'public_category_list/search' => 'public_category_list#search'
+  
+  # チャレンジ（全体シェア用）
+  get 'public_category_cg' => 'public_category_cg#index'
+  post 'public_category_cg/getQuestion' => 'public_category_cg#getQuestion'
+
+  # チャレンジ問題終了（全体シェア用）
+  get 'public_category_cg_comp' => 'public_category_cg_comp#index'
+  post 'public_category_cg_comp/comp' => 'public_category_cg_comp#comp'
+  post 'public_category_cg_comp/good' => 'public_category_cg_comp#good'
+
 end

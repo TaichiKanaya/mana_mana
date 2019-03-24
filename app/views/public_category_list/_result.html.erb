@@ -1,0 +1,31 @@
+<% @loadCategory = @categories.load %>
+<div class="mt30">
+	<div class="columns">
+		<div class="column">
+			<%= label_tag "総件数 " + @categories.total_count.to_s + " 件　" + (@categories.offset_value + 1).to_s + " 件 〜 " + (@categories.offset_value + @categories.length).to_s + " 件までを表示"%>
+		</div>
+	</div>
+	<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth mb30 parent_three_point_reader">
+		<thead>
+			<tr>
+				<th style="width:30%">カテゴリ</th>
+				<th style="width:10%">いいね数</th>
+				<th style="width:25%">登録者</th>
+				<th class="hidden-part" style="width:15%">登録日時</th>
+				<th style="width:20%"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @loadCategory.each do |category| %>
+			<tr>
+				<td class="categoryName child_three_point_reader tooltip" title="<%= category.category_name %>"><%= category.category_name %></td>
+				<td class="question child_three_point_reader" title="<%= category.goods %>"><%= category.goods %></td>
+				<td class="answer child_three_point_reader hidden-part" title="<%= category.created_user_name %>"><%= category.created_user_name %></td>
+				<td class="regDate hidden-part"><%= category.created_at.strftime("%Y/%m/%d") %></td>
+				<td class="updButton"><a href="/public_category_cg/?category_id=<%= category.id %>" > <%= button_tag 'チャレンジ', {:class => "button is-info is-small is-rounded"} %> </a></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<%= paginate(@categories) %>
