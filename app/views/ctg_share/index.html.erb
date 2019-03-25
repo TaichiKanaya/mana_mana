@@ -8,31 +8,28 @@
 		カテゴリシェア
 	</p>
 	<p>
-		自分が作成したカテゴリを他の人にシェアすることができます。
-		<br>
-		シェアされた相手はこのカテゴリに紐づいている問題にチャレンジすることができます。
+		自分が作成したカテゴリを他の人にシェアすることができます。<br>
+		シェアされた相手はこのカテゴリに紐づいている問題にチャレンジすることができます。<br>
+		一部のユーザへシェアする場合には「一部のユーザへのシェア」欄へ、<br>
+		全てのユーザへシェアする場合には「全てのユーザへのシェア」欄へ進んでください。
 	</p>
 	<% # errorメッセージ表示領域 %>
 	<%= render :file => 'layouts/error.html.erb' %>
 	<% # noticeメッセージ表示領域 %>
 	<%= render :file => 'layouts/notice.html.erb' %>
 	<%= hidden_field_tag "category_id", params[:category_id] %>
+	<p class="mt20 subsubtitle">一部のユーザへのシェア</p>
+	<p>シェアする相手のメールアドレスと生年月日を入力してください。</p>
 	<div>
-		<div class="mt20">
-			<p>
-				<%= label_tag "シェアする相手のメールアドレス"%><span style="color:red">＊</span>
-			</p>
+		<div class="mt10">
 			<%= text_field_tag "mailAddress", (params[:mailAddress] if params[:mailAddress] != nil), { :placeholder => "相手のメールアドレスを入力してください", :class => "input is-info text-width" } %>
 		</div>
-		<div class="mt30">
-			<p>
-				<%= label_tag "シェアする相手の生年月日"%><span style="color:red">＊</span>
-			</p>
+		<div class="mt10">
 			<%= text_field_tag "birthday", (params[:birthday] if params[:birthday] != nil), { :placeholder => "相手の生年月日を入力してください", :class => "input is-info text-width" } %>
 		</div>
-		<div class="mt30">
+		<div class="mt20">
 			<p>
-				<%= button_tag 'シェアする', {:type => "button", :id => "btnShare", :class => "button is-link", :onclick => "checkShare();"} %>
+				<%= button_tag '上記で入力した相手にシェアする', {:type => "button", :id => "btnShare", :class => "button is-link", :onclick => "checkShare();"} %>
 			</p>
 		</div>
 	</div>
@@ -61,17 +58,18 @@
 			このカテゴリは現在シェアされていません。ぜひシェアしてみよう！
 		</p>
 	<% end %>
-	<div class="mt30">
-		<% if @category.all_share_flg != 1 %>
-		<p>
-			<%= button_tag '全てのユーザにシェアする', {:type => "button", :id => "btnShare", :class => "button is-success", :onclick => "allShare();"} %>
-		</p>
-		<% else %>
-		<p>
-			<%= button_tag '全てのユーザへのシェアを中止する', {:type => "button", :id => "btnShare", :class => "button is-success", :onclick => "stopAllShare();"} %>
-		</p>
-		<% end %>
-	</div>
+	<p class="mt30 subsubtitle">全てのユーザへのシェア</p>
+	<% if @category.all_share_flg != 1 %>
+	<p>Mana Manaを利用している全てのユーザにシェアします。<br>全てのユーザにシェアすると、いいね数ランキング表示対象になります。</p>
+	<p class="mt20">
+		<%= button_tag '全てのユーザにシェアする', {:type => "button", :id => "btnShare", :class => "button is-link", :onclick => "allShare();"} %>
+	</p>
+	<% else %>
+	<p>Mana Manaを利用している全てのユーザへのシェアを取り止めます。<br>取り止めた場合、いいね数ランキング対象外になりますのでご注意ください。（いいね数は保持されます）</p>
+	<p class="mt20">
+		<%= button_tag '全てのユーザへのシェアを取り止める', {:type => "button", :id => "btnShare", :class => "button is-danger", :onclick => "stopAllShare();"} %>
+	</p>
+	<% end %>
 </div>
 <script type="text/javascript">
 	function checkShare() {
