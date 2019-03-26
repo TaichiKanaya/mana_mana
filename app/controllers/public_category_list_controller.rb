@@ -12,11 +12,21 @@ class PublicCategoryListController < ApplicationController
   def search
     @where = "categories.all_share_flg = 1"
     generateConditions
-    @categories = Category.joins(:user).left_outer_joins(:good_categories)
-      .select("categories.id, categories.name category_name, categories.created_at, users.name created_user_name, count(good_categories.id) goods")
-      .where(@where)
-      .group("categories.id, categories.name, categories.created_at, users.name")
-      .page(params[:page])
+    
+    categoryRecords = Category.joins(:user).left_outer_joins(:good_categories)
+        .select("categories.id, categories.name category_name, categories.created_at, users.name created_user_name, count(good_categories.id) goods")
+        .where(@where)
+        .group("categories.id, categories.name, categories.created_at, users.name")
+    
+    # いいね数の指定がある場合
+    p categoryRecords.inspect
+    params_good = params[:condition][:good]
+    unless params_good.blank?
+      categoryRecords = categoryRecords.having("count(good_categories.id) >= ?", params_good)
+    end
+    
+    @categories = categoryRecords.page(params[:page])
+    
     @condition = params[:condition]
     render action: :index
   end
@@ -26,7 +36,7 @@ class PublicCategoryListController < ApplicationController
   # 検索条件生成
   def generateConditions
     params_category = params[:condition][:category]
-    params_good= params[:condition][:good]
+    params_user_name = params[:condition][:userName]
     params_from_created_at= params[:condition][:fromRegDate]
     params_to_created_at= params[:condition][:toRegDate]
 
@@ -42,10 +52,18 @@ class PublicCategoryListController < ApplicationController
       end
       @where << ")"
     end
-
-    # いいね数
-    unless params_good.blank?
-      @where << " and ((select count(*) from good_categories gc where categories.id = gc.category_id) > " + whereGood + ")"
+    
+    # 登録者名
+    unless params_user_name.blank?
+      whereUserNames = params_user_name.split(" ")
+      @where << " and ("
+      whereUserNames.each_with_index do |whereUserName, index|
+        if index != 0
+          @where << " or"
+        end
+        @where << " users.name like '%" + whereUserName.to_s + "%'"
+      end
+      @where << ")"
     end
 
     # 登録日時(From)

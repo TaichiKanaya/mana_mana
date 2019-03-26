@@ -67,7 +67,7 @@
 		<%= button_tag '全てのユーザにシェアする', {:type => "button", :id => "btnShare", :class => "button is-link", :onclick => "allShare();"} %>
 	</p>
 	<% else %>
-	<p>Mana Manaを利用している全てのユーザへのシェアを取り止めます。<br>取り止めた場合、いいね数ランキング対象外になりますのでご注意ください。（いいね数は保持されます）</p>
+	<p>Mana Manaを利用している全てのユーザへのシェアを取り止めます。（カテゴリを消さない限り、いいね数はそのまま保持されます）</p>
 	<%= label_tag "カテゴリの説明"%>
 	<p style="white-space: pre-wrap;border: 1px solid;border-color: #209cee; background-color: #f5f5f5"><%= label_tag @category.description %></p>
 	<p class="mt20">
@@ -99,7 +99,7 @@
 		}
 	}
 	function stopAllShare() {
-		var ret = confirm("全てのユーザのシェアを解除してもよろしいですか？\n（いいね数ランキング対象外になりますので、特にいいね数の実績がある場合はご注意ください！）")
+		var ret = confirm("全てのユーザのシェアを解除してもよろしいですか？")
 		if (ret) {
 			document.ctg_share_stop_all.submit();
 		}
