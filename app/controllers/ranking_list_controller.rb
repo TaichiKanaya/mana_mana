@@ -5,5 +5,6 @@ class RankingListController < ApplicationController
       .group("users.name")
       .having('count(good_categories.id) > 0')
       .order("goods desc")
+      .limit(10)
   end
 end

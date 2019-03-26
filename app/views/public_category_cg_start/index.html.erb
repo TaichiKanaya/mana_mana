@@ -1,0 +1,12 @@
+<% content_for :title do %>チャレンジ問題開始<% end %>
+<%= form_tag('/public_category_cg_start/start') do |f| %>
+<p class="subtitle is-6">
+	<%= label_tag "チャレンジ問題開始"%>
+</p>
+<p><%= label_tag @category.name %></p>
+<p style="white-space: pre-wrap;border: 1px solid;border-color: #fffafa; background-color: #fffafa"><%= label_tag @category.description %></p>
+<div class="mt30">
+	<a href="javascript:document.submit()"> <%= button_tag 'START', {:class => "button is-link"} %> </a>
+</div>
+<%= hidden_field_tag "category_id", (params[:category_id] if params[:category_id] != nil) %>
+<% end %>

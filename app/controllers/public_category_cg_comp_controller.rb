@@ -37,12 +37,12 @@ class PublicCategoryCgCompController < ApplicationController
     end
     
     goodCategoryRecord = GoodCategory.new
-    goodCategoryRecord.user_id = session[:id]
+    goodCategoryRecord.user_id = @category.created_user_id
     goodCategoryRecord.category_id = params[:category_id]
     goodCategoryRecord.created_at = Time.new.strftime("%Y-%m-%d %H:%M:%S")
     goodCategoryRecord.created_user_id = session[:id]
     goodCategoryRecord.save!
     
-    redirect_to "/public_categroy_cg_comp?category_id=" + params[:category_id]
+    redirect_to "/public_category_cg_comp?category_id=" + params[:category_id]
   end
 end

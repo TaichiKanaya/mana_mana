@@ -6,8 +6,12 @@
 
 <div class="mt20">
 	<p>カテゴリ内の全ての問題を終了しました。<br>いいなと思ったら、高評価とツイートを忘れずに！</p>
-	<span class="button is-rounded is-small is-primary" onClick="<%= 'document.good.submit();' if @isGoodAble %>" >
-		<%= fa_icon "thumbs-up", text: "　いいね！　" %><%= @goodCount %>
+	<% if @isGoodAble %>
+	<span class="button is-rounded is-small is-primary" onClick="document.good.submit();" >
+	<% else %>
+	<span class="button is-rounded is-small is-light" >
+	<% end %>
+	<%= fa_icon "thumbs-up", text: "　いいね！　" %><%= @goodCount %>
 	</span>
 	<a href="https://twitter.com/intent/tweet?text=[Mana Mana]この知識はぜひ知っておきたい！%0a圧倒的学習！さあ夢へ向かって爆速で知識を深めよう！&url=https://jimonjitou.herokuapp.com/public_category_cg?category_id=<%= params[:category_id] %>" target="_blank" rel="nofollow" class="twitter-link">
 		<span class="button is-rounded is-small is-info" ><%= fa_icon "twitter", text: "　Twitterへ" %></span>

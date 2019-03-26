@@ -113,6 +113,10 @@ Rails.application.routes.draw do
   get 'public_category_list' => 'public_category_list#index'
   post 'public_category_list/search' => 'public_category_list#search'
   
+  # チャレンジ問題開始（全体シェア用）
+  get 'public_category_cg_start' => 'public_category_cg_start#index'
+  post 'public_category_cg_start/start' => 'public_category_cg_start#start'
+  
   # チャレンジ（全体シェア用）
   get 'public_category_cg' => 'public_category_cg#index'
   post 'public_category_cg/getQuestion' => 'public_category_cg#getQuestion'

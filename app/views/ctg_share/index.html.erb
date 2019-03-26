@@ -61,11 +61,15 @@
 	<p class="mt30 subsubtitle">全てのユーザへのシェア</p>
 	<% if @category.all_share_flg != 1 %>
 	<p>Mana Manaを利用している全てのユーザにシェアします。<br>全てのユーザにシェアすると、いいね数ランキング表示対象になります。</p>
+	<%= label_tag "カテゴリの説明"%><span style="color:red">＊</span>
+	<%= text_area_tag "tmp_description", (params[:description] if params[:description] != nil), { :placeholder => "どんな問題が含まれているのかわかりやすく簡潔に入力してください", :class => "textarea is-info", :rows => "5"} %>
 	<p class="mt20">
 		<%= button_tag '全てのユーザにシェアする', {:type => "button", :id => "btnShare", :class => "button is-link", :onclick => "allShare();"} %>
 	</p>
 	<% else %>
 	<p>Mana Manaを利用している全てのユーザへのシェアを取り止めます。<br>取り止めた場合、いいね数ランキング対象外になりますのでご注意ください。（いいね数は保持されます）</p>
+	<%= label_tag "カテゴリの説明"%>
+	<p style="white-space: pre-wrap;border: 1px solid;border-color: #209cee; background-color: #f5f5f5"><%= label_tag @category.description %></p>
 	<p class="mt20">
 		<%= button_tag '全てのユーザへのシェアを取り止める', {:type => "button", :id => "btnShare", :class => "button is-danger", :onclick => "stopAllShare();"} %>
 	</p>
@@ -90,6 +94,7 @@
 	function allShare() {
 		var ret = confirm("全てのユーザにシェアしてもよろしいですか？\n（いいね数ランキング対象になります。ぜひ積極的にシェアしてください！）")
 		if (ret) {
+			$("#description").val($("#tmp_description").val());
 			document.ctg_share_all.submit();
 		}
 	}
@@ -107,6 +112,7 @@
 <% end %>
 <%= form_tag('/ctg_share/all_share', { :id => "ctg_share", :name => "ctg_share_all" }) do |f| %>
 <%= hidden_field_tag "category_id", params[:category_id] %>
+<%= hidden_field_tag "description", params[:description] %>
 <% end %>
 <%= form_tag('/ctg_share/stop_all_share', { :id => "ctg_share", :name => "ctg_share_stop_all" }) do |f| %>
 <%= hidden_field_tag "category_id", params[:category_id] %>

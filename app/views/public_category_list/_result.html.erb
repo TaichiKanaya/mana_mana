@@ -22,7 +22,7 @@
 				<td class="question" title="<%= category.goods %>"><%= category.goods %></td>
 				<td class="answer child_three_point_reader" title="<%= category.created_user_name %>"><%= category.created_user_name %></td>
 				<td class="regDate hidden-part"><%= category.created_at.strftime("%Y/%m/%d") %></td>
-				<td class="updButton"><a href="/public_category_cg/?category_id=<%= category.id %>" > <%= button_tag 'チャレンジ', {:class => "button is-info is-small is-rounded"} %> </a></td>
+				<td class="updButton"><a target="_blank" href="/public_category_cg_start/?category_id=<%= category.id %>" > <%= button_tag 'チャレンジ', {:class => "button is-info is-small is-rounded"} %> </a></td>
 			</tr>
 			<% end %>
 		</tbody>

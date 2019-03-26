@@ -139,6 +139,10 @@ table tr th {
 	font-size: 14px;
 }
 
+.careful {
+  color: red
+}
+
 /* error message area */
 .area_error_message {
 	color: red;
