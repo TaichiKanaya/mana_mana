@@ -4,7 +4,7 @@
 	チャレンジ問題
 </p>
 <div id="vue">
-	<div><%= @categories["name"] %><br>
+	<div id="question" ><%= @categories["name"] %><br>
 	<%= @questionCount %> 問中　<span v-cloak>{{ count }}</span> 問目 </div>
 	<div class="mb30">
 		<br>
@@ -34,6 +34,7 @@
 		},
 		methods : {
 			onclick : function() {
+				$("#question")[0].scrollIntoView(true)
 				axios.post('/cg/getQuestion',{
 					authenticity_token: $("[name='authenticity_token']").val()
 				}).then( function(response) {
