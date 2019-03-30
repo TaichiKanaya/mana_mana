@@ -7,18 +7,26 @@
 <div class="mt20">
 	<p>カテゴリ内の全ての問題を終了しました。<br>いいなと思ったら、高評価とツイートを忘れずに！</p>
 	<% if @isGoodAble %>
-	<span class="button is-rounded is-small is-primary" onClick="document.good.submit();" >
+	<span class="button button-icon-include is-rounded is-small is-primary" onClick="document.good.submit();" >
 	<% else %>
-	<span class="button is-rounded is-small is-light" >
+	<span class="button button-icon-include is-rounded is-small is-light" >
 	<% end %>
 	<%= fa_icon "thumbs-up", text: "　いいね！　" %><%= @goodCount %>
 	</span>
-	<a href="https://twitter.com/intent/tweet?text=[Mana Mana]この知識はぜひ知っておきたい！%0a圧倒的学習！さあ夢へ向かって爆速で知識を深めよう！&url=https://jimonjitou.herokuapp.com/public_category_cg?category_id=<%= params[:category_id] %>" target="_blank" rel="nofollow" class="twitter-link">
-		<span class="button is-rounded is-small is-info" ><%= fa_icon "twitter", text: "　Twitterへ" %></span>
-	</a>
 	<br><p class="mt05" style="font-size: 11px">注）１カテゴリに対して、１人あたりいいね！は１回まで有効です。</p>
+	<div class="mt10">
+		<a target="_blank" href="https://twitter.com/intent/tweet?text=[Mana Mana]この知識はぜひ知っておきたい！%0a圧倒的学習！さあ夢へ向かって爆速で知識を深めよう！&url=https://jimonjitou.herokuapp.com/public_category_cg?category_id=<%= params[:category_id] %>" target="_blank" rel="nofollow" class="twitter-link">
+			<span class="button button-icon-include is-rounded is-small is-info" ><%= fa_icon "twitter", text: "　Twitterへ" %></span>
+		</a>
+		<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= ERB::Util.url_encode(url_for(only_path: false)) %>" >
+			<span class="button button-icon-include is-rounded is-small is-link" ><%= fa_icon "facebook", text: "　Facebookへ" %></span>
+		</a>
+		<a target="_blank" href="http://line.me/R/msg/text/?<%= ERB::Util.url_encode(url_for(only_path: false)) %>">
+			<span class="button is-rounded is-small is-success" >Lineへ</span>
+		</a>
+	</div>
 </div>
-<div class="mt20">
+<div class="mt30">
 	<a href="javascript:document.submit()"> <%= button_tag 'シェア一覧画面へ戻る', {:class => "button is-link"} %> </a>
 </div>
 <% end %>
