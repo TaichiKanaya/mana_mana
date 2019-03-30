@@ -4,7 +4,7 @@
 	<%= label_tag "チャレンジ問題開始"%>
 </p>
 <p><%= label_tag @category.name %></p>
-<p style="white-space: pre-wrap;border: 1px solid;border-color: #fffafa; background-color: #fffafa"><%= label_tag @category.description %></p>
+<p style="white-space: pre-wrap;"><%= label_tag @category.description %></p>
 <div class="mt30">
 	<a href="javascript:document.submit()"> <%= button_tag 'START', {:class => "button is-link"} %> </a>
 </div>

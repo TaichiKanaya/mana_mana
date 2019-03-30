@@ -15,13 +15,13 @@
 	</span>
 	<br><p class="mt05" style="font-size: 11px">注）１カテゴリに対して、１人あたりいいね！は１回まで有効です。</p>
 	<div class="mt10">
-		<a target="_blank" href="https://twitter.com/intent/tweet?text=[Mana Mana]この知識はぜひ知っておきたい！%0a圧倒的学習！さあ夢へ向かって爆速で知識を深めよう！&url=https://jimonjitou.herokuapp.com/public_category_cg?category_id=<%= params[:category_id] %>" target="_blank" rel="nofollow" class="twitter-link">
+		<a target="_blank" href="https://twitter.com/intent/tweet?text=[Mana Mana]この知識はぜひ知っておきたい！%0a圧倒的学習！さあ夢へ向かって爆速で知識を深めよう！&url=<%= ERB::Util.url_encode('https://' + request.host_with_port + '/public_category_cg_start?category_id=' + @category.id.to_s) %>" target="_blank" rel="nofollow" class="twitter-link">
 			<span class="button button-icon-include is-rounded is-small is-info" ><%= fa_icon "twitter", text: "　Twitterへ" %></span>
 		</a>
-		<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= ERB::Util.url_encode(url_for(only_path: false)) %>" >
+		<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= ERB::Util.url_encode("https://" + request.host_with_port + "/public_category_cg_start?category_id=" + @category.id.to_s) %>" >
 			<span class="button button-icon-include is-rounded is-small is-link" ><%= fa_icon "facebook", text: "　Facebookへ" %></span>
 		</a>
-		<a target="_blank" href="http://line.me/R/msg/text/?<%= ERB::Util.url_encode(url_for(only_path: false)) %>">
+		<a target="_blank" href="http://line.me/R/msg/text/?<%= ERB::Util.url_encode("https://" + request.host_with_port + "/public_category_cg_start?category_id=" + @category.id.to_s) %>">
 			<span class="button is-rounded is-small is-success" >Lineへ</span>
 		</a>
 	</div>
