@@ -32,6 +32,19 @@
 				<%= button_tag '上記で入力した相手にシェアする', {:type => "button", :id => "btnShare", :class => "button is-link", :onclick => "checkShare();"} %>
 			</p>
 		</div>
+		
+		<p class="mt20 subsubtitle">友だちを誘う</p>
+		<div class="mt10">
+			<a target="_blank" href="https://twitter.com/intent/tweet?text=[Mana Mana]爆速で知識を増やしませんか？%0aランキング上位で賞金Get！人気のManaManaを今すぐあなたの日常に！&url=<%= ERB::Util.url_encode('https://' + request.host_with_port + '/login') %>" target="_blank" rel="nofollow" class="twitter-link">
+				<span class="button button-icon-include is-rounded is-small is-info" ><%= fa_icon "twitter", text: "　Twitterへ" %></span>
+			</a>
+			<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= ERB::Util.url_encode("https://" + request.host_with_port + "/login") %>" >
+				<span class="button button-icon-include is-rounded is-small is-link" ><%= fa_icon "facebook", text: "　Facebookへ" %></span>
+			</a>
+			<a target="_blank" href="http://line.me/R/msg/text/?<%= ERB::Util.url_encode("https://" + request.host_with_port + "/login") %>">
+				<span class="button is-rounded is-small is-success" >Lineへ</span>
+			</a>
+		</div>
 	</div>
 	<% if ! @sharedUserRecords.blank? %>
 	<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth mt30 parent_three_point_reader">
