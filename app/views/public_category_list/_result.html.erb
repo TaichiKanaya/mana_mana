@@ -13,7 +13,7 @@
 				<th style="width:10%">いいね数</th>
 				<th style="width:20%">登録者</th>
 				<th class="hidden-part" style="width:10%">登録日時</th>
-				<th style="width:20%"></th>
+				<th style="width:20%">チャレンジ</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,7 +24,12 @@
 				<td class="goodCount" title="<%= category.good_categories.count %>"><%= category.good_categories.count %></td>
 				<td class="register child_three_point_reader" title="<%= category.created_user_name %>"><%= category.created_user_name %></td>
 				<td class="regDate hidden-part"><%= category.created_at.strftime("%Y/%m/%d") %></td>
-				<td class="cg"><a target="_blank" href="/public_category_cg_start/?category_id=<%= category.id %>" > <%= button_tag 'チャレンジ', {:class => "button is-info is-small is-rounded"} %> </a></td>
+				<td class="cg">
+					<a target="_blank" href="/public_category_cg_start/?category_id=<%= category.id %>" >
+						<span class="button button-icon-include is-rounded is-small is-info hidden-part" ><%= fa_icon "hand-o-right", text: "チャレンジ" %></span>
+						<span class="hidden-part-wide"><%= fa_icon "hand-o-right", text: "" %></span>
+					</a>
+				</td>
 			</tr>
 			<% end %>
 		</tbody>
