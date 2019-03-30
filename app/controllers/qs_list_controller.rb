@@ -58,15 +58,13 @@ class QsListController < ApplicationController
   # 検索実行
   # searchMode 1:検索結果表示用検索 2:CSV出力用検索
   def exeSearch(searchMode)
-    # 検索条件生成
-    @where = "questions.created_user_id = " + session[:id].to_s
+    @questions = Question.joins(:category).select("questions.*, categories.name")
+    @questions = @questions.where("questions.created_user_id = ?", session[:id].to_s)
     generateConditions searchMode
 
     # 検索実行
-    if searchMode == SEARCH_MODE_CSV
-      @questions = Question.joins(:category).select("questions.*, categories.name").where(@where)
-    else
-      @questions = Question.joins(:category).select("questions.*, categories.name").where(@where).page(params[:page])
+    unless searchMode == SEARCH_MODE_CSV
+      @questions = @questions.page(params[:page])
     end
     @condition = params[:condition]
   end
@@ -93,33 +91,17 @@ class QsListController < ApplicationController
 
     # カテゴリ
     unless params_caterogy_id.blank?
-      @where << " and category_id = " + params_caterogy_id.to_s
+      @questions = @questions.where("category_id = ?", params_caterogy_id.to_s)
     end
 
     # 問題
     unless params_question.blank?
-      whereQuestions = params_question.split(" ")
-      @where << " and ("
-      whereQuestions.each_with_index do |whereQuestion, index|
-        if index != 0
-          @where << " or"
-        end
-        @where << " question like'%" + whereQuestion.to_s + "%'"
-      end
-      @where << ")"
+      @questions = @questions.where("question like ?", "%#{params_question.to_s}%")
     end
 
     # 解答
     unless params_answer.blank?
-      whereAnswers = params_answer.split(" ")
-      @where << " and ("
-      whereAnswers.each_with_index do |whereAnswer, index|
-        if index != 0
-          @where << " or"
-        end
-        @where << " answer like'%" + whereAnswer.to_s + "%'"
-      end
-      @where << ")"
+      @questions = @questions.where("answer like ?", "%#{params_answer.to_s}%")
     end
 
     # 登録日時(From)
@@ -127,7 +109,7 @@ class QsListController < ApplicationController
     unless fromRegDate.blank?
       if date_valid? fromRegDate
         date = Date.parse(fromRegDate).strftime("%Y-%m-%d %H:%M:%S")
-        @where << " and questions.created_at >= '" + date + "'"
+        @questions = @questions.where(" questions.created_at >= ?", date.to_s)
       end
     end
 
@@ -136,7 +118,7 @@ class QsListController < ApplicationController
     unless toRegDate.blank?
       if date_valid? toRegDate
         date = (Date.parse(toRegDate) + 1).strftime("%Y-%m-%d %H:%M:%S")
-        @where << " and questions.created_at < '" + date + "'"
+        @questions = @questions.where(" questions.created_at < ?", date.to_s)
       end
     end
   end

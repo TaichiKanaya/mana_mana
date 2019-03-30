@@ -28,7 +28,7 @@
 	</div>
 	<div class="column is-5">
 		<%= hidden_field_tag "condition[h_question]", (params[:condition][:question] if params[:condition] != nil) %>
-		<%= text_field_tag 'condition[question]', (params[:condition][:question] if params[:condition] != nil), {:placeholder => "半角スペースで複数指定可能", :class => "input is-info"} %>
+		<%= text_field_tag 'condition[question]', (params[:condition][:question] if params[:condition] != nil), {:placeholder => "", :class => "input is-info"} %>
 	</div>
 </div>
 <div class="searchCondition columns">
@@ -37,7 +37,7 @@
 	</div>
 	<div class="column is-5">
 		<%= hidden_field_tag "condition[h_answer]", (params[:condition][:answer] if params[:condition] != nil) %>
-		<%= text_field_tag 'condition[answer]',(params[:condition][:answer] if params[:condition] != nil), {:placeholder => "半角スペースで複数指定可能", :class => "input is-info"} %>
+		<%= text_field_tag 'condition[answer]',(params[:condition][:answer] if params[:condition] != nil), {:placeholder => "", :class => "input is-info"} %>
 	</div>
 	<div class="column is-1">
 		<%= label_tag "登録日時"%>

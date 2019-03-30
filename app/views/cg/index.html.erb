@@ -25,6 +25,11 @@
 <% end %>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.20/dist/vue.js"></script>
 <script type="text/javascript">
+	sanitaize = {
+		encode : function (str) {
+			return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+		}
+	};
 	var app = new Vue({
 		el : '#vue',
 		data : {
@@ -45,8 +50,8 @@
 						$("#btnNext").hide();
 						$("#areaAnswer").hide();
 						this.count = response.data.count;
-						this.question = response.data.question;
-						this.answer = response.data.answer;
+						this.question = sanitaize.encode(response.data.question);
+						this.answer = sanitaize.encode(response.data.answer);
 					}
 				}.bind(this)).catch(function(error) {
 					console.log(error)

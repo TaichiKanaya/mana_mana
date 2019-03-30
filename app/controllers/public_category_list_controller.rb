@@ -10,21 +10,19 @@ class PublicCategoryListController < ApplicationController
 
   # 問題検索
   def search
-    @where = "categories.all_share_flg = 1"
-    generateConditions
-    
-    categoryRecords = Category.joins(:user).left_outer_joins(:good_categories)
+    @categoryRecords = Category.joins(:user).left_outer_joins(:good_categories)
         .select("categories.id, categories.name category_name, categories.created_at, users.name created_user_name, count(good_categories.id)")
-        .where(@where)
-        .group("categories.id, categories.name, categories.created_at, users.name")
+        .where("categories.all_share_flg = 1")
+    generateConditions
+    @categoryRecords = @categoryRecords.group("categories.id, categories.name, categories.created_at, users.name")
     
     # いいね数の指定がある場合
     params_good = params[:condition][:good]
     unless params_good.blank?
-      categoryRecords = categoryRecords.having("count(good_categories.id) >= ?", params_good)
+      @categoryRecords = @categoryRecords.having("count(good_categories.id) >= ?", params_good)
     end
     
-    @categories = categoryRecords.page(params[:page])
+    @categories = @categoryRecords.page(params[:page])
     @condition = params[:condition]
     render action: :index
   end
@@ -40,28 +38,12 @@ class PublicCategoryListController < ApplicationController
 
     # カテゴリ
     unless params_category.blank?
-      whereCategories = params_category.split(" ")
-      @where << " and ("
-      whereCategories.each_with_index do |whereCategory, index|
-        if index != 0
-          @where << " or"
-        end
-        @where << " categories.name like '%" + whereCategory.to_s + "%'"
-      end
-      @where << ")"
+      @categoryRecords = @categoryRecords.where("categories.name like ?", "%#{params_category.to_s}%")
     end
     
     # 登録者名
     unless params_user_name.blank?
-      whereUserNames = params_user_name.split(" ")
-      @where << " and ("
-      whereUserNames.each_with_index do |whereUserName, index|
-        if index != 0
-          @where << " or"
-        end
-        @where << " users.name like '%" + whereUserName.to_s + "%'"
-      end
-      @where << ")"
+      @categoryRecords = @categoryRecords.where("users.name like ?", "%#{params_user_name.to_s}%")
     end
 
     # 登録日時(From)
@@ -69,7 +51,7 @@ class PublicCategoryListController < ApplicationController
     unless fromRegDate.blank?
       if date_valid? fromRegDate
         date = Date.parse(fromRegDate).strftime("%Y-%m-%d %H:%M:%S")
-        @where << " and categories.created_at >= '" + date + "'"
+        @categoryRecords = @categoryRecords.where(" categories.created_at >= ?", date.to_s)
       end
     end
 
@@ -78,7 +60,7 @@ class PublicCategoryListController < ApplicationController
     unless toRegDate.blank?
       if date_valid? toRegDate
         date = (Date.parse(toRegDate) + 1).strftime("%Y-%m-%d %H:%M:%S")
-        @where << " and categories.created_at < '" + date + "'"
+        @categoryRecords = @categoryRecords.where(" categories.created_at < ?", date.to_s)
       end
     end
   end
