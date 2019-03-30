@@ -13,8 +13,8 @@ class PublicCategoryListController < ApplicationController
     @where = "categories.all_share_flg = 1"
     generateConditions
     
-    categoryRecords = Category.joins(:user)
-        .select("categories.id, categories.name category_name, categories.created_at, users.name created_user_name")
+    categoryRecords = Category.joins(:user).left_outer_joins(:good_categories)
+        .select("categories.id, categories.name category_name, categories.created_at, users.name created_user_name, count(good_categories.id)")
         .where(@where)
         .group("categories.id, categories.name, categories.created_at, users.name")
     
