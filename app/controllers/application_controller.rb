@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   private
   def require_login
     if session[:id].blank?
-      redirect_to '/login'
+      redirect_to '/login?url=' + request.fullpath.to_s
       return
     end
     userRecord = User.find_by(id: session[:id])

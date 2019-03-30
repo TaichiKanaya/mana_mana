@@ -7,6 +7,7 @@
 	<%#エラーメッセージ表示領域 %>
 	<%= render :file => 'layouts/error.html.erb' %>
 	<%#各種入力エリア %>
+	<input type="hidden" name="url" id="url" value="<%= params[:url] %>" />
 	<div>
 		<%= f.text_field :mail_address, :placeholder => "ユーザIDを入力してください", :class => "input is-info text-width-sm" %>
 	</div>

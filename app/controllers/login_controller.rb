@@ -37,7 +37,11 @@ class LoginController < ApplicationController
     if user.password_init_flg == 1 then
       redirect_to :controller => "pw_chg"
     else
-      redirect_to :controller => "top"
+      if params[:url].blank?
+        redirect_to :controller => "top"
+      else
+        redirect_to params[:url]
+      end
     end
   end
   
