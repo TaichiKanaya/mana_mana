@@ -17,6 +17,9 @@
 html {
 	font-size: 16px;
 }
+.wrap {
+	overflow: hidden;
+}
 .text-width-sm {
 	width: 30%;
 }
