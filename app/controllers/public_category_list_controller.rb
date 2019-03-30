@@ -13,20 +13,18 @@ class PublicCategoryListController < ApplicationController
     @where = "categories.all_share_flg = 1"
     generateConditions
     
-    categoryRecords = Category.joins(:user).left_outer_joins(:good_categories)
-        .select("categories.id, categories.name category_name, categories.created_at, users.name created_user_name, count(good_categories.id) goods")
+    categoryRecords = Category.joins(:user)
+        .select("categories.id, categories.name category_name, categories.created_at, users.name created_user_name")
         .where(@where)
         .group("categories.id, categories.name, categories.created_at, users.name")
     
     # いいね数の指定がある場合
-    p categoryRecords.inspect
     params_good = params[:condition][:good]
     unless params_good.blank?
       categoryRecords = categoryRecords.having("count(good_categories.id) >= ?", params_good)
     end
     
     @categories = categoryRecords.page(params[:page])
-    
     @condition = params[:condition]
     render action: :index
   end
