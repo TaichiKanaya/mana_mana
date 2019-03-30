@@ -17,6 +17,7 @@ class QsRegController < ApplicationController
     end
     
     checkCount
+    checkShare @questions.category_id
     if flash[:error].length > 0 then
       init
       render action: :index
@@ -43,6 +44,13 @@ class QsRegController < ApplicationController
     questionCount = Question.where("created_user_id = ?", session[:id]).size
     if questionCount >= 1000
       flash[:error] << '問題の最大登録可能件数を超過しています（一人あたり1000件まで）。他の問題を削除して再登録してください。'
+    end
+  end
+  
+  def checkShare category_id
+    categoryRecord = Category.select("id, name, all_share_flg").where("id = ? and created_user_id = ?", category_id, session[:id]).first
+    if categoryRecord.all_share_flg
+      flash[:error] << "全てのユーザにシェア中のカテゴリ(#{categoryRecord.name})に対して操作できません。シェアを取り消してから操作してください。"
     end
   end
     

@@ -108,8 +108,11 @@ class Question < ActiveRecord::Base
       if row[1].blank?
         errors << index.to_s + "行目付近 カテゴリが入力されていません。"
       else
-        if get_category(row[1], session_id).blank?
+        categories = get_category(row[1], session_id)
+        if categories.blank?
           errors << index.to_s + "行目付近 存在しないカテゴリ名（" + row[1].to_s + "）です。"
+        elsif categories.all_share_flg == 1
+          errors << index.to_s + "行目付近 全てのユーザにシェア中のカテゴリ（" + row[1].to_s + "）のため、このカテゴリに対して操作できません。シェアを取り消してから操作してください。"
         end
       end
 
@@ -143,7 +146,7 @@ class Question < ActiveRecord::Base
   end
 
   def get_category category_name, session_id
-    return Category.select("id").where("name = ? and created_user_id = ?", category_name, session_id).first
+    return Category.select("id, all_share_flg").where("name = ? and created_user_id = ?", category_name, session_id).first
   end
 
   def get_question question_id, session_id
