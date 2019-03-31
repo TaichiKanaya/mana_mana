@@ -2,9 +2,9 @@
 <% @loadCategory = @categories.load %>
 <%= form_tag('/ranking_list') do |f| %>
 <p class="subtitle is-6">
-	2019年 いいね数ランキング
+	2019年 いいね数ランキングTOP10
 </p>
-<div class="mt30">
+<div class="mt20">
 	<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth mb30 parent_three_point_reader">
 		<thead>
 			<tr>
@@ -24,4 +24,5 @@
 		</tbody>
 	</table>
 </div>
+<label>注）いいね数が同じの場合、本サイトへのユーザ登録日時が昔の方が上位になります。</label>
 <% end %>
