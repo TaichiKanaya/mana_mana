@@ -22,7 +22,7 @@ class CtgShareController < ApplicationController
     end
     
     userAccessCategory = UserAccessCategory.new
-    userAccessCategory.user = shareUser
+    userAccessCategory.shareUser = shareUser
     userAccessCategory.category_id = params[:category_id]
     userAccessCategory.created_at = Time.new.strftime("%Y-%m-%d %H:%M:%S")
     userAccessCategory.created_user_id = session[:id]
@@ -74,7 +74,7 @@ class CtgShareController < ApplicationController
   
   private
   def init
-    @sharedUserRecords = UserAccessCategory.left_outer_joins(:user)
+    @sharedUserRecords = UserAccessCategory.left_outer_joins(:shareUser)
       .select("user_access_categories.id record_id, users.mail_address, users.name")
       .where(category_id: params[:category_id])
     @category = Category.where("id = ? and created_user_id = ?", params[:category_id], session[:id]).first

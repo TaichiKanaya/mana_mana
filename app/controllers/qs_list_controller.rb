@@ -68,7 +68,7 @@ class QsListController < ApplicationController
     @questions = Question.joins(:category).select("questions.*, categories.name")
     @questions = @questions.where("questions.created_user_id = ?", session[:id].to_s)
     generateConditions searchMode
-
+    @questions = @questions.order("categories.name, questions.question")
     # 検索実行
     unless searchMode == SEARCH_MODE_CSV
       @questions = @questions.page(params[:page])

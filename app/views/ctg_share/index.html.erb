@@ -8,7 +8,7 @@
 		カテゴリシェア
 	</p>
 	<p>
-		自分が作成したカテゴリを他の人にシェアすることができます。<br>
+		カテゴリ「<%= @category.name %>」を他の人にシェアすることができます。<br>
 		シェアされた相手はこのカテゴリに紐づいている問題にチャレンジすることができます。<br>
 		一部のユーザへシェアする場合には「一部のユーザへのシェア」欄へ、<br>
 		全てのユーザへシェアする場合には「全てのユーザへのシェア」欄へ進んでください。
@@ -31,19 +31,6 @@
 			<p>
 				<%= button_tag '上記で入力した相手にシェアする', {:type => "button", :id => "btnShare", :class => "button is-link", :onclick => "checkShare();"} %>
 			</p>
-		</div>
-		
-		<p class="mt20 subsubtitle">友だちを誘う</p>
-		<div class="mt10">
-			<a target="_blank" href="https://twitter.com/intent/tweet?text=[Mana Mana]爆速で知識を増やしませんか？%0aランキング上位で賞金Get！人気のManaManaを今すぐあなたの日常に！&url=<%= ERB::Util.url_encode('https://' + request.host_with_port + '/login') %>" target="_blank" rel="nofollow" class="twitter-link">
-				<span class="button button-icon-include is-rounded is-small is-info" ><%= fa_icon "twitter", text: "　Twitterへ" %></span>
-			</a>
-			<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= ERB::Util.url_encode("https://" + request.host_with_port + "/login") %>" >
-				<span class="button button-icon-include is-rounded is-small is-link" ><%= fa_icon "facebook", text: "　Facebookへ" %></span>
-			</a>
-			<a target="_blank" href="http://line.me/R/msg/text/?<%= ERB::Util.url_encode("https://" + request.host_with_port + "/login") %>">
-				<span class="button is-rounded is-small is-success" >Lineへ</span>
-			</a>
 		</div>
 	</div>
 	<% if ! @sharedUserRecords.blank? %>
@@ -71,11 +58,23 @@
 			このカテゴリは現在シェアされていません。ぜひシェアしてみよう！
 		</p>
 	<% end %>
+	<p class="mt20 subsubtitle">友だちを誘う</p>
+	<div class="mt10">
+		<a target="_blank" href="https://twitter.com/intent/tweet?text=[Mana Mana]爆速で知識を増やしませんか？%0aランキング上位で賞金Get！人気のManaManaを今すぐあなたの日常に！&url=<%= ERB::Util.url_encode('https://' + request.host_with_port + '/login') %>" target="_blank" rel="nofollow" class="twitter-link">
+			<span class="button button-icon-include is-rounded is-small is-info" ><%= fa_icon "twitter", text: "　Twitterへ" %></span>
+		</a>
+		<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= ERB::Util.url_encode("https://" + request.host_with_port + "/login") %>" >
+			<span class="button button-icon-include is-rounded is-small is-link" ><%= fa_icon "facebook", text: "　Facebookへ" %></span>
+		</a>
+		<a target="_blank" href="http://line.me/R/msg/text/?<%= ERB::Util.url_encode("https://" + request.host_with_port + "/login") %>">
+			<span class="button is-rounded is-small is-success" >Lineへ</span>
+		</a>
+	</div>
 	<p class="mt30 subsubtitle">全てのユーザへのシェア</p>
 	<% if @category.all_share_flg != 1 %>
-	<p>Mana Manaを利用している全てのユーザにシェアします。<br>全てのユーザにシェアすると、いいね数ランキング表示対象になります。</p>
+	<p>Mana Manaを利用している全てのユーザにシェアします。<br>全てのユーザにシェアすると、いいね数ランキングの対象になります。</p>
 	<%= label_tag "カテゴリの説明"%><span style="color:red">＊</span>
-	<%= text_area_tag "tmp_description", (params[:description] if params[:description] != nil), { :placeholder => "どんな問題が含まれているのかわかりやすく簡潔に入力してください", :class => "textarea is-info", :rows => "5"} %>
+	<%= text_area_tag "tmp_description", (params[:description] if params[:description] != nil), { :placeholder => "シェア相手に表示される内容になります。どんな問題が含まれているのかわかりやすく簡潔に入力してください。", :class => "textarea is-info", :rows => "5"} %>
 	<p class="mt20">
 		<%= button_tag '全てのユーザにシェアする', {:type => "button", :id => "btnShare", :class => "button is-link", :onclick => "allShare();"} %>
 	</p>
