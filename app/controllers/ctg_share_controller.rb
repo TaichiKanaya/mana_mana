@@ -39,15 +39,16 @@ class CtgShareController < ApplicationController
   end
   
   def all_share
+    flash[:error] = []
     if params[:description].blank?
-      flash[:error] = ["カテゴリの説明を入力してください"]
+      flash[:error] << "カテゴリの説明を入力してください"
     elsif params[:description].length > 2000
       flash[:error] << "カテゴリの説明は2000文字以内で入力してください。"
     end
     
     questions = Question.where("category_id = ?", params[:category_id])
     if questions.size < 5
-      flash[:error] << ["全てのユーザにシェアするには少なくとも5問以上の問題数が必要です。"]
+      flash[:error] << "全てのユーザにシェアするには少なくとも5問以上の問題数が必要です。"
     end
     
     unless flash[:error].blank?
