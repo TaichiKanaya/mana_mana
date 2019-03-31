@@ -38,9 +38,16 @@ class QsListController < ApplicationController
 
   # CSV取込
   def uploadCsv
+    flash[:error] = []
+    if params[:inpFile].blank?
+      flash[:error] << "CSVファイルが指定されていません。"
+      redirect_to :controller => "/qs_list"
+      return
+    end
+    
     content = {}
     congent = params[:inpFile].read
-    flash[:error] = []
+    
     errors = []
     newCount, updCount, delCount = Question.import(params[:inpFile], session[:id], errors)
     unless errors.blank?
