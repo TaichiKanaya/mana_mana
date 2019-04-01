@@ -19,7 +19,7 @@
 	</div>
 	<div class="column is-5">
 		<%= hidden_field_tag "condition[h_category]", (params[:condition][:category] if params[:condition] != nil) %>
-		<%= text_field_tag 'condition[category]', (params[:condition][:category] if params[:condition] != nil), {:placeholder => "", :class => "input is-info"} %>
+		<%= text_field_tag 'condition[category]', (params[:condition][:category] if params[:condition] != nil), {:placeholder => "検索したい文言を入力してください", :class => "input is-info"} %>
 	</div>
 	<div class="column is-1">
 		<%= label_tag "いいね数"%>
@@ -35,7 +35,7 @@
 	</div>
 	<div class="column is-5">
 		<%= hidden_field_tag "condition[h_userName]", (params[:condition][:userName] if params[:condition] != nil) %>
-		<%= text_field_tag 'condition[userName]', (params[:condition][:userName] if params[:condition] != nil), {:placeholder => "", :class => "input is-info"} %>
+		<%= text_field_tag 'condition[userName]', (params[:condition][:userName] if params[:condition] != nil), {:placeholder => "検索したい文言を入力してください", :class => "input is-info"} %>
 	</div>
 	<div class="column is-1">
 		<%= label_tag "登録日時"%>
