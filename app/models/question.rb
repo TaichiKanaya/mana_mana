@@ -123,6 +123,11 @@ class Question < ActiveRecord::Base
         else
           if get_question(row[2], session_id).blank?
             errors << index.to_s + "行目付近 存在しない問題ID（" + row[2].to_s + "）です。"
+          else
+            category = get_category_by_question(row[2], session_id)
+            if category.all_share_flg == 1
+              errors << index.to_s + "行目付近 問題IDに紐付くカテゴリが全てのユーザにシェア中のカテゴリ（" + category.category_name.to_s + "）のため、このカテゴリに対して操作できません。シェアを取り消してから操作してください。"
+            end
           end
         end
       end
@@ -151,6 +156,11 @@ class Question < ActiveRecord::Base
 
   def get_question question_id, session_id
     return Question.where("id = ? and created_user_id = ?", question_id, session_id).first
+  end
+  
+  def get_category_by_question question_id, session_id
+    return Question.joins(:category).select("categories.id, categories.all_share_flg, categories.name category_name")
+            .where("questions.id = ? and questions.created_user_id = ?", question_id, session_id).first
   end
 
 end

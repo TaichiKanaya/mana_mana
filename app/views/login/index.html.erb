@@ -15,7 +15,7 @@
 		<%= f.password_field :password, :placeholder => "パスワードを入力してください", :class => "input is-info text-width-sm" %>
 	</div>
 	<div style="margin-top: 15px; margin-bottom: 15px">
-		<a href="javascript:document.submit()"> <%= f.button (fa_icon "sign-out", text: "　ログイン"), :class => "button is-link" %> </a>
+		<a href="javascript:document.submit()"> <%= f.button (fa_icon "sign-out", text: "　ログイン"), :class => "button button-icon-include is-link" %> </a>
 	</div>
 	<div>
 		パスワードを忘れた方は<%= link_to "こちら", "/pw_reset"%>
