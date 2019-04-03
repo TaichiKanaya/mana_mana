@@ -62,7 +62,7 @@ class QsUpdController < ApplicationController
   
   def checkShare category_id
     categoryRecord = Category.select("id, name, all_share_flg").where("id = ? and created_user_id = ?", category_id, session[:id]).first
-    if categoryRecord.all_share_flg
+    if categoryRecord.all_share_flg == 1
       flash[:error] << "全てのユーザにシェア中のカテゴリ(#{categoryRecord.name})に対して操作できません。シェアを取り消してから操作してください。"
     end
   end
