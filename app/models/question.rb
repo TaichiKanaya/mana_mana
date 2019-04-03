@@ -47,7 +47,7 @@ class Question < ActiveRecord::Base
     questionCount = Question.where("created_user_id = ?", session_id).size
     rowCount = 0
     regAbleCount = 1000 - questionCount
-    CSV.foreach(file.path, headers:true) do |row|
+    CSV.foreach(file.path, encoding: "CP932:UTF-8", headers:true) do |row|
       if row[0] == "新規"
         rowCount += 1
       end
@@ -61,7 +61,7 @@ class Question < ActiveRecord::Base
     return
     end
     newCount, updCount, delCount = 0, 0, 0
-    CSV.foreach(file.path, headers: true) do |row|
+    CSV.foreach(file.path, encoding: "CP932:UTF-8", headers: true) do |row|
       questionModel = Question.new
       nowDate = Time.new.strftime("%Y-%m-%d %H:%M:%S")
       if row[0] == "新規"
@@ -69,7 +69,7 @@ class Question < ActiveRecord::Base
         categoryRecord = questionModel.get_category(row[1], session_id)
         question.category_id = categoryRecord.id
         question.question = row[3]
-        question.answer = row[4]
+        question.answer = row[4].blank? ? '' : row[4]
         question.created_at = nowDate
         question.created_user_id = session_id
         question.save!
@@ -79,7 +79,7 @@ class Question < ActiveRecord::Base
         question = questionModel.get_question(row[2], session_id)
         question.category_id = categoryRecord.id
         question.question = row[3]
-        question.answer = row[4]
+        question.answer = row[4].blank? ? '' : row[4]
         question.updated_at = nowDate
         question.updated_user_id = session_id
         question.save!
