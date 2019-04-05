@@ -1,6 +1,6 @@
 require 'csv'
 
-CSV.generate(encoding: Encoding::SJIS, undef: :replace) do |csv|
+(CSV.generate do |csv|
   csv_column_names = %w(処理内容（新規/変更/削除） カテゴリ 問題ID（新規時は空欄） 問題 解答)
   csv << csv_column_names
   @questions.load.each do |data|
@@ -13,4 +13,4 @@ CSV.generate(encoding: Encoding::SJIS, undef: :replace) do |csv|
     ]
     csv << csv_column_values
   end
-end
+end).encode('SJIS', :undef => :replace, :replace => '?')
