@@ -31,7 +31,7 @@ class QsListController < ApplicationController
     exeSearch SEARCH_MODE_CSV
     respond_to do |format|
       format.csv {
-        send_data render_to_string, filename: "outputCsv.csv", type: :csv, charset: :shift_jis
+        send_data render_to_string, filename: "[mm]questions_#{Time.now.strftime("%Y%m%d%H%M%S")}.csv", type: :csv, charset: :shift_jis
       }
     end
   end
