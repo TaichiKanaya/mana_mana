@@ -27,7 +27,6 @@ class InfoMngController < ApplicationController
     #お知らせテーブル更新処理
     params[:title].each_with_index do |element, index|
       @resultInformation = Information.find_by(id:params[:information_id][index])
-      p @resultInformation
       if !@resultInformation.blank? then
         if params[:announceDate][index].blank? then
           @resultInformation.destroy!

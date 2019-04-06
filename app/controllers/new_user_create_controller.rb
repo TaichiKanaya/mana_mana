@@ -9,7 +9,6 @@ class NewUserCreateController < ApplicationController
     check_param
     
     unless flash[:error].length > 0 then
-      p params
       result = User.find_by(mail_address: params[:mailAddress])
       check_user result
     end

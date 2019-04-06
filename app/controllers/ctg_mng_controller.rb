@@ -7,7 +7,6 @@ class CtgMngController < ApplicationController
     params[:allShareFlg] = []
     params[:onlyShareFlg] = []
     @categories.each_with_index do |category, index|
-      p category.inspect
       params[:categoryId][index] = category.id
       params[:categoryName][index] = category.name
       if category.all_share_flg == 1

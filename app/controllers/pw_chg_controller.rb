@@ -16,7 +16,6 @@ class PwChgController < ApplicationController
       elsif params[:nowPassword] == params[:newPassword] then
         flash[:error] << "現在のパスワードと新しいパスワードが同じになっています。異なるパスワードにしてください"
       end
-      p params[:newPassword]
       validPasswordReg = /\A(?=.*?[a-z])(?=.*?\d)(?=.*?[!-\/:-@\[-`{-~])[!-~]{8,100}+\z/i
       unless validPasswordReg =~ params[:newPassword] then
         flash[:error] << "新しいパスワードは半角英数字記号を全て含む8文字以上100文字以内で設定してください"
