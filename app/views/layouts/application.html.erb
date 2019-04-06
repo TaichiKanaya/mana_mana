@@ -136,6 +136,10 @@
 							<a href="/ml_chg" target="_blank" class="ft-sm">メールアドレス変更</a>　|　
 							<a href="/login" class="ft-sm">ログアウト</a>
 						<% end %>
+						<% if request.url =~ /login/ then %>
+							<a href="/use_rule" target="_blank" class="ft-sm">利用規約</a>　|　
+							<a href="/privacy_policy" target="_blank" class="ft-sm">プライバシーポリシー</a>
+						<% end %>
 						<p class="mt10">
 							© 2019 Mana Mana All rights reserved.
 						</p>
