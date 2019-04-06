@@ -48,11 +48,11 @@ class QsListController < ApplicationController
     content = {}
     congent = params[:inpFile].read
     
-    errors = []
-    newCount, updCount, delCount = Question.import(params[:inpFile], session[:id], errors)
-    unless errors.blank?
-      flash[:error] = errors
-      redirect_to :controller => "/qs_list"
+    @errors = []
+    newCount, updCount, delCount = Question.import(params[:inpFile], session[:id], @errors)
+    unless @errors.blank?
+      init
+      render action: :index
       return
     end
     flash[:notice] = []
@@ -137,6 +137,6 @@ class QsListController < ApplicationController
   
   # 初期処理
   def init
-    @categories = Category.where("created_user_id = ?", session[:id])
+    @categories = Category.where("created_user_id = ?", session[:id]).order("name asc")
   end
 end

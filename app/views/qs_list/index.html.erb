@@ -13,6 +13,15 @@
 <%= render :file => 'layouts/error.html.erb' %>
 <% # noticeメッセージ表示領域 %>
 <%= render :file => 'layouts/notice.html.erb' %>
+<% # 取り込みエラーメッセージ表示領域 %>
+<div class="area_error_message">
+	<% if ! @errors.blank? %>
+		<% @errors.each do |message| %>
+		＊<%= label_tag message %>
+		<br>
+		<% end %>
+	<% end %>
+</div>
 <div class="searchCondition columns">
 	<div class="column is-1">
 		<%= label_tag "カテゴリ"%>

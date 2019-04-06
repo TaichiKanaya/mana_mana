@@ -57,7 +57,7 @@ class QsUpdController < ApplicationController
   end
 
   def init
-    @categories = Category.where("created_user_id = ?", session[:id])
+    @categories = Category.where("created_user_id = ?", session[:id]).order("name asc")
   end
   
   def checkShare category_id
