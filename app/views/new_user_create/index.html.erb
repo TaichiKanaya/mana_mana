@@ -22,6 +22,9 @@
 		<div class="mt20">
 			<%= label_tag "お名前"%><span style="color:red">＊</span><br>
 			<%= text_field_tag "userName", (params[:userName] if params[:userName] != nil), { :placeholder => "お名前を入力してください", :class => "input is-info text-width" } %>
+			<p class="ft-sm">
+				※お名前は本名でなくても構いません。シェアやいいね数ランキング表示で他の人にも表示されます。後から変更できませんのでご注意ください。
+			</p>
 		</div>
 		<div class="mt20">
 			<%= label_tag "生年月日"%><span style="color:red">＊</span><br>

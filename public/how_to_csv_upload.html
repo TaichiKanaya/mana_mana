@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>問題一括登録手順</title>
+		<link rel="shortcut icon" type="image/x-icon" href="/assets/fv_title.png">
+		<link rel="icon" type="image/png" href="/assets/fv_title.png" sizes="16x16">
+		<link rel="apple-touch-icon" sizes="16x16" href="/assets/fv_title.png">
+		<link rel="icon" type="image/png" href="/assets/fv_title.png" sizes="16x16">
+		<script src="/assets/bulma-calendar.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+		<link rel="stylesheet" href="/assets/application.css">
+		<meta name="viewport" content="width=device-width" >
+		<meta http-equiv="content-type" charset="utf-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="content">
+				<div class="fs-sm mt20">
+					<p class="title is-4 mb10">
+						問題一括登録手順
+					</p>
+					<div>
+						<p class="subtitle is-5 mb10">
+							Step1. 問題一覧画面で検索ボタンをクリック
+						</p>
+						<p>
+							問題一覧画面は<u><a target="_blank" href="https://manamana.attakait.com/qs_list">こちら</a></u>です。
+						</p>
+						<div class="mb30">
+							<img src="/assets/step1.png" width="90%">
+						</div>
+						<hr>
+						<p class="subtitle is-5 mb10">
+							Step2. CSV出力ボタンをクリック
+						</p>
+						<div class="mb30">
+							<img src="/assets/step2.png" width="90%">
+						</div>
+						<hr>
+						<p class="subtitle is-5 mb10">
+							Step3. ダウンロードされたCSVファイルを編集する
+						</p>
+						<div class="mb30">
+							<img src="/assets/step3.png" width="90%">
+						</div>
+						<div style="background-color: #fffbf4; border: solid 1px; border-color: gray; width: 90%; padding-top: 5px; padding-bottom: 5px">
+							<p>ExcelやLibreOffice（無料です）で編集することをオススメします。<br>上記はLibreOfficeの例です。用途に合わせて以下のように入力してください。<br>
+								　(1)新規登録する場合<br>
+								　　・A列に新規と入力してください。<br>
+								　　・C列には何も入力しないでください。<br>
+								　(2)変更する場合<br>
+								　　・A列に変更と入力してください。<br>
+								　　・C列の数字はCSV出力時に自動出力されますので、その数字を変更しないでください。<br>
+								　(3)削除する場合<br>
+								　　・A列に削除と入力してください。<br>
+								　　・C列の数字はCSV出力時に自動出力されますので、その数字を変更しないでください。<br><br>
+								全てに共通して、<br>
+								　・B列には存在するカテゴリ名を入力してください。<br>
+								　・D列は必須入力、E列は任意入力（空でも登録可能）です。<br>
+								　・文字コードはShift-JISにのみ対応しています。（Excelで文字化けしていなければShift-JISになっています）<br>
+								　・CSVファイル名は半角文字のみにしてください。<br>
+								　・CSVファイル以外をアップロードしないでください。<br>
+							</p>
+						</div>
+						<hr>
+						<p class="subtitle is-5 mb10">
+							Step4. CSV取込ボタンをクリックしてファイルをアップロードする
+						</p>
+						<div class="mb30">
+							<img src="/assets/step4-1.png" width="90%">
+						</div>
+						<div class="mb30">
+							<img src="/assets/step4-2.png" width="90%">
+						</div>
+						<div class="mb30">
+							<img src="/assets/step4-3.png" width="90%">
+						</div>
+						<div class="mb30">
+							<img src="/assets/step4-4.png" width="90%">
+						</div>
+						<hr>
+						<p class="subtitle is-5 mb10">
+							注意事項
+						</p>
+						<p>
+							CSV取込でエラーが発生した場合、以下のように表示されます。
+							<br>
+							エラー行が一行でも存在する場合は、他の正常な行も登録されませんのでご注意ください。
+						</p>
+						<div class="mb30">
+							<img src="/assets/step4-5.png" width="90%">
+						</div>
+					</div>
+				</div>
+				<footer class= "footer mt30">
+					<div class="content has-text-centered">
+						<p>
+							© 2019 Mana Mana All rights reserved.
+						</p>
+					</div>
+				</footer>
+			</div>
+		</div>
+
+	</body>
+</html>
