@@ -18,7 +18,7 @@ class PwChgController < ApplicationController
       end
       validPasswordReg = /\A(?=.*?[a-z])(?=.*?\d)(?=.*?[!-\/:-@\[-`{-~])[!-~]{8,100}+\z/i
       unless validPasswordReg =~ params[:newPassword] then
-        flash[:error] << "新しいパスワードは半角英数字記号を全て含む8文字以上100文字以内で設定してください"
+        flash[:error] << "新しいパスワードは半角英数字と記号(- # $ _ @ /のいずれか)を含む8文字以上100文字以内で設定してください"
       end
     end
 
