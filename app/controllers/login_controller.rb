@@ -49,7 +49,7 @@ class LoginController < ApplicationController
   def check_param
     # mail_address
     if params[:user][:mail_address].blank?
-      flash[:error] << "ユーザIDを入力してください"
+      flash[:error] << "メールアドレスを入力してください"
     end
 
     # password
@@ -60,7 +60,7 @@ class LoginController < ApplicationController
 
   def check_user target
     unless target then
-      flash[:error] << "ユーザIDまたはパスワードが間違っています"
+      flash[:error] << "メールアドレスまたはパスワードが間違っています"
     end
   end
   
