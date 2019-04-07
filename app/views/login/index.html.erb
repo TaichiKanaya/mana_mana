@@ -18,10 +18,13 @@
 		<a href="javascript:document.submit()"> <%= f.button (fa_icon "sign-out", text: "　ログイン"), :class => "button button-icon-include is-link" %> </a>
 	</div>
 	<div>
-		パスワードを忘れた方は<%= link_to "こちら", "/pw_reset"%>
+		パスワードを忘れた方は<%= link_to "こちら", "/pw_reset" %>
 	</div>
 	<div>
 		新規登録をする場合は<%= link_to "こちら", "/new_user_create"%>
+	</div>
+	<div>
+		製品紹介ページは<a target="_blank" href="https://www.attakait.store/manamana">こちら</a> 
 	</div>
 </div>
 <% end %>
