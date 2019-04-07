@@ -1,3 +1,4 @@
+require 'csv'
 class Question < ActiveRecord::Base
   belongs_to :category
   validate :check_param
