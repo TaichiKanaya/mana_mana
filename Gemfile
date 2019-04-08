@@ -79,3 +79,9 @@ gem 'exception_notification'
 
 # font-awesome
 gem "font-awesome-rails"
+
+# OGP
+gem "meta-tags"
+
+# i18n
+gem 'rails-i18n', '~> 5.1'
