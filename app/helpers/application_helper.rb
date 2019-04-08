@@ -17,7 +17,7 @@ module ApplicationHelper
     title = options[:title]
     description = options[:description]
     keywords = options[:keywords]
-    image = options[:image].presence || image_url('manamana_title.png')
+    image = options[:image].presence || image_url('fv_title.png')
  
     configs = {
       separator: '|',
