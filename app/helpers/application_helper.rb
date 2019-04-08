@@ -33,7 +33,12 @@ module ApplicationHelper
         description: description,
         url: request.original_url,
         image: image,
-        site_name: site
+        site_name: site,
+        image: {
+          _: image,
+          width: 200,
+          height: 200
+        }
       },
       fb: {
         app_id: '307583476599988'
