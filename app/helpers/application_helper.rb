@@ -17,7 +17,7 @@ module ApplicationHelper
     title = options[:title]
     description = options[:description]
     keywords = options[:keywords]
-    image = options[:image].presence || image_url('manamana_title.png')
+    image = options[:image].presence || image_url('ogp.png')
  
     configs = {
       separator: '|',
@@ -40,7 +40,7 @@ module ApplicationHelper
       },
       twitter: {
         site: '@tk_gold_7',
-        card: 'summary_large_image',
+        card: 'summary',
       }
     }
  
