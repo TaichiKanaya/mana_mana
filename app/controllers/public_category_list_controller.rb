@@ -19,6 +19,9 @@ class PublicCategoryListController < ApplicationController
     # いいね数の指定がある場合
     params_good = params[:condition][:good]
     unless params_good.blank?
+      if params_good.to_i > 9999999 then
+        params_good = "9999999"
+      end
       @categoryRecords = @categoryRecords.having("count(good_categories.id) >= ?", params_good)
     end
     
