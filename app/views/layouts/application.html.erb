@@ -143,8 +143,54 @@
 			<div class="content">
 				<%# メインコンテンツ %>
 				<%= yield %>
+				
 				<%# 共通フッター %>
-				<footer class= "footer mt30">
+				<footer class= "footer mt20">
+					<% if request.url =~ /top/ then %>
+					<div class="text-center mb20">
+						<a href="https://px.a8.net/svt/ejp?a8mat=35D4XW+AP7H6A+48GC+HVV0H" target="_blank" rel="nofollow">
+						<img border="0" width="468" height="60" alt="" src="https://www20.a8.net/svt/bgt?aid=190409540647&wid=001&eno=01&mid=s00000019758003004000&mc=1"></a>
+						<img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=35D4XW+AP7H6A+48GC+HVV0H" alt="">
+						<a href="https://rpx.a8.net/svt/ejp?a8mat=35D4XW+AOM1KI+2HOM+601S1&rakuten=y&a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0ea62065.34400275.0ea62066.204f04c0%2Fa19040906319_35D4XW_AOM1KI_2HOM_601S1%3Fpc%3Dhttp%253A%252F%252Fwww.rakuten.co.jp%252F%26m%3Dhttp%253A%252F%252Fm.rakuten.co.jp%252F" target="_blank" rel="nofollow">
+						<img src="http://hbb.afl.rakuten.co.jp/hsb/0eb4bbb1.717c6090.0eb4bbaa.95151395/" border="0"></a>
+						<img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=35D4XW+AOM1KI+2HOM+601S1" alt="">
+					</div>
+					<% end %>
+					<% if request.url =~ /qs_list|qs_reg|qs_upd|qs_del_comp/ then %>
+					<div class="text-center mb20">
+						<a href="https://px.a8.net/svt/ejp?a8mat=35D4XX+6PQ0DU+3YCQ+644DT" target="_blank" rel="nofollow">
+						<img border="0" width="468" height="60" alt="" src="https://www27.a8.net/svt/bgt?aid=190409541406&wid=001&eno=01&mid=s00000018449001027000&mc=1"></a>
+						<img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=35D4XX+6PQ0DU+3YCQ+644DT" alt="">
+					</div>
+					<% end %>
+					<% if request.url =~ /ctg_sel|cg|cg_comp/ then %>
+					<div class="text-center mb20">
+						<a href="https://rpx.a8.net/svt/ejp?a8mat=35D4XW+AOM1KI+2HOM+6TUB5&rakuten=y&a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0eac8dc2.9a477d4e.0eac8dc3.0aa56a48%2Fa19040906319_35D4XW_AOM1KI_2HOM_6TUB5%3Fpc%3Dhttp%253A%252F%252Fbooks.rakuten.co.jp%252F%26m%3Dhttp%253A%252F%252Fbooks.rakuten.co.jp%252F" target="_blank" rel="nofollow">
+						<img src="http://hbb.afl.rakuten.co.jp/hsb/0eb46e46.f29a9871.0eb46e39.39a610d9/" border="0"></a>
+						<img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=35D4XW+AOM1KI+2HOM+6TUB5" alt="">
+					</div>
+					<% end %>
+					<% if request.url =~ /ctg_mng|ctg_share/ then %>
+					<div class="text-center mb20">
+						<a href="https://px.a8.net/svt/ejp?a8mat=35D4XX+6PQ0DU+3YCQ+5Z6WX" target="_blank" rel="nofollow">
+						<img border="0" width="468" height="60" alt="" src="https://www29.a8.net/svt/bgt?aid=190409541406&wid=001&eno=01&mid=s00000018449001004000&mc=1"></a>
+						<img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=35D4XX+6PQ0DU+3YCQ+5Z6WX" alt="">
+					</div>
+					<% end %>
+					<% if request.url =~ /public_category_list|public_category_cg_start|public_category_cg_comp/ then %>
+					<div class="text-center mb20">
+						<a href="https://rpx.a8.net/svt/ejp?a8mat=35D4XW+AOM1KI+2HOM+639IP&rakuten=y&a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0ea62065.34400275.0ea62066.204f04c0%2Fa19040906319_35D4XW_AOM1KI_2HOM_639IP%3Fpc%3Dhttp%253A%252F%252Fwww.rakuten.co.jp%252F%26m%3Dhttp%253A%252F%252Fm.rakuten.co.jp%252F" target="_blank" rel="nofollow">
+						<img src="http://hbb.afl.rakuten.co.jp/hsb/0ec09b9a.073c27c8.0eb4bbaa.95151395/" border="0"></a>
+						<img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=35D4XW+AOM1KI+2HOM+639IP" alt="">
+					</div>
+					<% end %>
+					<% if request.url =~ /ranking_list/ then %>
+					<div class="text-center mb20">
+						<a href="https://rpx.a8.net/svt/ejp?a8mat=35D4XW+AOM1KI+2HOM+6AC5D&rakuten=y&a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0ea62065.34400275.0ea62066.204f04c0%2Fa19040906319_35D4XW_AOM1KI_2HOM_6AC5D%3Fpc%3Dhttp%253A%252F%252Fwww.rakuten.co.jp%252F%26m%3Dhttp%253A%252F%252Fm.rakuten.co.jp%252F" target="_blank" rel="nofollow">
+						<img src="http://hbb.afl.rakuten.co.jp/hsb/0eb4bbce.0d9fcd76.0eb4bbaa.95151395/" border="0"></a>
+						<img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=35D4XW+AOM1KI+2HOM+6AC5D" alt="">
+					</div>
+					<% end %>
 					<div class="content has-text-centered">
 						<% if !hfDisplay %>
 							<a href="/use_rule" target="_blank" class="ft-sm">利用規約</a>　|　
