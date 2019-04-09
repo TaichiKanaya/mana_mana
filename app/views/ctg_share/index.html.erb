@@ -60,7 +60,7 @@
 	<% end %>
 	<p class="mt20 subsubtitle">友だちを誘う</p>
 	<div class="mt10">
-		<a target="_blank" href="https://twitter.com/intent/tweet?text=[Mana Mana]知識を右脳にインプット！？%0aいいね数ランキング上位で賞金Get！人気のManaManaを今すぐあなたの日常に！&url=<%= ERB::Util.url_encode('https://' + request.host_with_port + '/login') %>" target="_blank" rel="nofollow" class="twitter-link">
+		<a target="_blank" href="https://twitter.com/intent/tweet?text=登録無料！知識を右脳に爆速インプット！いいね数ランキング上位で賞金Get！ManaManaを今すぐあなたの日常に！&url=<%= ERB::Util.url_encode('https://' + request.host_with_port + '/login') %>" target="_blank" rel="nofollow" class="twitter-link">
 			<span class="button button-icon-include is-rounded is-small is-info" ><%= fa_icon "twitter", text: "　Twitterへ" %></span>
 		</a>
 		<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= ERB::Util.url_encode("https://" + request.host_with_port + "/login") %>" >
