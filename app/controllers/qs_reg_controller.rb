@@ -42,8 +42,8 @@ class QsRegController < ApplicationController
   
   def checkCount
     questionCount = Question.where("created_user_id = ?", session[:id]).size
-    if questionCount >= 1000
-      flash[:error] << '問題の最大登録可能件数を超過しています（一人あたり1000件まで）。他の問題を削除して再登録してください。'
+    if questionCount >= 2000
+      flash[:error] << '問題の最大登録可能件数を超過しています（一人あたり2000件まで）。他の問題を削除して再登録してください。'
     end
   end
   
